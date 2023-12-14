@@ -35,6 +35,9 @@ _QUIMMICA_ ihesak zailtasun-maila moderatua du, trebetasun logikoak eta kimikako
 # :wrench: Instalazioa 
 
 **Coming Soon** 
+**Prueba Soon** 
+
+
 
 
 
