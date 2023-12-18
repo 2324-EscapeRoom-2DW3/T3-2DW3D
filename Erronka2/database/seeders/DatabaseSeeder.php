@@ -25,7 +25,7 @@ class DatabaseSeeder extends Seeder
         
         // $this->call(pruebaSeeder::class);
 
-        \App\Models\Usuario::factory(10)->create();
+        \App\Models\User::factory(10)->create();
         \App\Models\Juego::factory(10)->create();
         \App\Models\Prueba::factory(10)->create();
 

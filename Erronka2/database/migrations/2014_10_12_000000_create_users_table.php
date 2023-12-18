@@ -20,7 +20,7 @@ return new class extends Migration
             $table->bigInteger('rol');
 
             $table->rememberToken();
-            $table->timestamps();
+            // $table->timestamps();
         });
     }
 
