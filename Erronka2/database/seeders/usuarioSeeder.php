@@ -15,7 +15,7 @@ class usuarioSeeder extends Seeder
     {
         //
 
-        $usuario = new Usuario();
+  /*       $usuario = new Usuario();
         $usuario-> name = 'Unai Arozamena';
         $usuario-> email = 'unaiarozamena@urbibas.org';
         $usuario-> contrasena = 'unaiarozamena';
@@ -27,15 +27,15 @@ class usuarioSeeder extends Seeder
         $usuario-> email = 'marko@gmail.com';
         $usuario-> contrasena = 'marko';
         $usuario-> rol = 1;
-        $usuario-> save();
+        $usuario-> save(); */
 
-
+/*
         $usuario = new Usuario();
         $usuario-> name = 'Ibai';
         $usuario-> email = 'ibai@gmail.com';
         $usuario-> contrasena = 'ibai';
         $usuario-> rol = 1;
-        $usuario-> save();
+        $usuario-> save(); */
 
     }
 }
