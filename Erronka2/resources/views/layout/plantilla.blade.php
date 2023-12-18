@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ strreplace('', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
@@ -17,10 +17,9 @@
 </head>
 
 <body class="font-sans antialiased">
-    @include('partials.header')
 
     <div class="min-h-screen bg-gray-100">
-        @include('layouts.navigation')w
+        @include('partials.header')
         <!-- Page Content -->
         <main role="main" class="container">
             @yield('content')
