@@ -8,8 +8,9 @@
     @vite(['resources/css/app.css'])
 </head>
 <body>
-    <div id="app"></div>
+    {{-- <div id="app"></div> --}}
 	@vite('resources/js/app.js')
 
+    @include("partials.footer")
 </body>
 </html>
