@@ -1,9 +1,10 @@
-<script src="https://cdn.tailwindcss.com"></script>
 
-<footer class="text-white bg-black">
-    <div class="mr-10 ml-10">
+<footer class="relative text-white bg-black z-50">
+    <div id="footer-app" class="z-0"></div>
+
+    <div class=" mr-10 ml-10">
         <div class="px-5 py-24 flex items-center">
-            <div class="md:flex-1 ">
+            <div class="md:flex-1 z-50">
                 <a class="flex title-font items-center md:justify-start text-white-900">
                     <img src="{{ url('storage/images/logo.png') }}" alt="" class="w-32">
                     <span class="ml-3 text-xl title-font font-medium">QUIMM<span class="text-green-400">ICA</span> </span>
@@ -45,8 +46,8 @@
                     </a>
                 </span>
             </div>
-            <div class="w-full md:w-1/5 mb-10 md:mb-0 mt-12">
-                <div class="ml-15">
+            <div class="w-full md:w-1/5 mb-10 md:mb-0 mt-12 z-50 ">
+                <div class="ml-15 ">
                     <h2 class="title-font font-medium text-white-900 mb-3 text-xl">ACE<span class="text-green-400">RCA</span></h2>
                     <nav class="list-disc mb-10 ">
                         <li class="pb-3">
@@ -67,7 +68,7 @@
                     </nav>
                 </div>
             </div>
-            <div class="w-16 md:w-2/5 pb-10">
+            <div class="w-16 md:w-2/5 pb-10 z-50">
                 <h2 class="title-font font-medium text-white-900 mb-3 text-xl text-center">CONT<span class="text-green-400">ACT</span></h2>
 
 
@@ -86,9 +87,9 @@
             </div>
         </div>
     </div>
-    <div class="bg-green-700">
-        <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
-            <p class="text-white-500 text-sm text-center sm:text-left">© 2020 QUIMMICA
+    <div class="relative z-10 bg-green-700">
+        <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row z-10">
+            <p class=" text-white-500 text-sm text-center sm:text-left">© 2020 QUIMMICA
             </p>
 
         </div>

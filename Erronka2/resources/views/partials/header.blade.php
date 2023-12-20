@@ -32,7 +32,7 @@
  --}}
 
 <header class="relative text-white body-font bg-black z-50">
-    <div id="app"></div>
+    <div id="header-app"></div>
     <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center z-50">
 
         <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">

@@ -1,6 +1,6 @@
 <template>
 
-<canvas id="renderSurface" class="absolute inset-0 z-0 w-full h-full"></canvas>
+<canvas ref="canvas" class="absolute inset-0 z-0 w-full h-full renderSurface"></canvas>
 
 </template>
 
@@ -11,7 +11,7 @@ export default {
     mounted() {
 
         // Access the canvas element using its id after the component is mounted
-        const canvas = document.getElementById('renderSurface');
+        const canvas = this.$refs.canvas;
 
         // Create a Fluid instance and activate it
         let myFluid = new Fluid(canvas);
