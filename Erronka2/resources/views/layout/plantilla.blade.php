@@ -24,6 +24,7 @@
         <!-- Page Content -->
         <main role="main" class="container">
             @yield('content')
+
         </main>
         @include('partials.footer')
     </div>
