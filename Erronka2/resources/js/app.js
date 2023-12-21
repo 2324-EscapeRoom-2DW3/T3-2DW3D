@@ -1,7 +1,15 @@
 import './bootstrap';
 import { createApp } from 'vue';
+import { createPinia } from 'pinia';
+
 import App from '../App.vue';
 import LoginRegister from '../components/Login-register.vue';
+import Chemical from '../components/Chemical.vue';
+
+const pinia = createPinia();
+const app = createApp(App);
+
+app.use(pinia);
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
@@ -18,3 +26,6 @@ headerApp.mount('#header-app');
 // Create a Vue instance for the footer
 const footerApp = createApp(App);
 footerApp.mount('#footer-app');
+
+const juego1 = createApp(Chemical);
+juego1.mount('#juego1');
