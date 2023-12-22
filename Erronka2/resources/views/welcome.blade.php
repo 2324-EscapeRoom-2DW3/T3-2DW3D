@@ -8,9 +8,9 @@
 
         <div class="min-h-screen bg-cover bg-center" style="background-image: url('storage/images/fondo16_9.png');">
             <div class="flex justify-center  pt-28 pb-16">
-                <h1 class="ml-3 text-white text-9xl font-inter font-bold z-50 type-titulo">
+                <h1 class="ml-3 text-white text-9xl font-figtree font-bold z-50 type-titulo">
                 </h1>
-                <h1 class="text-lime-400 font-inter type-titulo2 font-bold text-9xl"></h1>
+                <h1 class="text-lime-400 font-figtree type-titulo2 font-bold text-9xl"></h1>
             </div>
 
             <div class="flex justify-center">

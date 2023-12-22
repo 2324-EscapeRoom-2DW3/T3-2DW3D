@@ -43,8 +43,8 @@
                     class="w-16 h-14 rounded-full absolute top-full transform scale-y-[-1] opacity-50">
             </div>
 
-            <span class="ml-3 text-xl font-inter font-bold z-50">
-                QUIMM<span class="text-lime-400 font-inter">ICA</span>
+            <span class="ml-3 text-xl font-figtree font-bold z-50">
+                QUIMM<span class="text-lime-400 font-figtree">ICA</span>
             </span>
 
         </a>
