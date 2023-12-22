@@ -19,55 +19,56 @@
 </template>
 <script>
 import axios from 'axios';
+import Bottleneck from 'bottleneck';
+
+const limiter = new Bottleneck({
+  minTime: 333 // Executes 3 requests per second
+});
 
 export default {
-    data() {
-        return {
-            elementos: [],
-        };
-    },
-    methods: {
-        execute() {
-            const randomNumber = Math.floor(Math.random() * 1000) + 1;
-            const url = `https://api.rsc.org/compounds/v1/records/${randomNumber}/details?fields=Formula`;
-            const url_image = `https://api.rsc.org/compounds/v1/records/${randomNumber}/image`;
-            const options = {
-                headers: {
-                    apikey: 'KGdFByAXWaZiAAR5Eie5NSfNtqW82RsD',
-                    Accept: 'application/json',
-                },
-            };
-            return Promise.all([
-                axios.get(url, options),
-                axios.get(url_image, options)
-            ])
-                .then(([response1, response2]) => {
-                    return {
-                        formula: response1.data.formula.replace(/[\{\}_]/g, ''),
-                        image: response2.data.image
-                    };
-                })
-                .catch(err => {
-                    console.error(err);
-                    return this.execute(); // Llama otra vez por si la id del random da error
-
-                    /*  if (err.response && err.response.status === 503) {
-                         return this.execute();
-                     } */
-                });
+  data() {
+    return {
+      elementos: [],
+    };
+  },
+  methods: {
+    execute() {
+      const randomNumber = Math.floor(Math.random() * 1000) + 1;
+      const url = `https://api.rsc.org/compounds/v1/records/${randomNumber}/details?fields=Formula`;
+      const url_image = `https://api.rsc.org/compounds/v1/records/${randomNumber}/image`;
+      const options = {
+        headers: {
+          apikey: 'XVhrgVQ7lrWp9EARG7kutKG4FvAvcktP',
+          Accept: 'application/json',
         },
-        executeThreeTimes() {
-            this.elementos = [];
-            for (let i = 0; i < 3; i++) {
-                this.execute().then((result) => {
-                    this.elementos.push(result);
-                });
-            }
-        },
+      };
+      return limiter.schedule(() => Promise.all([
+        axios.get(url, options),
+        axios.get(url_image, options)
+      ]))
+        .then(([response1, response2]) => {
+          return {
+            formula: response1.data.formula.replace(/[\{\}_]/g, ''),
+            image: response2.data.image
+          };
+        })
+        .catch(err => {
+          console.error(err);
+          return this.execute(); // Llama otra vez por si la id del random da error
+        });
     },
-    mounted() {
-        this.executeThreeTimes();
+    executeThreeTimes() {
+      this.elementos = [];
+      for (let i = 0; i < 3; i++) {
+        this.execute().then((result) => {
+          this.elementos.push(result);
+        });
+      }
     },
+  },
+  mounted() {
+    this.executeThreeTimes();
+  },
 };
 </script>
 
