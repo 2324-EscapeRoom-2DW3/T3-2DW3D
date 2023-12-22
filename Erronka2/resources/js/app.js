@@ -19,7 +19,7 @@ const loginApp = createApp(Login);
 RegisterApp.mount('#register');
 loginApp.mount('#login'); // Asegúrate de que el div con el id "login-register" exista en tu HTML.
 
-
+//a
 const headerApp = createApp(App);
 headerApp.mount('#header-app');
 
