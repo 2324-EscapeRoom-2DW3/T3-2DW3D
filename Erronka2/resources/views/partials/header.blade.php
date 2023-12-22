@@ -65,7 +65,8 @@
         <nav class="inline-flex items-center py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 z-50">
             @if (Route::has('login'))
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="mr-5 underline-spacing">Dashboard</a>
+                        <a href="{{ url('/dashboard') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
+                        </a>
                     @else
                         <a href="{{ route('login') }}" class="mr-5 underline-spacing">Log in</a>
 
