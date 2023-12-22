@@ -14,7 +14,6 @@ Alpine.start();
 createApp(App).mount('#app');
 
 // Si deseas montar LoginRegister en un div específico, asegúrate de que ese div exista en tu HTML.
- login-register-bueno
 const RegisterApp = createApp(Register);
 const loginApp = createApp(Login);
 RegisterApp.mount('#register');
