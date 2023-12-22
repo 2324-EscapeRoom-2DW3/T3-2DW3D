@@ -18,6 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Route::get('/',['welcome'])->name('welcome');
+
+
 Route::get("/froga", function () {
     return view('froga');
 });

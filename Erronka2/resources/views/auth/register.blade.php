@@ -1,6 +1,8 @@
     <x-guest-layout>
-        <div class="container flex justify-between" id="container">
-            <div class="half-width">
+        <div class="container flex justify-between gap-10 " id="container">
+
+            <div class="half-width  bg-black  h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
+            ">
                 <form method="POST" action="{{ route('register') }}">
                     @csrf
 
@@ -52,8 +54,9 @@
                     </div>
                 </form>
             </div>
-            <div class="half-width">
-                <form method="POST" action="{{ route('login') }}">
+            <div class="half-width  bg-black ml-44 h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
+            ">
+                <form method="POST" action="{{ route('login') }}" class="p-6">
                     @csrf
 
                     <!-- Email Address -->
@@ -98,7 +101,9 @@
                     </div>
                 </form>
             </div>
-            <div id="login-register">
+
+
+            <div id="register" class="">
             </div>
 
         </div>
