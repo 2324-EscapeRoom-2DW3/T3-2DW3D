@@ -3,7 +3,7 @@
 
         <div class="half-width  bg-black  h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
         ">
-            <form method="POST" action="{{ route('register') }}">
+            <form method="POST" action="{{ route('register') }}" class="p-6">
                 @csrf
 
                 <!-- Name -->
