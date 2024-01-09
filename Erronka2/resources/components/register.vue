@@ -1,5 +1,5 @@
 <template>
-<div class="overlay-container container bg-green-900 z- " :class="{ 'right-panel-active': isRightPanelActive }" ref="container">
+<div class="lg:block hidden overlay-container container bg-green-900 z- " :class="{ 'right-panel-active': isRightPanelActive }" ref="container">
 
       <div class="overlay ">
           <div class="overlay-panel overlay-right bg-gradient-to-r from-green-800 to-green-400">
