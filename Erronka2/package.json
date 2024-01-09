@@ -21,6 +21,7 @@
         "@next/font": "^14.0.4",
         "@tailwindcss/typography": "^0.5.10",
         "@vitejs/plugin-vue": "^4.5.2",
+        "bottleneck": "^2.19.5",
         "fluid-canvas": "github:malik-tillman/fluid-js",
         "i": "^0.3.7",
         "pinia": "^2.1.7",
