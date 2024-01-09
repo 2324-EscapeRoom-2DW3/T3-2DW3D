@@ -39,3 +39,7 @@ Route::middleware('auth')->group(function () {
 require __DIR__.'/auth.php';
 
 Route::resource('juegos/juego1', Juego1Controller::class);
+
+Route::get('juegos/menu', function () {
+    return view('juegos/menu/menujuego');
+});
