@@ -37,7 +37,8 @@
         setTimeout(function() {
             document.getElementById('juego1').style.display = 'block';
             document.querySelector('.star-wars').style.display = 'none';
-        }, 20000); // 10000 milliseconds = 10 seconds
+
+        }, 1000); // 10000 milliseconds = 10 seconds
     };
 </script>
 

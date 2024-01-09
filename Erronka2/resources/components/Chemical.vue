@@ -4,7 +4,7 @@
             class=" lg:bg-contain bg-no-repeat sm:bg-cover bg-center w-screen h-screen ">
             <div class="flex flex-col items-center mt-16">
                 <div v-for="(elemento, index) in elementos" :key="index" class="">
-                    <p class="wordart text-6xl sm:text-4xl font-rubik italic text-glow font-black shining-light ">
+                    <p  @click="handleClick(elemento.formula)" class="wordart text-6xl sm:text-4xl font-rubik italic text-glow font-black shining-light ">
                         {{ elemento.formula }}
                     </p>
                 </div>
@@ -35,6 +35,16 @@
                 </div>
             </div>
         </div>
+        <div class="h-full  bg-green-900 rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-10 p-6 shadow-xl inline-block animate-ping border-4 border-white">
+        <vue-countdown ref="countdown" :auto-start="false" :time="60 * 1000" v-slot="{ seconds }">
+            <div class="text-6xl text-center flex w-full items-center justify-center">
+
+                <div class=" wordart  text-glow font-black shining-light">
+                    <div class="font-mono leading-none" x-text="seconds"> {{ seconds }}</div>
+                </div>
+            </div>
+        </vue-countdown>
+    </div>
 
     </main>
 </template>
@@ -43,12 +53,14 @@
 <script>
 import axios from 'axios';
 import Bottleneck from 'bottleneck';
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
 const limiter = new Bottleneck({
     minTime: 333 // Executes 3 requests per second
 });
 
 export default {
+
     data() {
         return {
             elementos: [],
@@ -56,7 +68,9 @@ export default {
         };
     },
     methods: {
-
+        handleClick(formula) {
+        console.log(formula);
+    },
 
         execute() {
 
@@ -95,6 +109,9 @@ export default {
         },
     },
     mounted() {
+        setTimeout(() => {
+            this.$refs.countdown.start();
+        }, 1000);
         this.executeThreeTimes();
     },
 };

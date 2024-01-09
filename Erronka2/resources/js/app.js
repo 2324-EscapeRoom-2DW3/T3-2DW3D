@@ -6,6 +6,9 @@ import App from '../App.vue';
 import Chemical from '../components/Chemical.vue';
 import Register from '../components/register.vue';
 import Login from '../components/login.vue';
+import VueCountdown from '@chenfengyuan/vue-countdown';
+
+const app = createApp({});
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
@@ -28,4 +31,6 @@ const footerApp = createApp(App);
 footerApp.mount('#footer-app');
 
 const juego1 = createApp(Chemical);
+juego1.component(VueCountdown.name, VueCountdown);
+
 juego1.mount('#juego1');
