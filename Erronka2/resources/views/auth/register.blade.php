@@ -1,9 +1,11 @@
     <x-guest-layout>
         <div class="container flex justify-between gap-10 " id="container">
 
-            <div class="half-width  bg-black  h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
-            ">
-                <form method="POST" action="{{ route('register') }}">
+            <div class="block lg:hidden half-width   bg-black  h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30">
+
+            <h1 class=" pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium dark:text-green-300">ERREGISTROA EGIN</h1>
+
+                <form method="POST" action="{{ route('register') }}" class="p-6">
                     @csrf
 
                     <!-- Name -->
@@ -54,8 +56,12 @@
                     </div>
                 </form>
             </div>
-            <div class="half-width  bg-black ml-44 h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
-            ">
+            <div class=" lg:block hidden  half-width  bg-black ml-44 h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
+        ">
+        <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium dark:text-green-300">SAIOA HASI</h1>
+        <a class=" lg:hidden block text-center mr-4 underline text-sm text-gray-400  hover:text-gray-100 "
+        href="{{ route('login') }}"> {{ __('Log In') }}
+        </a>
                 <form method="POST" action="{{ route('login') }}" class="p-6">
                     @csrf
 
