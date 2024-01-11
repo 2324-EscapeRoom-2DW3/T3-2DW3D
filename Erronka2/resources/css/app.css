@@ -390,3 +390,54 @@ button.ghost {
     background-size: 75px;
     background-position: center;
   }
+
+  .input-div {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 2px solid #008000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0px 0px 100px #008000 , inset 0px 0px 10px #008000,0px 0px 5px rgb(255, 255, 255);
+    
+  }
+  
+  .icon {
+    color: #00ff00;
+    font-size: 2rem;
+    cursor: pointer;
+  }
+  
+  .inputs {
+    position: absolute;
+    opacity: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer !important;
+    
+  }
+  
+ 
+
+  .input-div:hover{
+
+    border: 2px solid #00ff00;
+      box-shadow: 0px 0px 100px #00ff00 , inset 0px 0px 10px #00ff00,0px 0px 5px rgb(255, 255, 255);
+
+  }
+
+  .contenedo{
+
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+  }
+
+  
+
+  
+  
