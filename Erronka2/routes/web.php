@@ -43,3 +43,7 @@ Route::resource('juegos/juego1', Juego1Controller::class);
 Route::get('juegos/menu', function () {
     return view('juegos/menu/menujuego');
 });
+
+Route::get('juegos/juego2', function () {
+    return view('juegos/juego2/index');
+});
