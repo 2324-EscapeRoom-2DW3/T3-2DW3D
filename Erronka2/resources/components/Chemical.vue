@@ -1,6 +1,5 @@
 <template>
     <main class="min-h-screen flex items-center justify-center p-5">
-        <h1 class="text-white text-8xl">{{ scoreUpdate }}</h1>
         <div :style="{ backgroundImage: `url(${backgroundImage})` }"
             class=" h-full  bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 p-6 shadow-xl inline-bloc">
             <div class="flex flex-col items-center m-2">
@@ -22,6 +21,8 @@
 
             </div>
         </div>
+        <h1 class="text-white text-8xl ml-14">{{ scoreUpdate }}</h1>
+
         <div class="p-32 lg:block hidden">
             <div class="cloader">
                 <div class="clface">
@@ -38,8 +39,8 @@
                 </div>
             </div>
         </div>
-        <div
-            class="h-full  bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 p-6 shadow-xl inline-block animate-pulse">
+        <div :style="{ backgroundImage: `url(${backgroundImage})` }"
+            class="h-full  rounded-md bg-opacity-20 p-6 shadow-xl inline-block">
             <vue-countdown ref="countdown" :auto-start="false" :time="60 * 1000" v-slot="{ seconds }">
                 <div class="text-6xl text-center flex w-full items-center justify-center">
 
@@ -68,7 +69,7 @@ export default {
     data() {
         return {
             elementos: [],
-            backgroundImage: '../storage/images/pizarra.png',
+            backgroundImage: '../storage/images/wall.jpg',
             check: [],
             score: 0,
 
