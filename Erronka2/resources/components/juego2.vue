@@ -64,28 +64,9 @@ export default {
 
         }
 
-    },
-
-    mounted() {
-        let fondoTemplate = document.getElementById("fondoJuego");
-        fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-derecha.png')";
-        fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-derecha+.png')";
-        fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda.png')";
-        fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda+.png')";
-        fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu.png')";
     }
-
 }
 
-
-// console.log(document.getElementById("izq"));
-//     document.getElementById("izq").addEventListener("click", function() {
-//         console.log("izq");
-
-//         // Ahora que el script se ejecuta después de que todo el DOM se ha cargado,
-//         // deberías poder acceder al body directamente sin problemas
-//         document.body.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda.png')";
-//     });
 
 </script>
 

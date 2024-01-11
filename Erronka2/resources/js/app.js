@@ -7,6 +7,7 @@ import Chemical from '../components/Chemical.vue';
 import Register from '../components/register.vue';
 import Login from '../components/login.vue';
 import Menu from '../components/menujuego.vue';
+import Juego2 from '../components/juego2.vue';
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
@@ -33,3 +34,6 @@ juego1.mount('#juego1');
 
 const menujuegoApp = createApp(Menu);
 menujuegoApp.mount('#menujuego');
+
+const Juego2App = createApp(Juego2);
+Juego2App.mount('#juego2');
