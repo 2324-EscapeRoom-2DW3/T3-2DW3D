@@ -22,7 +22,7 @@
     <div class="min-h-screen bg-gray-100">
         @include('partials.header')
         <!-- Page Content -->
-        <main role="main" class="container">
+        <main role="main" class="">
             @yield('content')
 
         </main>

@@ -38,9 +38,9 @@
         <a class="flex title-font font-medium items-center text-white mb-4 md:mb-0">
 
             <div class="relative">
-                <img src="{{ url('storage/images/logo.webp') }}" alt="" class="w-14 h-12 rounded-full">
-                <img src="{{ url('storage/images/logo.webp') }}" alt=""
-                    class="w-16 h-14 rounded-full absolute top-full transform scale-y-[-1] opacity-50">
+                <img src="{{ url('../storage/app/public/images/logo.webp') }}" alt="" class="w-14 h-12 rounded-full">
+                {{-- <img src="{{ url('storage/images/logo.webp') }}" alt=""
+                    class="w-16 h-14 rounded-full absolute top-full transform scale-y-[-1] opacity-50"> --}}
             </div>
 
             <span class="ml-3 text-xl font-figtree font-bold z-50">
