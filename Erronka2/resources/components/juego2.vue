@@ -1,21 +1,14 @@
 <template>
-    <!-- <div id="fondoJuego" class="min-h-screen bg-cover bg-no-repeat bg-center"
-        style="background-image: url('../../storage/app/public/images/menu/fondo-menu.png');">
-        <div class="flex place-content-center gap-32">
-            <div id="izq" class="pt-32" @click.prevent="cambiarFondoIzq">
-                <img class="w-32" src="../../storage/app/public/images/menu/flecha-izquierda.png" alt="">
-            </div>
-            <div id="dr" class="pt-32" @click.prevent="cambiarFondoDrc">
-                <img class="w-32" src="../../storage/app/public/images/menu/flecha-derecha.png" alt="">
-            </div>
-
-        </div>
-
-        <div class="flex place-content-center pt-16 pr-2">
-            <button class="opacity-75 shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-3 px-6 border-b-4 border-green-700 hover:border-green-500 rounded">SARTU</button>
-        </div>
+   <!-- <div id="fondoJuego" class="relative min-h-screen flex items-center justify-center bg-cover bg-no-repeat bg-center" style="background-image: url('../../storage/app/public/images/juego2/fondo.png');">
+    <button class="botoi fixed  transform  bg-transparent border-none p-0 focus:outline-none" @click.prevent="aparecerPizarra">
+        <img id="pizarra" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="Botón con imagen" class="w-96 opacity-50 h-32 ">
+    </button> -->
+<!-- </div> -->
+<img id="imagenClickable" @click.prevent="aparecerPizarra" src="../../storage/app/public/images/juego2/fondo.png" alt="" class="fondo">
+    <!-- <div class="pizarra">
 
     </div> -->
+
 </template>
 
 <script>
@@ -23,49 +16,67 @@
 export default {
     data() {
         return {
-            contador: 0,
+
         };
     },
     methods: {
 
-        cambiarFondoIzq() {
-            console.log("izq");
-            this.contador--;
-            this.cambiarFondo();
-        },
+        aparecerPizarra() {
+            // document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('imagenClickable').addEventListener('click', function(event) {
+        // Obtén las coordenadas del clic en relación con la imagen
+        var posX = event.clientX - event.target.offsetLeft;
+        var posY = event.clientY - event.target.offsetTop;
 
-        cambiarFondoDrc() {
-            console.log("dr");
-            this.contador++;
-            this.cambiarFondo();
-        },
+        // Define las coordenadas de la parte específica que quieres hacer clic
+        var areaTop = 46;     // 40% del alto de la imagen
+        var areaLeft = 40;    // 66% del ancho de la imagen
+        var areaWidth = 23;    // 9% del ancho de la imagen
+        var areaHeight = 13;  // 27% del alto de la imagen
 
-        cambiarFondo(){
-            let fondoTemplate = document.getElementById("fondoJuego");
+        // Calcula las coordenadas absolutas de la posición específica
+        var areaTopAbs = (areaTop / 100) * event.target.height;
+        var areaLeftAbs = (areaLeft / 100) * event.target.width;
+        var areaWidthAbs = (areaWidth / 100) * event.target.width;
+        var areaHeightAbs = (areaHeight / 100) * event.target.height;
 
-            switch (this.contador){
-                case 0:
-                fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu.png')";
-                break;
-                case 1:
-                fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-derecha.png')";
-                break;
-                case 2:
-                fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-derecha+.png')";
-                break;
-                case -1:
-                fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda.png')";
-                break;
-                case -2:
-                fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda+.png')";
-                break;
-            }
-
-
+        // Verifica si el clic está dentro de la parte específica
+        if (posY >= areaTopAbs && posY <= areaTopAbs + areaHeightAbs &&
+            posX >= areaLeftAbs && posX <= areaLeftAbs + areaWidthAbs) {
+            // Realiza la acción deseada
+            console.log('¡Has hecho clic en la parte específica!');
         }
+    })
+}
+        },
+
+
+        // cambiarFondo(){
+        //     let fondoTemplate = document.getElementById("fondoJuego");
+
+        //     switch (this.contador){
+        //         case 0:
+        //         fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu.png')";
+        //         break;
+        //         case 1:
+        //         fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-derecha.png')";
+        //         break;
+        //         case 2:
+        //         fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-derecha+.png')";
+        //         break;
+        //         case -1:
+        //         fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda.png')";
+        //         break;
+        //         case -2:
+        //         fondoTemplate.style.backgroundImage = "url('../../public/storage/images/menu/fondo-menu-izquierda+.png')";
+        //         break;
+        //     }
+
+
+        // }
 
     }
-}
+
 
 
 </script>
