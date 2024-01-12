@@ -1,11 +1,33 @@
 <template>
-    <main class="min-h-screen flex items-center justify-center p-5">
+
+        <p class="h-full w-full bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100
+ text-[#0bd904] rounded-lg p-6 flex justify-center items-center text-2xl md:w-auto mx-10 text-center type-text1">
+            <!-- Your text here -->
+        </p>
+
+    <main class="min-h-screen flex items-center justify-center ">
+         <div class="loading-container" v-if="isLoading">
+        <div class="terminal-loader">
+            <div class="terminal-header">
+                <div class="terminal-title">Status</div>
+                <div class="terminal-controls">
+                    <div class="control close"></div>
+                    <div class="control minimize"></div>
+                    <div class="control maximize"></div>
+                </div>
+            </div>
+                <div class="text">Loading...</div>
+
+        </div>
+    </div>
+    
         <div :style="{ backgroundImage: `url(${backgroundImage})` }"
-            class=" h-full  bg-white rounded-md bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-20 p-6 shadow-xl inline-bloc">
-            <div class="flex flex-col items-center m-2">
+            class="h-full bg-contain bg-no-repeat bg-center p-40  shadow-xl inline-block">
+
+            <div class="flex flex-col items-center">
                 <div v-for="(elemento, index) in elementos" :key="index" class="">
                     <p @click="handleClick(elemento, true)"
-                        class="wordart text-6xl sm:text-4xl font-rubik italic text-glow font-black shining-light "
+                        class="wordart text-6xl sm:text-4xl font-rubik mb-10 italic text-glow font-black shining-light "
                         :class="formulaClass(elemento.formula)">
                         {{ elemento.formula }}
                     </p>
@@ -21,7 +43,7 @@
 
             </div>
         </div>
-        <h1 class="text-white text-8xl ml-14">{{ scoreUpdate }}</h1>
+        <h1 class="wordart text-glow font-black shining-light text-8xl ml-14">{{ scoreUpdate }}</h1>
 
         <div class="p-32 lg:block hidden">
             <div class="cloader">
@@ -39,10 +61,9 @@
                 </div>
             </div>
         </div>
-        <div :style="{ backgroundImage: `url(${backgroundImage})` }"
-            class="h-full  rounded-md bg-opacity-20 p-6 shadow-xl inline-block">
+        <div class="h-full rounded-md bg-opacity-20  shadow-xl inline-block">
             <vue-countdown ref="countdown" :auto-start="false" :time="60 * 1000" v-slot="{ seconds }">
-                <div class="text-6xl text-center flex w-full items-center justify-center">
+                <div class="text-8xl text-center flex w-full items-center justify-center">
 
                     <div class=" wordart text-glow font-black shining-light">
                         <div class="font-mono leading-none" x-text="seconds"> {{ seconds }}</div>
@@ -60,6 +81,7 @@ import axios from 'axios';
 import Bottleneck from 'bottleneck';
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import route from '../../vendor/tightenco/ziggy';
+
 const limiter = new Bottleneck({
     minTime: 333 // Executes 3 requests per second
 });
@@ -69,9 +91,11 @@ export default {
     data() {
         return {
             elementos: [],
-            backgroundImage: '../storage/images/wall.jpg',
+            backgroundImage: '../storage/images/pizarra.png',
             check: [],
             score: 0,
+            isLoading: false,
+
 
         };
     },
@@ -81,20 +105,20 @@ export default {
 
             if (bool) {
                 this.check[0] = element;
-            }else if (!bool) {
+            } else if (!bool) {
                 this.check[1] = element;
 
             }
 
-    console.log(this.check);
+            console.log(this.check);
 
-    if (this.check.length === 2) {
-        if (this.check[0].formula === this.check[1].formula) {
-            this.score++;
-        }
-        this.check = [];
-    }
-},
+            if (this.check.length === 2) {
+                if (this.check[0].formula === this.check[1].formula) {
+                    this.score++;
+                }
+                this.check = [];
+            }
+        },
 
 
         execute() {
@@ -105,7 +129,7 @@ export default {
             const url_image = `https://api.rsc.org/compounds/v1/records/${randomNumber}/image`;
             const options = {
                 headers: {
-                    apikey: 'mO7jKntGcsYpzFwdN3TzoJQMNIKC5Vet',
+                    apikey: 'ZV2SGEoVvyDRGz3CaGieAfotYmSf5jxK',
                     Accept: 'application/json',
                 },
             };
@@ -142,29 +166,35 @@ export default {
 
     computed: {
         imageClass() {
-        return (image) => {
-            return this.check[1] && image === this.check[1].image ? 'shadow-[0_20px_20px_-15px_rgba(255,20,147,1)]' : 'border-transparent';
-        };
-    },
+            return (image) => {
+                return this.check[1] && image === this.check[1].image ? 'shadow-[0_20px_20px_-15px_rgba(255,20,147,1)]' : 'border-transparent';
+            };
+        },
 
-    formulaClass() {
-        return (formula) => {
-            return this.check[0] && formula === this.check[0].formula ? 'shadow-[0_20px_20px_-15px_rgba(255,20,147,1)]' : 'border-transparent';
-        };
-    },
+        formulaClass() {
+            return (formula) => {
+                return this.check[0] && formula === this.check[0].formula ? 'shadow-[0_20px_20px_-15px_rgba(255,20,147,1)]' : 'border-transparent';
+            };
+        },
 
 
         scoreUpdate() {
+            if (this.score >= 1) {
+                let audio = new Audio('../storage/sounds/ding.mp3');
+                audio.play();
+            }
             return this.score;
         },
     },
     watch: {
-    scoreUpdate(newScore) {
-        if (newScore === 3) {
-            window.location.href = route('welcome');
+        scoreUpdate(newScore) {
+            if (newScore === 3) {
+                this.isLoading = true;
+
+                window.location.href = route('welcome');
+            }
         }
-    }
-},
+    },
 };
 </script>
 

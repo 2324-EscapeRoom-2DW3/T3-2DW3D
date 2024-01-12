@@ -55,6 +55,15 @@ export default {
         caretWidth: '5px',
 
       },
+      text1: {
+        words: ['Une las formulas con su respectiva imagen'],
+        caretColor: 'lime',
+        writeSpeed: 0.1,
+        repeat: 0,
+        eraseSpeed: 0,
+        caretWidth: '5px',
+
+      },
     },
   })],
 };

@@ -26,7 +26,7 @@
                     <p class="text-white">Lehenengo pista, mahai batean zegoen. <b>Kimika elementu hauk lotu bere formularekin </b></p>
                 </div>
             </section>
-            <div id="juego1">
+            <div id="juego1" class="pt-12">
             </div>
         </div>
 
@@ -37,6 +37,8 @@
         setTimeout(function() {
             document.getElementById('juego1').style.display = 'block';
             document.querySelector('.star-wars').style.display = 'none';
+            document.querySelector('.fade').style.display = 'none';
+
 
         }, 1000); // 10000 milliseconds = 10 seconds
     };
