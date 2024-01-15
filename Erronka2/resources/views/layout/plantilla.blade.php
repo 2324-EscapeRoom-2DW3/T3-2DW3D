@@ -20,13 +20,13 @@
 <body class="font-sans antialiased">
 
     <div class="min-h-screen bg-gray-100">
-        {{-- @include('partials.header') --}}
+        @include('partials.header')
         <!-- Page Content -->
         <main role="main" class="">
             @yield('content')
 
         </main>
-        {{-- @include('partials.footer') --}}
+        @include('partials.footer')
     </div>
 </body>
 

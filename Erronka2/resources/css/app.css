@@ -37,6 +37,16 @@
 
 .texto-pizarra{
     font-family: "Shadows Into Light";
+    top: 28vh;
+    left: 35%;
+    width: 30%;
+    height: 20vh;
+    visibility: hidden;
+}
+
+.close{
+    visibility: hidden;
+
 }
 
 /* --------------------------- */
