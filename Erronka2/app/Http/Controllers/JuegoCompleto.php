@@ -2,23 +2,26 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+
+use App\Http\Controllers\Controller;
 
 use App\Http\Requests\StoreAlumno;
 use App\Models\Alumno;
 use App\Models\Curso;
-use App\Models\Prueba;
+use App\Models\Juego;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth; // Add this line
 
-class Juego1Controller extends Controller
+class JuegoCompleto extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index($id)
+    public function index()
     {
-        return view('juegos/juego1.index', ['id' => $id]);
+/*         $alumnos = Alumno::orderBy('nombre_apellido','asc')->paginate(10);
+ */
     }
 
     /**
@@ -32,23 +35,26 @@ class Juego1Controller extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(/* Request $request */)
     {
+        $juego_comp = Juego::create([
+            'tiempo' => 0,
+            'score' => 0,
+            'id_usuario' =>  Auth::user()->id,
+        ]);
 
-        $juego1 = Prueba::create($request->all());
-        /*         dd($juego1);
- */
-        $juego1->save();
-        return redirect()->route('welcome');
+        $juego_comp->save();
+
+        return redirect()->route('juego1.index', ['id' => $juego_comp->id]);
     }
 
     /**
      * Display the specified resource.
      */
-    /*   public function show(string $id)
+    public function show(string $id)
     {
         //
-    } */
+    }
 
     /**
      * Show the form for editing the specified resource.
