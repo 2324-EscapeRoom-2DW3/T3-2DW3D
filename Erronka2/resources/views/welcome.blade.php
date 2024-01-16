@@ -16,7 +16,7 @@
             <div class="flex justify-center">
                 <button class="w-24 h-24 rounded-full bg-white focus:outline-none flex items-center justify-center">
                     @if (Auth::check())
-                    <a href="{{ route('juego1.index') }}" class="flex items-center">
+                    <a href="{{ route('juegocompleto.store') }}" class="flex items-center">
                 @else
                     <a href="{{ route('login') }}" class="flex items-center">
                 @endif

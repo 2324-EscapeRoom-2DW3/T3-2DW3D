@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Juego1Controller;
+use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,5 +38,11 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
-
-Route::resource('juegos/juego1', Juego1Controller::class);
+/* Route::resource('juegos/juego1', Juego1Controller::class);
+ */
+Route::get('juegocompleto/store', [JuegoCompleto::class, 'store']) -> name('juegocompleto.store');
+Route::get('juegos/juego1/{id}', [Juego1Controller::class, 'index'])->name('juego1.index');
+Route::post('juegos/juego1/store', [Juego1Controller::class, 'store']) -> name('juego1.store');
+Route::get('/guri', function () {
+    return view('guri');
+})->name('guri');;
