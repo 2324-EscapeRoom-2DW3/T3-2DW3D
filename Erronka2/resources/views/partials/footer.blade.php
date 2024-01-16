@@ -6,7 +6,7 @@
         <div class="px-5 py-24 flex items-center">
             <div class="md:flex-1 z-50">
                 <a class="flex title-font items-center md:justify-start text-white-900">
-                    <img src="{{ url('storage/images/logo.png') }}" alt="" class="w-32">
+                    <img src="{{ url('../storage/app/public/images/logo.webp') }}" alt="" class="w-32">
                     <span class="ml-3 text-xl title-font font-medium">QUIMM<span class="text-green-400">ICA</span> </span>
                 </a>
                 <p class="mt-2 text-sm w-80 text-white">Ihesi kimika escape room-ean: Elementu kimikoetan oinarritutako

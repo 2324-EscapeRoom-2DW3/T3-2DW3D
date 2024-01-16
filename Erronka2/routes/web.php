@@ -46,3 +46,12 @@ Route::post('juegos/juego1/store', [Juego1Controller::class, 'store']) -> name('
 Route::get('/guri', function () {
     return view('guri');
 })->name('guri');;
+
+Route::get('juegos/menu', function () {
+    return view('juegos/menu/menujuego');
+});
+
+Route::get('juegos/juego2', function () {
+    return view('juegos/juego2/index');
+});
+
