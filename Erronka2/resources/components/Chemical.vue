@@ -248,7 +248,7 @@ export default {
 
         scoreUpdate() {
             if (this.score >= 1) {
-                let audio = new Audio('../storage/sounds/ding.mp3');
+                let audio = new Audio('../../storage/sounds/ding.mp3');
                 audio.play();
             }
             return this.score;
