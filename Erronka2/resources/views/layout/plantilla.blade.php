@@ -20,15 +20,13 @@
 
 <body class="font-sans antialiased">
 
-    <div class="min-h-screen bg-gray-100">
         @include('partials.header')
         <!-- Page Content -->
-        <main role="main" class="container">
+        <main role="main">
             @yield('content')
 
         </main>
         @include('partials.footer')
-    </div>
 </body>
 
 </html>

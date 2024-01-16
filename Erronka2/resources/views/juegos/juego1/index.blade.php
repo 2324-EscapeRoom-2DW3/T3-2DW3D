@@ -6,7 +6,7 @@
 
 
     <body>
-        <div class="min-h-screen bg-cover bg-no-repeat bg-center" style="background-image: url('../storage/images/juego1.png');">
+        <div class="min-h-screen min-w-screen bg-cover bg-no-repeat bg-center" style="background-image: url('../../storage/images/juego1.png');">
             <div class="fade"></div>
 
             <section class="star-wars">
@@ -26,7 +26,7 @@
                     <p class="text-white">Lehenengo pista, mahai batean zegoen. <b>Kimika elementu hauk lotu bere formularekin </b></p>
                 </div>
             </section>
-            <div id="juego1" class="pt-12">
+            <div id="juego1" class="pt-12" data-id="{{ $id }}" data-route="{{ route('juego1.store') }}">
             </div>
         </div>
 
@@ -34,14 +34,36 @@
 
 <script>
     window.onload = function() {
+        var headers = document.getElementsByTagName('header');
+        for(var i = 0; i < headers.length; i++) {
+            headers[i].style.display = 'none';
+        }
+
+        var footers = document.getElementsByTagName('footer');
+        for(var i = 0; i < footers.length; i++) {
+            footers[i].style.display = 'none';
+        }
+
         setTimeout(function() {
+            var headers = document.getElementsByTagName('header');
+        for(var i = 0; i < headers.length; i++) {
+            headers[i].style.display = 'block';
+        }
+
+        var footers = document.getElementsByTagName('footer');
+        for(var i = 0; i < footers.length; i++) {
+            footers[i].style.display = 'block';
+        }
+
             document.getElementById('juego1').style.display = 'block';
             document.querySelector('.star-wars').style.display = 'none';
             document.querySelector('.fade').style.display = 'none';
 
 
-        }, 1000); // 10000 milliseconds = 10 seconds
+        }, 15000); // 10000 milliseconds = 10 seconds
     };
+    window.userId = <?php echo Auth::user()->id; ?>;
+
 </script>
 
 @endsection

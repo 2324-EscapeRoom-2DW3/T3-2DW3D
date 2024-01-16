@@ -489,7 +489,7 @@ button.ghost {
     margin-top: 1.5em;
   }
 
-  /* ***************** */
+  /* ****** Animations *********** */
 
 
 
@@ -504,3 +504,18 @@ button.ghost {
     background-size: 75px;
     background-position: center;
   }
+
+  @keyframes vibrate {
+    0% { transform: translate(0); }
+    20% { transform: translate(-5px, 5px); }
+    40% { transform: translate(5px, -5px); }
+    60% { transform: translate(-5px, 5px); }
+    80% { transform: translate(5px, -5px); }
+    100% { transform: translate(0); }
+}
+
+.vibrate {
+    animation: vibrate 0.5s linear;
+}
+
+
