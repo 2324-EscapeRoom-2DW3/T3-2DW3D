@@ -45,13 +45,13 @@ Route::get('juegos/juego1/{id}', [Juego1Controller::class, 'index'])->name('jueg
 Route::post('juegos/juego1/store', [Juego1Controller::class, 'store']) -> name('juego1.store');
 Route::get('/guri', function () {
     return view('guri');
-})->name('guri');;
+})->name('guri');
 
 Route::get('juegos/menu', function () {
     return view('juegos/menu/menujuego');
-});
+})->name('menujuego');
 
 Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
-});
+})->name('juego2');
 
