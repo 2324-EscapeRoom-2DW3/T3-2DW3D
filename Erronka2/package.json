@@ -17,6 +17,7 @@
         "vite": "^4.0.0"
     },
     "dependencies": {
+        "@chenfengyuan/vue-countdown": "^2.1.2",
         "@fontsource/inter": "^5.0.16",
         "@next/font": "^14.0.4",
         "@tailwindcss/typography": "^0.5.10",
@@ -28,6 +29,8 @@
         "tailwind-typewriter": "^1.0.1",
         "typeface-inter": "^3.18.1",
         "vite-plugin-windicss": "^1.9.2",
-        "vue": "^3.3.11"
+        "vue": "^3.4.7",
+        "ziggy": "^2.4.0",
+        "ziggy-js": "^1.8.1"
     }
 }

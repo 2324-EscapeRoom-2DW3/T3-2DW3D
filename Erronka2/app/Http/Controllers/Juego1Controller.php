@@ -5,17 +5,20 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Http\Requests\StoreAlumno;
+use App\Models\Alumno;
+use App\Models\Curso;
+use App\Models\Prueba;
+use Illuminate\Support\Facades\Storage;
 
 class Juego1Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index($id)
     {
-/*         $alumnos = Alumno::orderBy('nombre_apellido','asc')->paginate(10);
- */
-        return view('juegos/juego1.index'); // compact('curso') = ['curso' => $curso]
+        return view('juegos/juego1.index', ['id' => $id]);
     }
 
     /**
@@ -31,16 +34,21 @@ class Juego1Controller extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $juego1 = Prueba::create($request->all());
+        /*         dd($juego1);
+ */
+        $juego1->save();
+        return redirect()->route('menujuego');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    /*   public function show(string $id)
     {
         //
-    }
+    } */
 
     /**
      * Show the form for editing the specified resource.
