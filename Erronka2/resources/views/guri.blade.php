@@ -19,9 +19,7 @@
                 <div class="w-full">
                     <details
                         class=" rounded pt-3 pb-4 px-3 relative open:shadow-lg mb-2  bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100">
-                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Do I have
-                            to allow
-                            the use of cookies?
+                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Zer moduz nago?
                             <div
                                 class="absolute top-0 right-0 bg-slate-200 rounded-full px-1 py-0.5 cursor-pointer visible open:invisible">
                                 <svg class="h-5 w-4 text-lime-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -38,9 +36,7 @@
                     </details>
                     <details
                         class="rounded pt-3 pb-4 px-3 relative open:shadow-lg mb-2 bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100">
-                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">How do I
-                            change my
-                            My Page Password?
+                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Nola jolasten da?
                             <div
                                 class="absolute top-0 right-0 bg-slate-200 rounded-full px-1 py-0.5 cursor-pointer visible open:invisible">
                                 <svg class="h-5 w-4 text-lime-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -57,8 +53,7 @@
                     </details>
                     <details
                         class=" rounded pt-3 pb-4 px-3 relative open:shadow-lg mb-2  bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100">
-                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">What is
-                            BankID?
+                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Pasahitza ahaztu dut, zer egin behar dut?
                             <div
                                 class="absolute top-0 right-0 bg-slate-200 rounded-full px-1 py-0.5 cursor-pointer visible open:invisible">
                                 <svg class="h-5 w-4 text-lime-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -75,9 +70,7 @@
                     </details>
                     <details
                         class="rounded pt-3 pb-4 px-3 relative open:shadow-lg mb-2  bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100">
-                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Whose
-                            birth number
-                            can I use?
+                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Non aurkitzen dira jolasak?
                             <div
                                 class="absolute top-0 right-0 bg-slate-200 rounded-full px-1 py-0.5 cursor-pointer visible open:invisible">
                                 <svg class="h-5 w-4 text-lime-500" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -94,9 +87,7 @@
                     </details>
                     <details
                         class="rounded pt-3 pb-4 px-3 relative open:shadow-lg mb-2  bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100">
-                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">When do
-                            I receive
-                            a password ordered by letter?
+                        <summary class="list-none font-semibold relative text-sm cursor-pointer pr-7 text-lime-500">Nola sortu erabiltzaile bat?
                             <div
                                 class="absolute top-0 right-0 bg-slate-200 rounded-full px-1 py-0.5 cursor-pointer visible open:invisible">
                                 <svg class="h-5 w-4 text-lime-500" xmlns="http://www.w3.org/2000/svg" fill="none"
