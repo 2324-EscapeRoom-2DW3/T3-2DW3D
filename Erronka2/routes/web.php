@@ -43,3 +43,6 @@ require __DIR__.'/auth.php';
 Route::get('juegocompleto/store', [JuegoCompleto::class, 'store']) -> name('juegocompleto.store');
 Route::get('juegos/juego1/{id}', [Juego1Controller::class, 'index'])->name('juego1.index');
 Route::post('juegos/juego1/store', [Juego1Controller::class, 'store']) -> name('juego1.store');
+Route::get('/guri', function () {
+    return view('guri');
+})->name('guri');;
