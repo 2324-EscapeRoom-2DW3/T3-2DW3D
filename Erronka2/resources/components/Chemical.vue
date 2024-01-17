@@ -227,7 +227,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.$refs.countdown.start();
-        }, 15000);
+        }, 20000);
         this.executeThreeTimes();
     },
 

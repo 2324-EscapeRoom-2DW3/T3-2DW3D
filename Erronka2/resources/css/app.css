@@ -106,7 +106,7 @@
     }
 
     50% {
-        text-shadow: 0 0 15px rgba(255, 7, 123, 0.2);
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
     100% {
@@ -424,10 +424,10 @@ button.ghost {
     /* Ajusta esto según tus necesidades */
 }
 
-.text-glow {
+/* .text-glow {
     color: green;
     text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
-}
+} */
 
 .text-stroke {
     -webkit-text-stroke: 3px black;

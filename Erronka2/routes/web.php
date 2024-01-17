@@ -55,3 +55,6 @@ Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
 
+Route::get('juegos/juego4', function () {
+    return view('juegos/juego4/index');
+})->name('juego4');
