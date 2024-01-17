@@ -9,12 +9,13 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     @php
-                    $photoFilename = Auth::user()->foto;
-                    $photoFilename = $photoFilename;
-                    $imageUrl = url('storage/images/' . $photoFilename);
-                    @endphp
-
-                    <img src='"{{ $imageUrl }}" . "images"' alt="User Photo">
+                    $imageUrl = url('storage/images' . Auth::user()->imagen); @endphp
+                    <div class="flex flex-col items-center justify-center">
+                        <h1 class="text-black font-figtree font-bold text-5xl text-center">
+                            {{ Auth::user()->name}}
+                        </h1>
+                        <img src="{{ $imageUrl }}" alt="User Photo" class="mx-auto">
+                    </div>
                 </div>
             </div>
         </div>
