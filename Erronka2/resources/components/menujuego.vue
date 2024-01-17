@@ -12,13 +12,16 @@
         </div>
 
         <div class="flex place-content-center pt-16 pr-2">
+            <a :href="route('juego2')">
             <button class="opacity-75 shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-3 px-6 border-b-4 border-green-700 hover:border-green-500 rounded">SARTU</button>
+            </a>
         </div>
 
     </div>
 </template>
 
 <script>
+import route from '../../vendor/tightenco/ziggy';
 
 export default {
     data() {

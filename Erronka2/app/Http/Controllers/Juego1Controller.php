@@ -39,7 +39,7 @@ class Juego1Controller extends Controller
         /*         dd($juego1);
  */
         $juego1->save();
-        return redirect()->route('welcome');
+        return redirect()->route('menujuego');
     }
 
     /**
