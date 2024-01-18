@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('layout.plantilla2')
 
 @section('title', 'Juego1')
 
@@ -6,9 +6,9 @@
 
 
     <body>
-        <div class="min-h-screen min-w-screen bg-cover bg-no-repeat bg-center"
-        style="background-image: url('../storage/images/juego1.png');">
-        <div id="juego4"></div>
+      
+        <div id="juego4">
+        <Juego4></Juego4>
         </div>
 
     </body>

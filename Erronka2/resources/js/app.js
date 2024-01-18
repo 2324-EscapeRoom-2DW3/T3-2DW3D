@@ -40,7 +40,12 @@ juego1.component(VueCountdown.name, VueCountdown);
 
 juego1.mount('#juego1');
 
-const juego4 = createApp(Juego4).use(ZiggyVue);
+const juego4 = createApp({
+    components: {
+        Juego4,
+    },
+});
+juego4.use(ZiggyVue);
 juego4.mount('#juego4');
 
 const menujuegoApp = createApp(Menu).use(ZiggyVue);

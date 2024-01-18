@@ -77,6 +77,10 @@
     animation: bounce 2s infinite;
 }
 
+.glow-green {
+    box-shadow: 0 0 10px #38a169, 0 0 20px #38a169, 0 0 30px #38a169, 0 0 40px #38a169;
+}
+
 .underline-spacing {
     text-decoration: underline;
     text-decoration-style: dotted;
@@ -618,5 +622,34 @@ button.ghost {
 
   }
 
+/* Middle of screen */
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+/* Animate tect */
 
+.dissapear_text {
+    animation: textdis 5s;
+}
+
+@keyframes textdis {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

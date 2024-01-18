@@ -21,7 +21,7 @@
 
                 </div>
             </div>
-            <div :style="{ backgroundImage: `url(${backgroundImage})` }"
+            <div :style="{backgroundImage: `url(${backgroundImage})` }"
                 class="h-full bg-contain bg-no-repeat bg-center p-8 sm:p-16 md:p-24 lg:p-40 shadow-xl inline-block">
 
                 <div class="flex flex-col items-center">

@@ -31,6 +31,9 @@ export default {
         top: 'top',
         'top-4': 'center top 1rem',
       },
+      backgroundSize: {
+        'full': '100% 100%',
+      },
       fontFamily: {
         sans: ['Figtree', ...defaultTheme.fontFamily.sans],
       },
