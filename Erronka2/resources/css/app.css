@@ -15,13 +15,15 @@
 
 .pizarra{
     position: absolute;
-    top: 30vh;
-    left: 40%;
-    width: 23%;
+    top: 40vh;
+    left: 25%;
+    width: 7%;
     height: 13vh;
     background-color: white;
     opacity: 0.5;
 }
+
+
 
 .pizarra-rota{
     position: absolute;
@@ -29,6 +31,18 @@
     left: 30%;
     width: 40%;
     height: 50vh;
+    background-color: white;
+    opacity: 1;
+    display: none;
+
+}
+
+.botella{
+    position: absolute;
+    top: 0vh;
+    left: 0%;
+    width: 100%;
+    height: 100vh;
     background-color: white;
     opacity: 1;
     display: none;
@@ -45,13 +59,16 @@
 }
 
 .close{
-    visibility: hidden;
-
+    display: none;
 }
 
 /* --------------------------- */
 
+/* -----------BOTELLAS------------- */
 
+.b-botoi{
+    
+}
 
 
 
