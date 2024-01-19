@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Juego1Controller;
+use App\Http\Controllers\Juego4Controller;
 use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -47,7 +48,7 @@ Route::get('/guri', function () {
     return view('guri');
 })->name('guri');
 
-Route::get('juegos/menu', function () {
+Route::get('juegos/menu/{id}', function () {
     return view('juegos/menu/menujuego');
 })->name('menujuego');
 
@@ -55,6 +56,6 @@ Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
 
-Route::get('juegos/juego4', function () {
-    return view('juegos/juego4/index');
-})->name('juego4');
+Route::get('juegos/juego4/{id}', [Juego4Controller::class, 'index'])->name('juego4.index');
+
+Route::get('juegos/juego4/show/{id}', [Juego4Controller::class, 'show'])->name('juego4.show');

@@ -9,6 +9,7 @@ import Login from '../components/login.vue';
 import Menu from '../components/menujuego.vue';
 import Juego2 from '../components/juego2.vue';
 import Juego4 from '../components/3raya.vue';
+import Armario from '../components/armario.vue';
 
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
@@ -47,6 +48,14 @@ const juego4 = createApp({
 });
 juego4.use(ZiggyVue);
 juego4.mount('#juego4');
+
+const armario = createApp({
+    components: {
+        Armario,
+    },
+});
+armario.use(ZiggyVue);
+armario.mount('#armario');
 
 const menujuegoApp = createApp(Menu).use(ZiggyVue);
 menujuegoApp.mount('#menujuego');

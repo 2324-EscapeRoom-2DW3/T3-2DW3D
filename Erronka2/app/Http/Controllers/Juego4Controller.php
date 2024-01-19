@@ -8,18 +8,27 @@ use Illuminate\Http\Request;
 use App\Http\Requests\StoreAlumno;
 use App\Models\Alumno;
 use App\Models\Curso;
+use App\Models\Juego;
 use App\Models\Prueba;
 use Illuminate\Support\Facades\Storage;
 
-class Juego1Controller extends Controller
+class Juego4Controller extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index($id)
     {
-        return view('juegos/juego1.index', ['id' => $id]);
+/*         return view('juegos/juego4.show', ['id' => $id]); */
+        return view('juegos/juego4.index', ['id' => $id]);
+
+}
+
+    public function show($id)
+    {
+        return view('juegos/juego4.show', ['id' => $id]);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -35,11 +44,10 @@ class Juego1Controller extends Controller
     public function store(Request $request)
     {
 
-        $juego1 = Prueba::create($request->all());
+        $key = Juego::create($request->all());
         /*         dd($juego1);
  */
-        $juego1->save();
-        return redirect()->route('menujuego', ['id' => $juego1->id_juego]);
+        $key->save();
     }
 
     /**

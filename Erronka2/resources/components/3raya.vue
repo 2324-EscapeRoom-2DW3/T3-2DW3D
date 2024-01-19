@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen w-full bg-full bg-no-repeat bg-center " :style="{ backgroundImage: `url(${backgroundImage})` }"
-        @click.prevent="clickImagen">
+    <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
+        style="z-index: -1;" @click.prevent="clickImagen">
         <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
             :class="dis">
             <p>{{ displayText }}</p>
@@ -21,7 +21,7 @@
             width: 11%;
             height: 55vh;
             background-color:#fff;
-            opacity: 0.5;"> 
+            opacity: 0.5;">
         </div>-->
         <!-- <div style="position: absolute;
             top: 35.5vh;
@@ -29,47 +29,65 @@
             width: 9%;
             height: 11vh;
             background-color:#fff;
-            opacity: 0.5;"> 
+            opacity: 0.5;">
         </div> -->
-        
-        <div v-for="(item, index) in toggleDivs" :key="index" v-show="toggles[index] === 'visible'">
-  
-            <div v-if="index === 0">
-                <div class="flex flex-col items-center justify-center min-h-screen">
+        <!--   <div style="position: absolute;
+            top: 69vh;
+            left: 18%;
+            width: 22%;
+            height: 22vh;
+            background-color:#fff;
+            opacity: 0.5;">
+        </div> -->
+        <!--     <div style="position: absolute;
+            top: 31vh;
+            left: 48.93%;
+            width: 2%;
+            height: 4vh;
+            background-color:#fff;
+            opacity: 0.5;">
+        </div> -->
+        <!--   <div style="position: absolute;
+            top: 37vh;
+            left: 38.4%;
+            width: 6%;
+            height: 14vh;
+            background-color:#fff;
+            opacity: 0.5;">
+        </div>  -->
+        <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1">
 
-                    <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer"
-                        @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
+            <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
+                @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
 
-                    <h3 class="mb-4 text-2xl text-bold text-white">{{ playerName }}</h3>
+            <h3 class="mb-4 text-2xl text-bold text-white">{{ playerName }}</h3>
 
-                    <div class="mb-8 flex flex-col items-center">
-                        <!--Row y cell son los simbolos y x e y los indices. Los elementos en esos indices -->
-                        <div v-for="(row, x) in board" :key="x" class="flex">
-                            <!-- Le pasa la celda exacta x e y-->
-                            <div v-for="(cell, y) in row" :key="y" @click="MakeMove(x, y)" :class="`material-icons-outlined flex h-32 w-32 bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-10   cursor-pointer items-center justify-center border-2 hover:bg-green-600 border-white text-5xl hover:border2 hover:border-gray-100 ${cell === '⚗️' ? 'text-pink-500' : cell === '🧟' ? 'text-blue-500' : ''
-                                }`">
-                                {{ cell }}
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="text-center">
-                        <h2 v-if="winner" class="mb-8 text-6xl font-bold text-white" :class="winnerClass">
-                            {{ winnerName }}
-                        </h2>
-                        <button @click="ResetGame"
-                            class="duration-400 rounded bg-lime-500 px-4 py-2 font-bold border-none uppercase hover:bg-lime-800">
-                            Reset
-                        </button>
+            <div class="mb-8 flex flex-col items-center">
+                <!--Row y cell son los simbolos y x e y los indices. Los elementos en esos indices -->
+                <div v-for="(row, x) in board" :key="x" class="flex">
+                    <!-- Le pasa la celda exacta x e y-->
+                    <div v-for="(cell, y) in row" :key="y" @click="MakeMove(x, y)" :class="`material-icons-outlined flex h-32 w-32 bg-gray-300 rounded-md bg-clip-padding backdrop-filter backdrop-blur-2xl bg-opacity-10   cursor-pointer items-center justify-center border-2 hover:bg-green-600 border-white text-5xl hover:border2 hover:border-gray-100 ${cell === '⚗️' ? 'text-pink-500' : cell === '🧟' ? 'text-blue-500' : ''
+                        }`">
+                        {{ cell }}
                     </div>
                 </div>
             </div>
-            <div v-else-if="index === 1">
-                <img sr="../../storage/app/public/images/juego4/pizarra_juego4.png">
 
+            <div class="text-center">
+                <h2 v-if="winner" class="mb-8 text-6xl font-bold text-white" :class="winnerClass">
+                    {{ winnerName }}
+                </h2>
+                <button @click="ResetGame"
+                    class="smky-btn3 relative hover:text-white py-2 px-6 after:absolute after:h-1 after:hover:h-[200%] transition-all duration-500 hover:transition-all hover:duration-500 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden z-20 after:z-[-20] after:bg-[#32CD32] after:rounded-t-full after:w-full after:bottom-0 after:left-0 text-white scale-125">Reset</button>
             </div>
+        </div>
+        <div class="flex flex-col items-center justify-center min-h-screen" v-show="toggle === 2"> <img
+                class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
+                @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
+            <img src="../../storage/app/public/images/juego4/pizarra_juego4.png">
 
         </div>
+
     </div>
 </template>
 
@@ -80,19 +98,18 @@ import route from '../../vendor/tightenco/ziggy';
 export default {
     data() {
         return {
-            backgroundImage: '../../storage/app/public/images/juego4/juego4.png',
+            backgroundImage: '../../../storage/app/public/images/juego4/juego4.png',
             dis: "hidden",
             displayText: '',
-            toggles: [
-            [ "hidden"],
-            [ "hidden"],
-            // add more objects for more divs...
-        ],/*             toggle: 'hidden',
- */            objektuak: [
+            toggle: 0,
+            objektuak: [
                 // Ordenador
                 { areaTop: 46, areaLeft: 79, areaWidth: 6.5, areaHeight: 15 },
                 { areaTop: 30, areaLeft: 6, areaWidth: 11, areaHeight: 55 },
                 { areaTop: 35.5, areaLeft: 45.3, areaWidth: 9, areaHeight: 11 },
+                { areaTop: 69, areaLeft: 18, areaWidth: 22, areaHeight: 22 },
+                { areaTop: 31, areaLeft: 48.93, areaWidth: 2, areaHeight: 4 },
+                { areaTop: 37, areaLeft: 38.4, areaWidth: 6, areaHeight: 14 },
 
             ],
 
@@ -135,20 +152,34 @@ export default {
                     posX <= areaLeftAbs + areaWidthAbs
                 ) {
                     if (i == 0) {
-                        this.toggleDiv(0);
+                        this.toggle = 1;
                     } else if (i == 1) {
                         if (window.confirm('Estas seguro que quieres irte?')) {
                             window.location.href = route('menujuego');
                         }
                     } else if (i == 2) {
-                        this.toggleDiv(1);
+                        this.toggle = 2;
+
+                    } else if (i == 3) {
+                        this.mostrar("Utensilios varios... No creo que sea esto...");
+
+                    } else if (i == 4) {
+                        this.mostrar("Ha dejado de marcar la hora, la ultima vez que lo hizo fue a las 12:23...");
+
+                    } else if (i == 5) {
+                        this.mostrar("Este armario parece llevar a una habitación contigua...");
+                        setTimeout(() => {
+                            window.location.href = route('juego4.show', { id: route().params });
+                        }, 5000);
+
                     }
                 }
             }
         },
-        toggleDiv(index) {
-    this.toggles[index][0] = this.toggles[index][0] === 'hidden' ? 'visible' : 'hidden';
-},
+        toggleDiv(i) {
+            this.toggle = i;
+
+        },
 
         calculateWinner(squares) {
             // Los 9 elementos del array son las 9 celdas del tablero. The indices of the array are used to identify the positions of the squares on the board. For example, the first row of the board is represented by the elements at indices 0, 1, and 2 of the array. The second row is represented by the elements at indices 3, 4, and 5, and so on.
