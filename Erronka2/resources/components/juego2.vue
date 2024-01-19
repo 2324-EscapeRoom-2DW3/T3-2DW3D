@@ -116,6 +116,175 @@
                     ABRIR
                 </button>
             </div>
+
+            <!-- AAAA -->
+
+            <div class="number-input ">
+                <button
+                    class="btn-decrement b-botoi"
+                    @click="changeValue(-1, 'letterInput1')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8595;
+                </button>
+                <input
+                    type="text"
+                    class="input-field b-input"
+                    id="letterInput1"
+                    :value="result1"
+                    readonly
+                />
+                <button
+                    class="btn-increment b-botoi"
+                    @click="changeValue(1, 'letterInput1')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button
+                    class="btn-decrement b-botoi"
+                    @click="changeValue(-1, 'letterInput2')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8595;
+                </button>
+                <input
+                    type="text"
+                    class="input-field b-input"
+                    id="letterInput2"
+                    :value="result2"
+                    readonly
+                />
+
+                <button
+                    class="btn-increment b-botoi"
+                    @click="changeValue(1, 'letterInput2')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button
+                    class="btn-decrement b-botoi"
+                    @click="changeValue(-1, 'letterInput3')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8595;
+                </button>
+
+                <input
+                    type="text"
+                    class="input-field b-input"
+                    id="letterInput3"
+                    :value="result3"
+                    readonly
+                />
+
+                <button
+                    class="btn-increment b-botoi"
+                    @click="changeValue(1, 'letterInput3')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8593;
+                </button>
+            </div>
+            <div class="containerBoton">
+                <button
+                    @click="checkResult"
+                    class="verify-btn"
+                    :disabled="verificationButtonBlocked"
+                >
+                    ABRIR
+                </button>
+            </div>
+            <div class="number-input ">
+                <button
+                    class="btn-decrement b-botoi"
+                    @click="changeValue(-1, 'letterInput1')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8595;
+                </button>
+                <input
+                    type="text"
+                    class="input-field b-input"
+                    id="letterInput1"
+                    :value="result1"
+                    readonly
+                />
+                <button
+                    class="btn-increment b-botoi"
+                    @click="changeValue(1, 'letterInput1')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button
+                    class="btn-decrement b-botoi"
+                    @click="changeValue(-1, 'letterInput2')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8595;
+                </button>
+                <input
+                    type="text"
+                    class="input-field b-input"
+                    id="letterInput2"
+                    :value="result2"
+                    readonly
+                />
+
+                <button
+                    class="btn-increment b-botoi"
+                    @click="changeValue(1, 'letterInput2')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button
+                    class="btn-decrement b-botoi"
+                    @click="changeValue(-1, 'letterInput3')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8595;
+                </button>
+
+                <input
+                    type="text"
+                    class="input-field b-input"
+                    id="letterInput3"
+                    :value="result3"
+                    readonly
+                />
+
+                <button
+                    class="btn-increment b-botoi"
+                    @click="changeValue(1, 'letterInput3')"
+                    :disabled="inputsBlocked"
+                >
+                    &#8593;
+                </button>
+            </div>
+            <div class="containerBoton">
+                <button
+                    @click="checkResult"
+                    class="verify-btn"
+                    :disabled="verificationButtonBlocked"
+                >
+                    ABRIR
+                </button>
+            </div>
         </div>
 
 
