@@ -155,7 +155,7 @@ export default {
                         this.toggle = 1;
                     } else if (i == 1) {
                         if (window.confirm('Estas seguro que quieres irte?')) {
-                            window.location.href = route('menujuego');
+                            window.location.href = route('menujuego',  { id: route().params });
                         }
                     } else if (i == 2) {
                         this.toggle = 2;

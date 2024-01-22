@@ -65,7 +65,6 @@ export default {
             disappearTimeout: null,
             hideTimeout: null,
             toggle: 0,
-            openImage: new Image(), // Image object for preloading
 
             objektuak: [
                 // Ordenador
