@@ -47,7 +47,7 @@
                 </button>
             </div>
             <div class="containerBoton">
-                <button @click="checkResult" class="verify-btn" :disabled="verificationButtonBlocked">
+                <button id="verify-btn-1" @click="checkResult" class="verify-btn-1" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
@@ -88,7 +88,7 @@
                 </button>
             </div>
             <div class="containerBoton">
-                <button @click="checkResult" class="verify-btn" :disabled="verificationButtonBlocked">
+                <button id="verify-btn-2" @click="checkResult" class="verify-btn-2" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
@@ -127,7 +127,7 @@
                 </button>
             </div>
             <div class="containerBoton">
-                <button @click="checkResult" class="verify-btn" :disabled="verificationButtonBlocked">
+                <button id="verify-btn-3" @click="checkResult" class="verify-btn-3" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
@@ -284,13 +284,18 @@ export default {
             this.result3_1 = document.getElementById("letterInput3_1").value;
             this.result3_2 = document.getElementById("letterInput3_2").value;
             this.result3_3 = document.getElementById("letterInput3_3").value;
+            var boton1 = document.getElementById("verify-btn-1");
+            var boton2 = document.getElementById("verify-btn-2");
+            var boton3 = document.getElementById("verify-btn-3");
 
             if (
                 this.result1_1 === "K" &&
                 this.result1_2 === "I" &&
                 this.result1_3 === "A"
             ) {
-                
+                boton1.style.backgroundColor = "#35B331";
+
+
             } else {
                 this.vibration = true;
                 setTimeout(() => {
@@ -300,9 +305,9 @@ export default {
         },
 
         resetValues() {
-            this.result1_1 = "B";
-            this.result1_2 = "C";
-            this.result1_3 = "P";
+            this.result1_1 = "K";
+            this.result1_2 = "I";
+            this.result1_3 = "A";
         },
     },
 };
