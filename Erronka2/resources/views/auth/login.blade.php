@@ -1,7 +1,7 @@
 <x-guest-layout>
     <div class=" container flex justify-between gap-10 " id="container">
-        <div class="lg:block hidden half-width   bg-black  h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30">
-            <h1 class=" pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium dark:text-green-300">ERREGISTROA EGIN</h1>
+        <div class="lg:block hidden  border-lime-300 half-width bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green">
+            <h1 class=" pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">ERREGISTROA EGIN</h1>
             <form method="POST" action="{{ route('register') }}" class="p-6" enctype="multipart/form-data">
                 @csrf
 
@@ -58,7 +58,7 @@
                     </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    <a class="underline text-sm text-white hover:text-green-300 dark:hover:text-green-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                         href="{{ route('login') }}">
                         {{ __('Already registered?') }}
                     </a>
@@ -69,9 +69,9 @@
                 </div>
             </form>
         </div>
-        <div class=" block  half-width  bg-black ml-44 h-full w-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30
+        <div class=" block  half-width border-lime-300 ml-44 h-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green
         ">
-        <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium dark:text-green-300">SAIOA HASI</h1>
+        <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">SAIOA HASI</h1>
         <a class=" lg:hidden block text-center mr-4 underline text-sm text-gray-400  hover:text-gray-100 "
         href="{{ route('register') }}"> {{ __('Register') }}
         </a>
@@ -98,21 +98,21 @@
 
                 <!-- Remember Me -->
                 <div class="block mt-4">
-                    <label for="remember_me" class="inline-flex items-center">
+                    <label for="remember_me" class="inline-flex items-center ">
                         <input id="remember_me" type="checkbox"
-                            class="rounded dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
+                            class="rounded  dark:bg-gray-900 border-gray-300 dark:border-gray-700 text-indigo-600 shadow-sm focus:ring-indigo-500 dark:focus:ring-indigo-600 dark:focus:ring-offset-gray-800"
                             name="remember">
-                        <span class="ms-2 text-sm text-gray-600 dark:text-gray-400">{{ __('Remember me') }}</span>
+                        <span class="ms-2 text-sm  text-white">{{ __('Remember me') }}</span>
                     </label>
                 </div>
 
                 <div class="flex items-center justify-end mt-4">
-                    <a class="mr-4 underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                    <a class="mr-4 underline text-sm text-white hover:text-green-300 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                     href="#">
                             {{ __('Return') }}
                         </a>
                     @if (Route::has('password.request'))
-                        <a class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                        <a class="text-white underline text-sm hover:text-green-300 dark:hover:text-green-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
                             href="{{ route('password.request') }}">
                             {{ __('Forgot your password?') }}
                         </a>
