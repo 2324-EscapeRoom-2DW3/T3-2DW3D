@@ -4,294 +4,138 @@
         <img id="pizarra" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="Botón con imagen" class="w-96 opacity-50 h-32 ">
     </button> -->
     <!-- </div> -->
-    <img
-        id="fondo"
-        @click.prevent="clickFondo"
-        src="../../storage/app/public/images/juego2/fondo.png"
-        alt=""
-        class="fondo"
-    />
+    <img id="fondo" @click.prevent="clickFondo" src="../../storage/app/public/images/juego2/fondo.png" alt=""
+        class="fondo" />
 
-    <img
-        id="pizarra-rota"
-        src="../../storage/app/public/images/juego2/pizarra-rota.png"
-        alt=""
-        class="pizarra-rota"
-    />
-    <img
-        id="botella"
-        src="../../storage/app/public/images/juego2/botellas.png"
-        alt=""
-        class="botella"
-    />
-    <img
-        id="close"
-        class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden"
-        @click="close"
-        src="../../storage/app/public/images/juego2/close.png"
-        alt=""
-    />
+    <img id="pizarra-rota" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="" class="pizarra-rota" />
+    <img id="botella" src="../../storage/app/public/images/juego2/botellas.png" alt="" class="botella" />
+    <img id="close" class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden" @click="close"
+        src="../../storage/app/public/images/juego2/close.png" alt="" />
 
-        <div id="botones" class="container-botones text-center flex items-center justify-center flex-col ">
-            <div class="number-input ">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput1')"
-                    :disabled="inputsBlocked"
-                >
+    <div id="botones" class="container-botones text-center flex items-center justify-center flex-row">
+        <div class="control-container pt-20">
+            <div class="number-input">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_1')" :disabled="inputsBlocked">
                     &#8595;
                 </button>
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput1"
-                    :value="result1"
-                    readonly
-                />
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput1')"
-                    :disabled="inputsBlocked"
-                >
+                <input type="text" class="input-field b-input" id="letterInput1_1" :value="result1_1" readonly />
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput1_1')" :disabled="inputsBlocked">
                     &#8593;
                 </button>
             </div>
 
             <div class="number-input">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput2')"
-                    :disabled="inputsBlocked"
-                >
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_2')" :disabled="inputsBlocked">
                     &#8595;
                 </button>
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput2"
-                    :value="result2"
-                    readonly
-                />
+                <input type="text" class="input-field b-input" id="letterInput1_2" :value="result1_2" readonly />
 
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput2')"
-                    :disabled="inputsBlocked"
-                >
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput1_2')" :disabled="inputsBlocked">
                     &#8593;
                 </button>
             </div>
 
             <div class="number-input">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput3')"
-                    :disabled="inputsBlocked"
-                >
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_3')" :disabled="inputsBlocked">
                     &#8595;
                 </button>
 
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput3"
-                    :value="result3"
-                    readonly
-                />
+                <input type="text" class="input-field b-input" id="letterInput1_3" :value="result1_3" readonly />
 
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput3')"
-                    :disabled="inputsBlocked"
-                >
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput1_3')" :disabled="inputsBlocked">
                     &#8593;
                 </button>
             </div>
             <div class="containerBoton">
-                <button
-                    @click="checkResult"
-                    class="verify-btn"
-                    :disabled="verificationButtonBlocked"
-                >
-                    ABRIR
-                </button>
-            </div>
-
-            <!-- AAAA -->
-
-            <div class="number-input ">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput1')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8595;
-                </button>
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput1"
-                    :value="result1"
-                    readonly
-                />
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput1')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8593;
-                </button>
-            </div>
-
-            <div class="number-input">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput2')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8595;
-                </button>
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput2"
-                    :value="result2"
-                    readonly
-                />
-
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput2')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8593;
-                </button>
-            </div>
-
-            <div class="number-input">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput3')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8595;
-                </button>
-
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput3"
-                    :value="result3"
-                    readonly
-                />
-
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput3')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8593;
-                </button>
-            </div>
-            <div class="containerBoton">
-                <button
-                    @click="checkResult"
-                    class="verify-btn"
-                    :disabled="verificationButtonBlocked"
-                >
-                    ABRIR
-                </button>
-            </div>
-            <div class="number-input ">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput1')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8595;
-                </button>
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput1"
-                    :value="result1"
-                    readonly
-                />
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput1')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8593;
-                </button>
-            </div>
-
-            <div class="number-input">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput2')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8595;
-                </button>
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput2"
-                    :value="result2"
-                    readonly
-                />
-
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput2')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8593;
-                </button>
-            </div>
-
-            <div class="number-input">
-                <button
-                    class="btn-decrement b-botoi"
-                    @click="changeValue(-1, 'letterInput3')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8595;
-                </button>
-
-                <input
-                    type="text"
-                    class="input-field b-input"
-                    id="letterInput3"
-                    :value="result3"
-                    readonly
-                />
-
-                <button
-                    class="btn-increment b-botoi"
-                    @click="changeValue(1, 'letterInput3')"
-                    :disabled="inputsBlocked"
-                >
-                    &#8593;
-                </button>
-            </div>
-            <div class="containerBoton">
-                <button
-                    @click="checkResult"
-                    class="verify-btn"
-                    :disabled="verificationButtonBlocked"
-                >
+                <button @click="checkResult" class="verify-btn" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
         </div>
 
+        <!-- AAAA -->
+        <div class="control-container">
+            <div class="number-input ">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput2_1')" :disabled="inputsBlocked">
+                    &#8595;
+                </button>
+                <input type="text" class="input-field b-input" id="letterInput2_1" :value="result2_1" readonly />
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput2_1')" :disabled="inputsBlocked">
+                    &#8593;
+                </button>
+            </div>
 
-    <div
-        id="texto-pizarra"
-        class="texto-pizarra absolute flex flex-wrap text-white gap-5 text-xl"
-    >
+            <div class="number-input">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput2_2')" :disabled="inputsBlocked">
+                    &#8595;
+                </button>
+                <input type="text" class="input-field b-input" id="letterInput2_2" :value="result2_2" readonly />
+
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput2_2')" :disabled="inputsBlocked">
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput2_3')" :disabled="inputsBlocked">
+                    &#8595;
+                </button>
+
+                <input type="text" class="input-field b-input" id="letterInput2_3" :value="result2_3" readonly />
+
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput2_3')" :disabled="inputsBlocked">
+                    &#8593;
+                </button>
+            </div>
+            <div class="containerBoton">
+                <button @click="checkResult" class="verify-btn" :disabled="verificationButtonBlocked">
+                    ABRIR
+                </button>
+            </div>
+        </div>
+        <div class="control-container pt-20">
+            <div class="number-input ">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput3_1')" :disabled="inputsBlocked">
+                    &#8595;
+                </button>
+                <input type="text" class="input-field b-input" id="letterInput3_1" :value="result3_1" readonly />
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput3_1')" :disabled="inputsBlocked">
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput3_2')" :disabled="inputsBlocked">
+                    &#8595;
+                </button>
+                <input type="text" class="input-field b-input" id="letterInput3_2" :value="result3_2" readonly />
+
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput3_2')" :disabled="inputsBlocked">
+                    &#8593;
+                </button>
+            </div>
+
+            <div class="number-input">
+                <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput3_3')" :disabled="inputsBlocked">
+                    &#8595;
+                </button>
+
+                <input type="text" class="input-field b-input" id="letterInput3_3" :value="result3_3" readonly />
+
+                <button class="btn-increment b-botoi" @click="changeValue(1, 'letterInput3_3')" :disabled="inputsBlocked">
+                    &#8593;
+                </button>
+            </div>
+            <div class="containerBoton">
+                <button @click="checkResult" class="verify-btn" :disabled="verificationButtonBlocked">
+                    ABRIR
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="texto-pizarra" class="texto-pizarra absolute flex flex-wrap text-white gap-5 text-xl">
         <p class="">
             1-Diferenciación de enterobacterias en base a la fermentación de
             hidratos de carbono y a la producción de ácido sulfhídrico
@@ -382,15 +226,12 @@ export default {
 
                     if (i == 1) {
                         var mostrarJuegoBotellas = document.getElementById("botones");
-                        var juegoBotella = document.getElementById("container-botones");
                         var botella = document.getElementById("botella");
                         var close = document.getElementById("close");
 
                         console.log("¡Has hecho clic en la parte BOTELLA!");
-                        mostrarJuegoBotellas.style.display = "block";
                         botella.style.display = "block";
-                        juegoBotella.style.visibility = "visible";
-                        juegoBotella.style.display = "block";
+                        mostrarJuegoBotellas.style.display = "flex";
 
                         close.style.display = "block";
                     }
@@ -399,6 +240,7 @@ export default {
         },
 
         close() {
+            var mostrarJuegoBotellas = document.getElementById("botones");
             var close = document.getElementById("close");
             var pizarra = document.getElementById("pizarra-rota");
             var textoPizarra = document.getElementById("texto-pizarra");
@@ -408,6 +250,8 @@ export default {
             textoPizarra.style.visibility = "hidden";
             fondo.style.filter = "blur(0px)";
             botella.style.display = "none";
+            mostrarJuegoBotellas.style.display = "none";
+
         },
 
         changeValue(delta, inputId) {
@@ -419,7 +263,7 @@ export default {
                         inputField.value.charCodeAt(0) || "A".charCodeAt(0) - 1;
                     var newValue = String.fromCharCode(
                         ((currentValue - "A".charCodeAt(0) + delta + 26) % 26) +
-                            "A".charCodeAt(0)
+                        "A".charCodeAt(0)
                     );
 
                     inputField.value = newValue;
@@ -431,22 +275,22 @@ export default {
 
         checkResult() {
             var resultElement = document.getElementById("text");
-            this.result1 = document.getElementById("letterInput1").value;
-            this.result2 = document.getElementById("letterInput2").value;
-            this.result3 = document.getElementById("letterInput3").value;
+            this.result1_1 = document.getElementById("letterInput1_1").value;
+            this.result1_2 = document.getElementById("letterInput1_2").value;
+            this.result1_3 = document.getElementById("letterInput1_3").value;
+            this.result2_1 = document.getElementById("letterInput2_1").value;
+            this.result2_2 = document.getElementById("letterInput2_2").value;
+            this.result2_3 = document.getElementById("letterInput2_3").value;
+            this.result3_1 = document.getElementById("letterInput3_1").value;
+            this.result3_2 = document.getElementById("letterInput3_2").value;
+            this.result3_3 = document.getElementById("letterInput3_3").value;
 
             if (
-                this.result1 === "B" &&
-                this.result2 === "C" &&
-                this.result3 === "P"
+                this.result1_1 === "K" &&
+                this.result1_2 === "I" &&
+                this.result1_3 === "A"
             ) {
-                document.querySelector(".fondo").style.backgroundImage =
-                    "url('/T1-2DW3D/energiaArriskuan/public/images/candadoAbierto.png')";
-                resultElement.innerHTML = "Zuzen! Sotora sar zaitezke orain.";
-                this.resetValues();
-                this.inputsBlocked = true;
-                this.verificationButtonBlocked = true;
-                window.location.href = route("prueba3.update", this.partida);
+                
             } else {
                 this.vibration = true;
                 setTimeout(() => {
@@ -456,9 +300,9 @@ export default {
         },
 
         resetValues() {
-            this.result1 = "B";
-            this.result2 = "C";
-            this.result3 = "P";
+            this.result1_1 = "B";
+            this.result1_2 = "C";
+            this.result1_3 = "P";
         },
     },
 };
