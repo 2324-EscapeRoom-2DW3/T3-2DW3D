@@ -5,19 +5,28 @@
             :class="dis">
             <p>{{ displayText }}</p>
         </div>
-           
-           <!--  <div style="position: absolute;
+        <form ref="llaveForm" method="POST" :action="route" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+
+            <input type="hidden" name="_method" value="PUT">
+
+            <input name="id_juego" type="hidden" :value="yourId">
+        </form>
+        <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
+            @click="irte" src="../../storage/app/public/images/juego2/close.png" alt="">
+
+        <!--  <div style="position: absolute;
             top: 28vh;
-            left: 33.5%;
-            width: 8%;
+            left: 41.9%;
+            width: 4%;
             height: 45vh;
             background-color:#fff;
             opacity: 0.5;">
         </div>
         <div style="position: absolute;
             top: 28vh;
-            left: 42%;
-            width: 8%;
+            left: 46%;
+            width: 4%;
             height: 45vh;
             background-color:#ff1e1e;
             opacity: 0.5;">
@@ -25,15 +34,15 @@
         <div style="position: absolute;
             top: 28vh;
             left: 50.1%;
-            width: 8%;
+            width: 4%;
             height: 45vh;
             background-color:#e9ff1e;
             opacity: 0.5;">
         </div>
         <div style="position: absolute;
             top: 28vh;
-            left: 58.35%;
-            width: 8%;
+            left: 54.35%;
+            width: 4%;
             height: 45vh;
             background-color:#1efffb;
             opacity: 0.5;">
@@ -50,39 +59,53 @@ import route from '../../vendor/tightenco/ziggy';
 export default {
     data() {
         return {
-            backgroundImage: '../../../../storage/app/public/images/juego4/armario.jpg',
+            backgroundImage: '../../../../storage/app/public/images/juego4/armario.png',
             dis: "hidden",
             displayText: '',
             disappearTimeout: null,
-        hideTimeout: null,
+            hideTimeout: null,
             toggle: 0,
+            openImage: new Image(), // Image object for preloading
+
             objektuak: [
                 // Ordenador
-                { areaTop: 28, areaLeft: 33.5, areaWidth:8, areaHeight: 45 },
-                { areaTop: 28, areaLeft: 42, areaWidth: 8, areaHeight: 45 },
-                { areaTop: 28, areaLeft: 50.1, areaWidth: 8, areaHeight: 45 },
-                { areaTop: 28, areaLeft: 58.35, areaWidth: 8, areaHeight: 45 },
+                { areaTop: 28, areaLeft: 41.9, areaWidth: 4, areaHeight: 45 },
+                { areaTop: 28, areaLeft: 46, areaWidth: 4, areaHeight: 45 },
+                { areaTop: 28, areaLeft: 50.1, areaWidth: 4, areaHeight: 45 },
+                { areaTop: 28, areaLeft: 54.35, areaWidth: 4, areaHeight: 45 },
             ],
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            yourId: route().params,
+            route: document.querySelector('#armario').dataset.route,
+
 
         };
     },
     mounted() {
+        this.openImage.src =
+            "../../../../storage/app/public/images/juego4/abierta.png";
+
     },
 
     methods: {
+        irte() {
+            if (window.confirm('Estas seguro que quieres irte?')) {
+                window.location.href = route('juego4.index', { id: route().params });
+            }
+        },
         mostrar(text) {
-        // Clear existing timeouts
-        clearTimeout(this.disappearTimeout);
-        clearTimeout(this.hideTimeout);
+            // Clear existing timeouts
+            clearTimeout(this.disappearTimeout);
+            clearTimeout(this.hideTimeout);
 
-        this.displayText = text;
-        this.disappearTimeout = setTimeout(() => {
-            this.dis = "dissapear_text";
-            this.hideTimeout = setTimeout(() => {
-                this.dis = "hidden";
-            }, 5000);
-        }, 100);
-    },
+            this.displayText = text;
+            this.disappearTimeout = setTimeout(() => {
+                this.dis = "dissapear_text";
+                this.hideTimeout = setTimeout(() => {
+                    this.dis = "hidden";
+                }, 5000);
+            }, 100);
+        },
         clickImagen(event) {
             let posX = event.offsetX;
             let posY = event.offsetY;
@@ -107,12 +130,32 @@ export default {
 
                     } else if (i == 2) {
                         this.mostrar("Cerrada con llave también...");
-                    
-                    
-                    } else if (i == 3) {
-                        this.mostrar("!!!!");
 
-                    } 
+
+                    } else if (i == 3) {
+                        this.backgroundImage = this.openImage.src;
+
+                        this.mostrar("!!!!");
+                        // Prevent the default form submission behavior
+                        event.preventDefault();
+
+                        // Get the form data
+                        let formData = new FormData(this.$refs.llaveForm);
+
+                        // Send a POST request to the server
+                        axios.post(this.$refs.llaveForm.action, formData)
+                            .then(response => {
+                                // Handle the response
+                                console.log(response);
+                            })
+                            .catch(error => {
+                                // Handle the error
+                                console.log(error);
+                                window.alert("¡Has encontrado la llave!");
+
+                            });
+
+                    }
                 }
             }
         },
@@ -122,10 +165,10 @@ export default {
         },
     },
     computed: {
-        
+
     },
     watch: {
-    
+
     },
 
 };

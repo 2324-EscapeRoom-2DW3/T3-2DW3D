@@ -6,7 +6,7 @@
 
 
     <body>
-        <div id="armario">
+        <div id="armario"  data-route="{{ route('juego4.update', ['id' => $id]) }}">
             <Armario></Armario>
 
         </div>

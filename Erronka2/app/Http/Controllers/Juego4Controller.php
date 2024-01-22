@@ -71,7 +71,10 @@ class Juego4Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $juego = Juego::findOrFail($id);
+        $juego->update(['llave' => '1']);
+        return redirect()-> route('juego4.update', ['id' => $id]);
+
     }
 
     /**
