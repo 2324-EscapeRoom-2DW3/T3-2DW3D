@@ -1,4 +1,5 @@
 <template>
+
     <!-- <div id="fondoJuego" class="relative min-h-screen flex items-center justify-center bg-cover bg-no-repeat bg-center" style="background-image: url('../../storage/app/public/images/juego2/fondo.png');">
     <button class="botoi fixed  transform  bg-transparent border-none p-0 focus:outline-none" @click.prevent="aparecerPizarra">
         <img id="pizarra" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="Botón con imagen" class="w-96 opacity-50 h-32 ">
@@ -12,8 +13,13 @@
     <img id="close" class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden" @click="close"
         src="../../storage/app/public/images/juego2/close.png" alt="" />
 
+
+<!-- PARA COMPONENTE -->
+<img class="carta absolute w-2/3 " src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
+
+
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
-        <div class="control-container pt-20" :class="{ 'vibrando': isVibrando1 }">
+        <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
             <div class="number-input">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -93,7 +99,7 @@
                 </button>
             </div>
         </div>
-        <div class="control-container pt-20 " :class="{ 'vibrando': isVibrando3 }">
+        <div class="control-container pt-28 " :class="{ 'vibrando': isVibrando3 }">
             <div class="number-input ">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput3_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -349,6 +355,16 @@ export default {
                     this.isVibrando3 = false;
                 }, 500);
             }
+
+            if (
+                this.result1_1 === "K" && this.result1_2 === "I" && this.result1_3 === "A" &&
+                this.result2_1 === "M" && this.result2_2 === "C" && this.result2_3 === "P"&&
+                this.result3_1 === "KT" && this.result3_2 === "S" && this.result3_3 === "C"
+            ) {
+
+
+
+            }
         },
 
 
@@ -360,11 +376,7 @@ export default {
             this.isVibrando = !this.isVibrando;
         },
 
-        resetValues() {
-            this.result1_1 = "K";
-            this.result1_2 = "I";
-            this.result1_3 = "A";
-        },
+
     },
 };
 </script>

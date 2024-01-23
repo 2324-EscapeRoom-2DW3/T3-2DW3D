@@ -4,7 +4,7 @@
 
 @section('content')
 
-<body>
+<body style="overflow: hidden;">
     {{-- <script src="..\..\resources\js\juego2.js"></script> --}}
 
     <div id="juego2">
