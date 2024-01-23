@@ -128,10 +128,10 @@
 
 .carta:hover {
     transform: translateY(-30px);
-    /*
-    AL HACER CLICK
-    transform: translate(150%, -125%) scale(1.2);
-    */
+
+    /* AL HACER CLICK
+    transform: translate(150%, -125%) scale(1.2); */
+
 }
 
 
