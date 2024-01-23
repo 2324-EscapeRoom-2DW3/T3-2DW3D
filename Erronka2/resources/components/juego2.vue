@@ -12,8 +12,8 @@
     <img id="close" class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden" @click="close"
         src="../../storage/app/public/images/juego2/close.png" alt="" />
 
-    <div id="botones" class="container-botones text-center flex items-center justify-center flex-row">
-        <div class="control-container pt-20">
+    <div id="botones" class="container-botones text-center flex items-center justify-center flex-row " >
+        <div class="control-container pt-20" :class="{'vibrando': isVibrando1}">
             <div class="number-input">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -54,8 +54,8 @@
         </div>
 
         <!-- AAAA -->
-        <div class="control-container">
-            <div class="number-input ">
+        <div class="control-container" :class="{'vibrando': isVibrando2}">
+            <div class="number-input" >
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput2_1')" :disabled="inputsBlocked">
                     &#8595;
                 </button>
@@ -93,7 +93,7 @@
                 </button>
             </div>
         </div>
-        <div class="control-container pt-20">
+        <div class="control-container pt-20 " :class="{'vibrando': isVibrando3}">
             <div class="number-input ">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput3_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -160,7 +160,11 @@
 export default {
     data() {
         return {
-            codeInput: "ABC",
+            isVibrando1: false,
+            isVibrando2: false,
+            isVibrando3: false,
+
+
             currentIndex: 0,
 
             objektuak: [
@@ -297,11 +301,31 @@ export default {
 
 
             } else {
-                this.vibration = true;
+                this.isVibrando1 = true;
                 setTimeout(() => {
-                    this.vibration = false;
+                    this.isVibrando1 = false;
                 }, 500);
             }
+
+            if (
+                this.result2_1 === "M" &&
+                this.result2_2 === "C" &&
+                this.result2_3 === "P"
+            ) {
+                boton2.style.backgroundColor = "#35B331";
+
+
+            } else {
+                this.isVibrando2 = true;
+                setTimeout(() => {
+                    this.isVibrando2 = false;
+                }, 500);
+            }
+        },
+
+        toggleVibracion() {
+            console.log("VIBRAR");
+            this.isVibrando = !this.isVibrando;
         },
 
         resetValues() {
