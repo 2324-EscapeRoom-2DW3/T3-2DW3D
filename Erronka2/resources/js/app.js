@@ -1,5 +1,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
+import draggable from 'vuedraggable'
+
 import { createPinia } from 'pinia';
 import route from '../../vendor/tightenco/ziggy';
 import App from '../App.vue';
@@ -11,6 +13,7 @@ import Juego2 from '../components/juego2.vue';
 import Juego4 from '../components/3raya.vue';
 import Juego5 from '../components/despacho.vue';
 import Armario from '../components/armario.vue';
+import VueDraggableResizable from 'vue-draggable-resizable'
 
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
@@ -67,7 +70,9 @@ Juego2App.mount('#juego2');
 const Juego5App = createApp({
     components: {
         Juego5,
+
     },
-});
+}).component("vue-draggable-resizable", VueDraggableResizable);;
+
 Juego5App.use(ZiggyVue);
 Juego5App.mount('#juego5');

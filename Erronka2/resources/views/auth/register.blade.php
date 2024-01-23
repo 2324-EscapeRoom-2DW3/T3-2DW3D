@@ -5,8 +5,9 @@
             <div
                 class="half-width  h-full w-full bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-40 border border-gray-100
             ">
+            <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">
+               ERREGISTRATU</h1>
 
-                
                 <form method="POST" action="{{ route('register') }}" class="p-6" enctype="multipart/form-data">
                     @csrf
 
@@ -76,10 +77,11 @@
                     </div>
                 </form>
             </div>
-            <div
-                class=" lg:block hidden  half-widthh-full w-full bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-40 border border-gray-100 
+            <div class="flex justify-end w-2/5 ml-72	">
 
-        ">
+
+            <div
+                class=" lg:block hidden w-full h-full  bg-gray-500 rounded-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-40 border border-gray-100">
                 <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">
                     SAIOA HASI</h1>
                 <a class=" lg:hidden block text-center mr-4 underline text-sm text-gray-400  hover:text-gray-100 "
@@ -130,7 +132,7 @@
                     </div>
                 </form>
             </div>
-
+        </div>
 
             <div id="register" class="">
             </div>
