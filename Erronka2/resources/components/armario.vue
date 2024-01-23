@@ -65,7 +65,7 @@ export default {
             disappearTimeout: null,
             hideTimeout: null,
             toggle: 0,
-
+            openImage: new Image(),
             objektuak: [
                 // Ordenador
                 { areaTop: 28, areaLeft: 41.9, areaWidth: 4, areaHeight: 45 },
@@ -150,7 +150,7 @@ export default {
                             .catch(error => {
                                 // Handle the error
                                 console.log(error);
-                                window.alert("¡Has encontrado la llave!");
+                                window.alert("¡Has encontrado una llave!");
 
                             });
 

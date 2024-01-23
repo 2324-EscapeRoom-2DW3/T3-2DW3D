@@ -5,7 +5,7 @@ use App\Http\Controllers\Juego4Controller;
 use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Juego5Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,3 +61,7 @@ Route::get('juegos/juego4/{id}', [Juego4Controller::class, 'index'])->name('jueg
 Route::get('juegos/juego4/show/{id}', [Juego4Controller::class, 'show'])->name('juego4.show')->middleware('checkgame');
 
 Route::put('juegos/juego4/update/{id}', [Juego4Controller::class, 'update'])->name('juego4.update')->middleware('checkgame');
+
+Route::get('juegos/juego5/{id}', [Juego5Controller::class, 'index'])->name('juego5.index')->middleware('checkgame');
+
+Route::get('juegos/juego5/llave/{id}', [Juego5Controller::class, 'keyvalue'])->name('juego5.keyvalue')->middleware('checkgame');

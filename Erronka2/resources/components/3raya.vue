@@ -1,6 +1,17 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+        <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage2})` }"
+            style="z-index: 1;" v-show="toggle === 3">
+            <div @click.prevent="toggleDiv(0)" style="position: absolute;
+            top: 1.5vh;
+            left: 86%;
+            width: 8.2%;
+            height: 14vh;
+            z-index: 50;">
+            </div>
+        </div>
+
         <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
             :class="dis">
             <p>{{ displayText }}</p>
@@ -55,6 +66,14 @@
             background-color:#fff;
             opacity: 0.5;">
         </div>  -->
+        <!--    <div style="position: absolute;
+            top: 1.5vh;
+            left: 86%;
+            width: 8.2%;
+            height: 14vh;
+            background-color:#fff;
+            opacity: 0.5;">
+        </div>  -->
         <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1">
 
             <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
@@ -99,6 +118,7 @@ export default {
     data() {
         return {
             backgroundImage: '../../../storage/app/public/images/juego4/juego4.png',
+            backgroundImage2: '../../../storage/app/public/images/juego4/luz.png',
             dis: "hidden",
             displayText: '',
             toggle: 0,
@@ -110,6 +130,7 @@ export default {
                 { areaTop: 69, areaLeft: 18, areaWidth: 22, areaHeight: 22 },
                 { areaTop: 31, areaLeft: 48.93, areaWidth: 2, areaHeight: 4 },
                 { areaTop: 37, areaLeft: 38.4, areaWidth: 6, areaHeight: 14 },
+                { areaTop: 1.5, areaLeft: 86, areaWidth: 8.2, areaHeight: 14 },
 
             ],
 
@@ -155,7 +176,7 @@ export default {
                         this.toggle = 1;
                     } else if (i == 1) {
                         if (window.confirm('Estas seguro que quieres irte?')) {
-                            window.location.href = route('menujuego',  { id: route().params });
+                            window.location.href = route('menujuego', { id: route().params });
                         }
                     } else if (i == 2) {
                         this.toggle = 2;
@@ -170,8 +191,12 @@ export default {
                         this.mostrar("Este armario parece llevar a una habitación contigua...");
                         setTimeout(() => {
                             window.location.href = route('juego4.show', { id: route().params });
-                        }, 5000);
+                        }, 4000);
 
+                    } else if (i == 6) {
+                        this.toggle = 3;
+                        let audio = new Audio('../../storage/sounds/luz.mp3');
+                audio.play();
                     }
                 }
             }
