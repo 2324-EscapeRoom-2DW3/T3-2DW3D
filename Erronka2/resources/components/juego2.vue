@@ -12,8 +12,8 @@
     <img id="close" class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden" @click="close"
         src="../../storage/app/public/images/juego2/close.png" alt="" />
 
-    <div id="botones" class="container-botones text-center flex items-center justify-center flex-row " >
-        <div class="control-container pt-20" :class="{'vibrando': isVibrando1}">
+    <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
+        <div class="control-container pt-20" :class="{ 'vibrando': isVibrando1 }">
             <div class="number-input">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -47,15 +47,15 @@
                 </button>
             </div>
             <div class="containerBoton">
-                <button id="verify-btn-1" @click="checkResult" class="verify-btn-1" :disabled="verificationButtonBlocked">
+                <button id="verify-btn-1" @click="checkResult1" class="verify-btn-1" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
         </div>
 
         <!-- AAAA -->
-        <div class="control-container" :class="{'vibrando': isVibrando2}">
-            <div class="number-input" >
+        <div class="control-container" :class="{ 'vibrando': isVibrando2 }">
+            <div class="number-input">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput2_1')" :disabled="inputsBlocked">
                     &#8595;
                 </button>
@@ -88,12 +88,12 @@
                 </button>
             </div>
             <div class="containerBoton">
-                <button id="verify-btn-2" @click="checkResult" class="verify-btn-2" :disabled="verificationButtonBlocked">
+                <button id="verify-btn-2" @click="checkResult2" class="verify-btn-2" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
         </div>
-        <div class="control-container pt-20 " :class="{'vibrando': isVibrando3}">
+        <div class="control-container pt-20 " :class="{ 'vibrando': isVibrando3 }">
             <div class="number-input ">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput3_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -127,7 +127,7 @@
                 </button>
             </div>
             <div class="containerBoton">
-                <button id="verify-btn-3" @click="checkResult" class="verify-btn-3" :disabled="verificationButtonBlocked">
+                <button id="verify-btn-3" @click="checkResult3" class="verify-btn-3" :disabled="verificationButtonBlocked">
                     ABRIR
                 </button>
             </div>
@@ -277,20 +277,15 @@ export default {
             }
         },
 
-        checkResult() {
+        checkResult1() {
             var resultElement = document.getElementById("text");
             this.result1_1 = document.getElementById("letterInput1_1").value;
             this.result1_2 = document.getElementById("letterInput1_2").value;
             this.result1_3 = document.getElementById("letterInput1_3").value;
-            this.result2_1 = document.getElementById("letterInput2_1").value;
-            this.result2_2 = document.getElementById("letterInput2_2").value;
-            this.result2_3 = document.getElementById("letterInput2_3").value;
-            this.result3_1 = document.getElementById("letterInput3_1").value;
-            this.result3_2 = document.getElementById("letterInput3_2").value;
-            this.result3_3 = document.getElementById("letterInput3_3").value;
+
+
             var boton1 = document.getElementById("verify-btn-1");
-            var boton2 = document.getElementById("verify-btn-2");
-            var boton3 = document.getElementById("verify-btn-3");
+
 
             if (
                 this.result1_1 === "K" &&
@@ -301,12 +296,20 @@ export default {
 
 
             } else {
+                boton1.style.backgroundColor = "#413B2A";
+
                 this.isVibrando1 = true;
                 setTimeout(() => {
                     this.isVibrando1 = false;
                 }, 500);
             }
 
+        },
+        checkResult2() {
+            this.result2_1 = document.getElementById("letterInput2_1").value;
+            this.result2_2 = document.getElementById("letterInput2_2").value;
+            this.result2_3 = document.getElementById("letterInput2_3").value;
+            var boton2 = document.getElementById("verify-btn-2");
             if (
                 this.result2_1 === "M" &&
                 this.result2_2 === "C" &&
@@ -316,12 +319,41 @@ export default {
 
 
             } else {
+                boton2.style.backgroundColor = "#413B2A";
+
                 this.isVibrando2 = true;
                 setTimeout(() => {
                     this.isVibrando2 = false;
                 }, 500);
             }
         },
+        checkResult3() {
+            this.result3_1 = document.getElementById("letterInput3_1").value;
+            this.result3_2 = document.getElementById("letterInput3_2").value;
+            this.result3_3 = document.getElementById("letterInput3_3").value;
+            var boton3 = document.getElementById("verify-btn-3");
+
+            if (
+                this.result3_1 === "T" &&
+                this.result3_2 === "S" &&
+                this.result3_3 === "C"
+            ) {
+                boton3.style.backgroundColor = "#35B331";
+
+
+            } else {
+                boton3.style.backgroundColor = "#413B2A";
+
+                this.isVibrando3 = true;
+                setTimeout(() => {
+                    this.isVibrando3 = false;
+                }, 500);
+            }
+        },
+
+
+
+
 
         toggleVibracion() {
             console.log("VIBRAR");
