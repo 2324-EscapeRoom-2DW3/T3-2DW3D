@@ -39,7 +39,9 @@ _QUIMMICA_ ihesak zailtasun-maila moderatua du, trebetasun logikoak eta kimikako
 
 
 
-
+npm install --save vue-draggable-resizable
+npm install -i
+composer require tightenco/ziggy
 
 
 
