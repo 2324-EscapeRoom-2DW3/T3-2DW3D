@@ -9,19 +9,26 @@
 
 /* PIZARRAAAA */
 .fondo{
+    position: absolute;
+    top: 0vh;
+    left: 0%;
     width: 100%;
     height: 100vh;
+
+
 }
 
 .pizarra{
     position: absolute;
-    top: 30vh;
-    left: 40%;
-    width: 23%;
+    top: 40vh;
+    left: 25%;
+    width: 7%;
     height: 13vh;
     background-color: white;
     opacity: 0.5;
 }
+
+
 
 .pizarra-rota{
     position: absolute;
@@ -29,6 +36,18 @@
     left: 30%;
     width: 40%;
     height: 50vh;
+    background-color: white;
+    opacity: 1;
+    display: none;
+
+}
+
+.botella{
+    position: absolute;
+    top: 0vh;
+    left: 0%;
+    width: 100%;
+    height: 100vh;
     background-color: white;
     opacity: 1;
     display: none;
@@ -45,11 +64,94 @@
 }
 
 .close{
-    visibility: hidden;
-
+    display: none;
 }
 
 /* --------------------------- */
+
+/* -----------BOTELLAS------------- */
+
+.b-botoi{
+    background-color: white;
+    opacity: 0.5;
+    color: black;
+    border: 1px solid black;
+    padding: 15px;
+
+    text-align: center;
+}
+
+.b-input{
+    text-align: center;
+    height: 35px;
+    border-radius: 10px;
+    width: 16%;
+    text-align: center;
+
+}
+
+.container-botones{
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+.verify-btn-1{
+    border: solid black 3px;
+    background-color: #413B2A;
+}
+.verify-btn-2{
+    border: solid black 3px;
+    background-color: #413B2A;
+}
+.verify-btn-3{
+    border: solid black 3px;
+    background-color: #413B2A;
+}
+
+.control-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* CARTA */
+
+.carta{
+    top: 90%;
+    width: 25%;
+    transition: transform 0.5s ease, width 0.5s ease;
+
+}
+
+.carta:hover {
+    transform: translateY(-30px);
+
+    /* AL HACER CLICK
+    transform: translate(150%, -125%) scale(1.2); */
+
+}
+
+
+.vibrando{
+animation: shake 0.5s ease-in-out;
+}
+
+@keyframes shake {
+    0%,
+    100% {
+        transform: translateX(0);
+    }
+    25%,
+    75% {
+        transform: translateX(-10px);
+    }
+    50% {
+        transform: translateX(10px);
+    }
+}
 
 
 
