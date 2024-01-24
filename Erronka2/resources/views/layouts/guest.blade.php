@@ -12,10 +12,18 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
         <!-- Scripts -->
+        @routes
+        @vite('resources/js/fluid.min.js')
         @vite(['resources/css/app.css', 'resources/js/app.js'])
+
     </head>
     <body class="font-sans text-gray-900 antialiased ">
-        <div class=" pl-20 pr-20  min-h-screen shadow-4xl flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-center bg-black"  >
+        {{-- <div class="min-h-screen min-w-screen bg-cover bg-no-repeat bg-center z-50"
+        style="background-image: url('storage/images/fondo_login.gif');"> --}}
+{{--         <div id="footer-app" class="z-0"></div>
+ --}}
+        <div class=" pl-20 pr-20  min-h-screen shadow-4xl flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-center bg-black"  style="background-image: url('storage/images/fondo_login.gif');">
+
             <div>
                 <a href="/">
                     <x-application-logo class="w-20 h-20 fill-current absolute" />
@@ -25,9 +33,8 @@
             <div class=" w-full mt-6 px-6 py-4  shadow-md overflow-hidden rounded-lg">
                 {{ $slot }}
             </div>
-
-
         </div>
-
+{{--         </div>
+ --}}
     </body>
 </html>

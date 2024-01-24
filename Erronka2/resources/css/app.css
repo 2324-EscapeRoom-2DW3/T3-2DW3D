@@ -179,6 +179,13 @@ animation: shake 0.5s ease-in-out;
     animation: bounce 2s infinite;
 }
 
+.glow-green {
+    box-shadow: 0 0 10px #38a169, 0 0 20px #38a169, 0 0 30px #38a169, 0 0 40px #38a169;
+}
+.glow-green2 {
+    filter: drop-shadow(0 0 5px #38a169) drop-shadow(0 0 10px #38a169);
+}
+
 .underline-spacing {
     text-decoration: underline;
     text-decoration-style: dotted;
@@ -208,7 +215,7 @@ animation: shake 0.5s ease-in-out;
     }
 
     50% {
-        text-shadow: 0 0 15px rgba(255, 7, 123, 0.2);
+        text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     }
 
     100% {
@@ -490,8 +497,8 @@ animation: shake 0.5s ease-in-out;
 
 button {
     border-radius: 20px;
-    border: 1px solid #FF4B2B;
-    background-color: #FF4B2B;
+   /*  border: 1px solid #FF4B2B;
+    background-color: #FF4B2B; */
     color: #FFFFFF;
     font-size: 12px;
     font-weight: bold;
@@ -526,10 +533,10 @@ button.ghost {
     /* Ajusta esto según tus necesidades */
 }
 
-.text-glow {
+/* .text-glow {
     color: green;
     text-shadow: 0 0 10px #00ff00, 0 0 20px #00ff00, 0 0 30px #00ff00, 0 0 40px #00ff00;
-}
+} */
 
 .text-stroke {
     -webkit-text-stroke: 3px black;
@@ -720,5 +727,34 @@ button.ghost {
 
   }
 
+/* Middle of screen */
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
 
+/* Animate tect */
 
+.dissapear_text {
+    animation: textdis 5s;
+}
+
+@keyframes textdis {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

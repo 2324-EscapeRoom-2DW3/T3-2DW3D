@@ -5,8 +5,13 @@
 @section('content')
 
     <body>
-
+       
         <div class="min-h-screen bg-cover bg-center" style="background-image: url('storage/images/fondo16_9.png');">
+            @if (session('alert'))
+            <div class="alert alert-danger text-red-600">
+                {{ session('alert') }}
+            </div>
+            @endif
             <div class="flex justify-center  pt-28 pb-16">
                 <h1 class="ml-3 text-white text-9xl font-figtree font-bold z-50 type-titulo">
                 </h1>

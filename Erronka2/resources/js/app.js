@@ -1,5 +1,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
+import draggable from 'vuedraggable'
+
 import { createPinia } from 'pinia';
 import route from '../../vendor/tightenco/ziggy';
 import App from '../App.vue';
@@ -8,6 +10,11 @@ import Register from '../components/register.vue';
 import Login from '../components/login.vue';
 import Menu from '../components/menujuego.vue';
 import Juego2 from '../components/juego2.vue';
+import Juego4 from '../components/3raya.vue';
+import Juego5 from '../components/despacho.vue';
+import Armario from '../components/armario.vue';
+import VueDraggableResizable from 'vue-draggable-resizable'
+
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
 const app = createApp({});
@@ -38,8 +45,34 @@ juego1.component(VueCountdown.name, VueCountdown);
 
 juego1.mount('#juego1');
 
+const juego4 = createApp({
+    components: {
+        Juego4,
+    },
+});
+juego4.use(ZiggyVue);
+juego4.mount('#juego4');
+
+const armario = createApp({
+    components: {
+        Armario,
+    },
+});
+armario.use(ZiggyVue);
+armario.mount('#armario');
+
 const menujuegoApp = createApp(Menu).use(ZiggyVue);
 menujuegoApp.mount('#menujuego');
 
 const Juego2App = createApp(Juego2);
 Juego2App.mount('#juego2');
+
+const Juego5App = createApp({
+    components: {
+        Juego5,
+
+    },
+}).component("vue-draggable-resizable", VueDraggableResizable);;
+
+Juego5App.use(ZiggyVue);
+Juego5App.mount('#juego5');
