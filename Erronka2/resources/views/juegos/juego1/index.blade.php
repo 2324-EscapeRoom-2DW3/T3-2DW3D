@@ -10,13 +10,13 @@
             style="background-image: url('../../storage/images/juego1.png');">
             <div class="fade"></div>
 
-            <section class="star-wars">
-                <div class="crawl">
-                    <div class="title">
-                        <span class="ml-3 text-8xl font-figtree font-bold z-50 text-white   ">
-                            QUIMM<span class="text-lime-400  text-8xl font-figtree">ICA</span>
-                        </span>
-                    </div>
+        <section class="star-wars">
+            <div class="crawl">
+                <div class="title">
+                    <span class="ml-3 text-8xl font-figtree font-bold z-50 text-white   ">
+                        QUIMM<span class="text-lime-400  text-8xl font-figtree">ICA</span>
+                    </span>
+                </div>
 
                     <p class="text-white">Jon, Ane, Iker eta Nora lau lagunak dira, eta quimika ikasten duten unibertsitateko
                         ikasleak. Gaurko egunean, laborategian praktika bat egin behar zuten, baina zerbait gaizki joan zen.
@@ -42,7 +42,7 @@
             </div>
         </div>
 
-    </body>
+</body>
 
     <script>
         window.onload = function() {

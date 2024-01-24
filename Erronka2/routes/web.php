@@ -56,6 +56,10 @@ Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
 
+Route::get('juegos/juego3', function () {
+    return view('juegos/juego3/index');
+})->name('juego3');
+
 Route::get('juegos/juego4/{id}', [Juego4Controller::class, 'index'])->name('juego4.index')->middleware('checkgame');
 
 Route::get('juegos/juego4/show/{id}', [Juego4Controller::class, 'show'])->name('juego4.show')->middleware('checkgame');
