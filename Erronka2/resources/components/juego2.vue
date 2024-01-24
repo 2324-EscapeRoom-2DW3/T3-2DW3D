@@ -15,7 +15,7 @@
 
 
 <!-- PARA COMPONENTE -->
-<img class="carta absolute w-2/3 " src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
+<img class="carta absolute w-2/3" src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
 
 
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
@@ -170,6 +170,10 @@ export default {
             isVibrando2: false,
             isVibrando3: false,
 
+            isDone1: false,
+            isDone2: false,
+            isDone3: false,
+
 
             currentIndex: 0,
 
@@ -299,6 +303,8 @@ export default {
                 this.result1_3 === "A"
             ) {
                 boton1.style.backgroundColor = "#35B331";
+                this.isDone1 = true;
+                this.CartaFinal();
 
 
             } else {
@@ -322,6 +328,8 @@ export default {
                 this.result2_3 === "P"
             ) {
                 boton2.style.backgroundColor = "#35B331";
+                this.isDone2 = true;
+                this.CartaFinal();
 
 
             } else {
@@ -345,6 +353,9 @@ export default {
                 this.result3_3 === "C"
             ) {
                 boton3.style.backgroundColor = "#35B331";
+                this.isDone3 = true;
+                this.CartaFinal();
+
 
 
             } else {
@@ -367,6 +378,14 @@ export default {
             }
         },
 
+        CartaFinal(){
+            console.log("NO COMPLETADO");
+            if (this.isDone1 && this.isDone2 && this.isDone3) {
+                console.log("CARTA FINAL");
+            var carta = document.getElementById("carta");
+            carta.style.display = "block";
+            }
+        },
 
 
 
