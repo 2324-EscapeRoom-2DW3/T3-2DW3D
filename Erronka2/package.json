@@ -27,6 +27,7 @@
         "fluid-canvas": "github:malik-tillman/fluid-js",
         "i": "^0.3.7",
         "pinia": "^2.1.7",
+        "sweetalert2": "^11.10.4",
         "tailwind-typewriter": "^1.0.1",
         "typeface-inter": "^3.18.1",
         "vite-plugin-windicss": "^1.9.2",

@@ -134,6 +134,18 @@
 
 }
 
+@keyframes slideAnimation {
+    from {
+      transform: translateY(96pt);
+    }
+    to {
+      transform: translateY(52pt);
+    }
+  }
+
+  .slide-animation {
+    animation: slideAnimation 1s forwards;
+  }
 
 .vibrando{
 animation: shake 0.5s ease-in-out;
@@ -543,10 +555,20 @@ button.ghost {
 }
 
 .wordart {
-    background: linear-gradient(45deg, #008000, #00ff00, #adff2f, #006400);
+    background: linear-gradient(45deg, #ffffff, #ffffff, #ffffff, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+    font-style: italic;
+}
+
+.wordart2 {
+    background: linear-gradient(45deg, #ffffff, #ffffff, #ffffff, #ffffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
+font-style: italic;
+
 }
 
 

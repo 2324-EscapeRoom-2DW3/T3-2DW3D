@@ -50,7 +50,7 @@ const juego4 = createApp({
     components: {
         Juego4,
     },
-});
+}).component("vue-draggable-resizable", VueDraggableResizable);
 juego4.use(ZiggyVue);
 juego4.mount('#juego4');
 
@@ -63,6 +63,8 @@ armario.use(ZiggyVue);
 armario.mount('#armario');
 
 const menujuegoApp = createApp(Menu).use(ZiggyVue);
+menujuegoApp.component(VueCountdown.name, VueCountdown);
+
 menujuegoApp.mount('#menujuego');
 
 const Juego3App = createApp(Juego3);
