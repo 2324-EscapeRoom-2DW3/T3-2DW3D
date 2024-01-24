@@ -17,12 +17,48 @@
 
 
                 <!-- Llave -->
+
+
+                <!--  <vue-draggable-resizable v-for="(item, index) in  items " :resizable="false"  :key="index" :ref="`draggable${index}`"
+                    :class="['fixed', 'left-0', topClasses[index]]">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5 glow-green2">
+
+                </vue-draggable-resizable> -->
+
+                <vue-draggable-resizable class="fixed top-80 right-96" :draggable="false" ref="draggable0">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5 ">
+
+                </vue-draggable-resizable>
+                <vue-draggable-resizable class="fixed top-52 left-32" :draggable="false" ref="draggable1">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/52">
+
+                </vue-draggable-resizable>
                 <vue-draggable-resizable ref="draggable" :resizable="false" :draggable="isDraggable"
                     class="fixed top-0 left-0" @dragging="onDragging">
-                    <img src="../../storage/app/public/images/juego5/key.png" alt=""
-                        class=" z-20 h-2/4 w-4/5 glow-green2">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5 glow-green2">
                 </vue-draggable-resizable>
 
+                <vue-draggable-resizable class="fixed top-40 right-2 left-80" :draggable="false" ref="draggable2">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5">
+
+                </vue-draggable-resizable>
+                <vue-draggable-resizable class="fixed top-50 right-12 left-70" :draggable="false" ref="draggable3">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5">
+
+                </vue-draggable-resizable>
+
+                <vue-draggable-resizable class="fixed top-60 left-90" :draggable="false" ref="draggable4">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5">
+
+                </vue-draggable-resizable>
+                <vue-draggable-resizable class="fixed top-90 left-96" :draggable="false" ref="draggable5">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5">
+
+                </vue-draggable-resizable>
+                <vue-draggable-resizable class="fixed top-40 right-44" :draggable="false" ref="draggable6">
+                    <img src="../../storage/app/public/images/juego5/key.png" alt="" class=" z-20 h-2/4 w-4/5">
+
+                </vue-draggable-resizable>
 
 
             </div>
@@ -70,7 +106,7 @@ export default {
             objektuak: [
                 // Ordenador
                 { areaTop: 23, areaLeft: 38, areaWidth: 15, areaHeight: 41.5 },
-                { areaTop: 115, areaLeft: 60, areaWidth: 15, areaHeight: 30 }, // Especial mirar abajo
+                { areaTop: 30, areaLeft: 39, areaWidth: 10, areaHeight: 22 },
 
             ],
             isDraggable: true,
@@ -84,6 +120,9 @@ export default {
             areaWidthAbs: 0,
             areaHeightAbs: 0,
             played: false,
+            played2: false,
+
+            /*  items: ['draggable0', 'draggable1', 'draggable2', 'draggable3', 'draggable4', 'draggable5', 'draggable6', 'draggable7', 'draggable8', 'draggable9'],            topClasses: ['top-10', 'top-20', 'top-30', 'top-40', 'top-50', 'top-60', 'top-70', 'top-80', 'top-90', 'top-96'], */
 
         };
     },
@@ -91,6 +130,7 @@ export default {
         this.openImage.src =
             "../../../storage/app/public/images/juego5/despacho_blur.png";
         this.getLlaveValor();
+
     },
 
     methods: {
@@ -103,11 +143,10 @@ export default {
             // oh my fuckign god im losing my mind THE PARENT IS THE LOCKER ITS AREA IS RELATIVE TO AREA OF THE LOCKER
             // 0:09 nvm no tengo ni idea
             this.clicked = true;
-            var parentElement = this.$refs.draggable.$el.parentElement;
-            this.areaTopAbs = (this.objektuak[1].areaTop / 100) * parentElement.clientHeight;
-            this.areaLeftAbs = (this.objektuak[1].areaLeft / 100) * parentElement.clientWidth;
-            this.areaWidthAbs = (this.objektuak[1].areaWidth / 100) * parentElement.clientWidth;
-            this.areaHeightAbs = (this.objektuak[1].areaHeight / 100) * parentElement.clientHeight;
+            this.areaTopAbs = (this.objektuak[1].areaTop / 100) * window.innerHeight;
+            this.areaLeftAbs = (this.objektuak[1].areaLeft / 100) * window.innerWidth;
+            this.areaWidthAbs = (this.objektuak[1].areaWidth / 100) * window.innerWidth;
+            this.areaHeightAbs = (this.objektuak[1].areaHeight / 100) * window.innerHeight;
 
             if (
                 y >= this.areaTopAbs &&
@@ -121,6 +160,10 @@ export default {
                     audio.play();
                     this.played = true;
                     this.mostrar("Se ha abierto!");
+                    setTimeout(() => {
+                        window.location.href = route('menujuego', { id: route().params });
+
+                    }, 3000);
 
                 }
 
@@ -132,7 +175,8 @@ export default {
             }
         },
 
-        move() {
+
+        move(refName) {
             this.posX = 0
             this.posY = 0
             var changeXMag = 1
@@ -141,13 +185,13 @@ export default {
             var changeY = changeYMag
 
             var interval = setInterval(() => {
-                this.posX += changeX * 2
-                this.posY += changeY * 2
+                this.posX += changeX
+                this.posY += changeY
 
-                var isRight = this.posX >= window.innerWidth - this.$refs.draggable.$el.clientWidth
+                var isRight = this.posX >= window.innerWidth - this.$refs[refName].$el.clientWidth
                 var isLeft = this.posX <= 0
                 var isTop = this.posY <= 0
-                var isBottom = this.posY >= window.innerHeight -this.$refs.draggable.$el.clientHeight
+                var isBottom = this.posY >= window.innerHeight - this.$refs[refName].$el.clientHeight
 
                 var isHorizontalBoundary = isLeft || isRight
                 var isVerticalBounday = isTop || isBottom
@@ -163,7 +207,7 @@ export default {
                 }
 
                 if (!this.clicked) {
-                    this.$refs.draggable.$el.style.transform = `translate(${this.posX}px, ${this.posY}px)`
+                    this.$refs[refName].$el.style.transform = `translate(${this.posX}px, ${this.posY}px)`
 
                 }
             }, 10)
@@ -214,7 +258,32 @@ export default {
                         if (this.llaveValor == 1) {
                             this.toggle = 1;
                             this.backgroundImage = this.openImage.src;
-                            window.requestAnimationFrame(this.move);
+
+                            if (!this.played2) {
+
+                                setTimeout(() => {
+                                    let audio = new Audio('../../storage/sounds/chase.mp3');
+                                    audio.play();
+                                }, 3000);
+                                this.played2 = true;
+                                this.mostrar("Que está pasando? Parece una reacción química, las llaves se han multiplicado! No sé cuál es la buena...")
+
+                            }
+                            /*   for (let i = 0; i < 5; i++) {
+                                  console.log(`draggable${i}`);
+                                  window.requestAnimationFrame(() => window.requestAnimationFrame(this.move(`draggable${i}`)));
+
+                              } */
+
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable0')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable1')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable2')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable3')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable4')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable5')));
+                            window.requestAnimationFrame(() => window.requestAnimationFrame(this.move('draggable6')));
+
 
 
                         } else {
