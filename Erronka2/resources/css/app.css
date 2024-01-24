@@ -619,4 +619,169 @@ button.ghost {
   }
 
 
+    /* ****** Dashboard *********** */
+    .profile-image{
+      width: 140px;
+      height: 140px;
+      margin: 0 0 20px 0;
+      border-radius: 50%;
+      border: 2px solid #008000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      cursor: pointer;
+      box-shadow: 0px 0px 20px #00800077 , inset 0px 0px 10px #00800033,0px 0px 5px rgb(255, 255, 255);
+      transition: filter 0.2s ease-in-out,
+                  border 0.2s ease-in-out;
+      &:hover{
+        filter: brightness(0.8);
+        border: 2px solid #009900;
+      }
+    }
+
+    .text-username{
+      font-size: 2.5rem;
+      font-weight: 600;
+      color: #004400;
+      margin: 0 0 10px 0;
+    }
+
+    .text-email{
+      font-size: 1.25rem;
+      font-weight: 100;
+      color: #447744;
+      margin: 0 0 50px 0;
+    }
+
+    .text-score{
+      font-size: 2rem;
+      font-weight: 100;
+      color: #002200;
+      margin: 0 0 20px 0;
+    }
+
+    .list-scores{
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .list-box{
+      width: 100%;
+      max-width: 800px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      overflow: hidden;
+      align-items: flex-start;
+      margin: 0 0 10px 0;
+      padding: 20px 10px;
+      border-radius: 5px;
+      border: 1px solid #00000000;
+      background-color: #00800033;
+      box-shadow: 0px 0px 20px #00800077 , inset 0px 0px 10px #00800033,0px 0px 5px rgb(255, 255, 255);
+      transition: filter 0.2s ease-in-out,
+                  border 0.2s ease-in-out;
+      &:hover{
+        filter: brightness(0.8);
+        border: 1px solid #009900;
+      }
+      & .game-header{
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+        & h2{
+          font-size: 1.5rem;
+          font-weight: 100;
+          color: #004400;
+          margin: 0 0 0 0;
+        }
+        & .display-info-button{
+          width: 50px;
+          height: 20px;
+          display: flex;
+          padding: 0 10px;
+          background-color: #00000000;
+          border-color: #00000000;
+          justify-content: space-between;
+          align-items: center;
+          & .display-info-button-icon{
+            font-size: 1.5rem;
+            color: #004400;
+          }
+        }
+      }
+      & .game-info{
+        display: none;
+        height: 0px;
+        width: 100%;
+        margin: 10px 0 0 0;
+        flex-wrap: wrap;
+        & .info{
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          align-items: flex-start;
+          & .info-labels{
+            text-align: left;
+            & p{
+              font-size: 1.1rem;
+            }
+          }
+          & .info-data{
+            text-align: right;
+            margin-right: 10px;
+            & p{
+              font-size: 1.1rem;
+            }
+          }
+        }
+        & .info-button{
+          display: flex;
+          width: 100%;
+          margin: 10px 0 0 0;
+          & .continuar{
+            cursor: pointer;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00800044;
+            border-radius: 5px;
+            border: 1px solid #00000000;
+            transition: filter 0.2s ease-in-out,
+                        border 0.2s ease-in-out;
+            &:hover{
+              filter: brightness(0.8);
+              border: 1px solid #009900;
+            }
+          }
+          & .completado{
+            pointer-events: none;
+            width: 100%;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #00800022;
+            border-radius: 5px;
+            border: 1px solid #00000000;
+            transition: filter 0.2s ease-in-out,
+                        border 0.2s ease-in-out;
+            &:hover{
+              filter: brightness(0.8);
+              border: 1px solid #009900;
+            }
+          }
+        }
+        
+      }
+    }
+
+
 
