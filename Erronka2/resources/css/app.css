@@ -63,6 +63,8 @@
     visibility: hidden;
 }
 
+
+
 .close{
     display: none;
 }
@@ -123,16 +125,30 @@
     top: 90%;
     width: 25%;
     transition: transform 0.5s ease, width 0.5s ease;
+    display: none;
 
 }
 
-.carta:hover {
+.activarAnimacion{
+    transform: translate(150%, -125%) scale(1.2);
+}
+
+.letra-carta{
+    position: absolute;
+    font-size: 100px;
+    display: none;
+}
+.letra{
+
+    padding-top: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+/* .carta:hover {
     transform: translateY(-30px);
 
-    /* AL HACER CLICK
-    transform: translate(150%, -125%) scale(1.2); */
-
-}
+} */
 
 
 .vibrando{

@@ -12,9 +12,9 @@
         </div>
 
         <div class="flex place-content-center pt-16 pr-2">
-            <a :href="route('juego2')">
-            <button class="opacity-75 shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-3 px-6 border-b-4 border-green-700 hover:border-green-500 rounded">SARTU</button>
-            </a>
+
+            <button  @click="redirigirAJuego" class="opacity-75 shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-3 px-6 border-b-4 border-green-700 hover:border-green-500 rounded">SARTU</button>
+
         </div>
 
     </div>
@@ -65,7 +65,32 @@ export default {
             }
 
 
+        },
+        redirigirAJuego() {
+            let rutaJuego;
+         switch (this.contador) {
+                case 0:
+                    rutaJuego = route('juego5');  // Reemplaza 'juego1' con la ruta correcta
+                    break;
+                case -1:
+                    rutaJuego = route('juego2');  // Reemplaza 'juego2' con la ruta correcta
+                    break;
+                case -2:
+                    rutaJuego = route('juego1.index');  // Reemplaza 'juego3' con la ruta correcta
+                    break;
+                case 1:
+                    rutaJuego = route('juego3');  // Reemplaza 'juego4' con la ruta correcta
+                    break;
+                case 2:
+                    rutaJuego = route('juego4');  // Reemplaza 'juego5' con la ruta correcta
+                    break;
+            }
+
+            window.location.href = rutaJuego;
         }
+
+
+
 
     },
 
