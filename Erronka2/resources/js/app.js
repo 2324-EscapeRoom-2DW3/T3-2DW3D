@@ -10,6 +10,10 @@ import Register from '../components/register.vue';
 import Login from '../components/login.vue';
 import Menu from '../components/menujuego.vue';
 import Juego2 from '../components/juego2.vue';
+import Juego3 from '../components/juego3.vue';
+import Vue3Tour from 'vue3-tour';
+
+import 'vue3-tour/dist/vue3-tour.css';
 import Juego4 from '../components/3raya.vue';
 import Juego5 from '../components/despacho.vue';
 import Armario from '../components/armario.vue';
@@ -17,6 +21,8 @@ import VueDraggableResizable from 'vue-draggable-resizable'
 
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
+import 'vue-tour/dist/vue-tour.css';
+
 const app = createApp({});
 
 import Alpine from 'alpinejs';
@@ -49,8 +55,8 @@ const juego4 = createApp({
     components: {
         Juego4,
     },
-});
-juego4.use(ZiggyVue);
+}).component("vue-draggable-resizable", VueDraggableResizable);
+juego4.use(ZiggyVue).use(Vue3Tour);
 juego4.mount('#juego4');
 
 const armario = createApp({

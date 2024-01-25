@@ -65,3 +65,7 @@ Route::put('juegos/juego4/update/{id}', [Juego4Controller::class, 'update'])->na
 Route::get('juegos/juego5/{id}', [Juego5Controller::class, 'index'])->name('juego5.index')->middleware('checkgame');
 
 Route::get('juegos/juego5/llave/{id}', [Juego5Controller::class, 'keyvalue'])->name('juego5.keyvalue')->middleware('checkgame');
+
+Route::get('juegos/juego4/tutorialvalue/{id}', [Juego4Controller::class, 'tutorialvalue'])->name('juego4.tutorialvalue')->middleware('checkgame');
+
+Route::put('juegos/juego4/tutorial/{id}', [Juego4Controller::class, 'tutorial'])->name('juego4.tutorial')->middleware('checkgame');

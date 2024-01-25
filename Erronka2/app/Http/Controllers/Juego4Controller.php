@@ -19,10 +19,13 @@ class Juego4Controller extends Controller
      */
     public function index($id)
     {
-/*         return view('juegos/juego4.show', ['id' => $id]); */
+    
         return view('juegos/juego4.index', ['id' => $id]);
+/*         return view('juegos/juego4.show', ['id' => $id]); */
 
 }
+
+
 
     public function show($id)
     {
@@ -73,8 +76,22 @@ class Juego4Controller extends Controller
     {
         $juego = Juego::findOrFail($id);
         $juego->update(['llave' => '1']);
-        return redirect()-> route('juego4.update', ['id' => $id]);
+/*         return redirect()-> route('juego4.update', ['id' => $id]);
+ */
+    }
 
+    public function tutorial(Request $request, string $id)
+    {
+        $juego = Juego::findOrFail($id);
+        $juego->update(['tutorial' => '1']);
+/*         return redirect()-> route('juego4.update', ['id' => $id]);
+ */
+    }
+ public function tutorialvalue (string $id){
+        $juego = Juego::findOrFail($id);
+        $tutorial_valor = $juego->tutorial;
+
+        return $tutorial_valor;
     }
 
     /**

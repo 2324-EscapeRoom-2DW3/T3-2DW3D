@@ -1,6 +1,8 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+        <v-tour name="myTour" @finished="onTourFinished" :steps="steps"></v-tour>
+
         <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage2})` }"
             style="z-index: 1;" v-show="toggle === 3">
             <div @click.prevent="toggleDiv(0)" style="position: absolute;
@@ -11,6 +13,13 @@
             z-index: 50;">
             </div>
         </div>
+        <form ref="llaveForm" method="POST" :action="route" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+
+            <input type="hidden" name="_method" value="PUT">
+
+            <input name="id_juego" type="hidden" :value="yourId">
+        </form>
 
         <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
             :class="dis">
@@ -34,30 +43,28 @@
             background-color:#fff;
             opacity: 0.5;">
         </div>-->
-        <!-- <div style="position: absolute;
+        <div id="v-step-0" style="position: absolute;
             top: 35.5vh;
             left: 45.3%;
             width: 9%;
-            height: 11vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div> -->
-        <!--   <div style="position: absolute;
+            height: 11vh;">
+        </div>
+        <div style="position: absolute;
             top: 69vh;
             left: 18%;
             width: 22%;
             height: 22vh;
             background-color:#fff;
-            opacity: 0.5;">
-        </div> -->
-        <!--     <div style="position: absolute;
+            opacity: 0.5;" Class="v-step-1">
+        </div>
+        <div data-v-step="2" style="position: absolute;
             top: 31vh;
             left: 48.93%;
             width: 2%;
             height: 4vh;
             background-color:#fff;
             opacity: 0.5;">
-        </div> -->
+        </div>
         <!--   <div style="position: absolute;
             top: 37vh;
             left: 38.4%;
@@ -115,13 +122,22 @@ import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
 
 export default {
+    name: 'my-tour',
+
     data() {
         return {
+            route: document.querySelector('#juego4').dataset.route,
+            routetutorial: document.querySelector('#juego4').dataset.routetutorial,
+            isClickDisabled: false,
             backgroundImage: '../../../storage/app/public/images/juego4/juego4.png',
             backgroundImage2: '../../../storage/app/public/images/juego4/luz.png',
             dis: "hidden",
             displayText: '',
             toggle: 0,
+            tutorialValor: null,
+            yourId: route().params,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+
             objektuak: [
                 // Ordenador
                 { areaTop: 46, areaLeft: 79, areaWidth: 6.5, areaHeight: 15 },
@@ -140,13 +156,91 @@ export default {
                 ["", "", ""],
                 ["", "", ""],
             ],
+            steps: [
+                {
+                    target: '#v-step-0',
+                    header: {
+                        title: 'Get Started',
+                    },
+                    content: `Discover <strong>Vue Tour</strong>!`
+                   
+                },
+                {
+                    target: '.v-step-1',
+                    content: 'An awesome plugin made with Vue.js!'
+                },
+                {
+                    target: '[data-v-step="2"]',
+                    content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
+                    params: {
+                        placement: 'top'
+                    }
+                }
+            ]
         };
     },
     mounted() {
         this.mostrar("La IA se esconde entre nosotros... Lo puedo notar... Debe de estar en algun aparato electrónico.");
+        this.getTutorialValor();
+
+
+
     },
 
     methods: {
+        getTutorialValor() {
+
+            axios.get(this.routetutorial, this.yourId)
+                .then(response => {
+                    this.tutorialValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tutorialValor);
+                    if (this.tutorialValor === 0) {
+                        setTimeout(() => {
+                            this.$tours['myTour'].start();
+                           /*  let formData = new FormData(this.$refs.llaveForm);
+
+                            axios.post(this.$refs.llaveForm.action, formData)
+                                .then(response => {
+                                    // Handle the response
+                                    console.log(response);
+                                })
+                                .catch(error => {
+                                    // Handle the error
+                                    console.log(error);
+
+                                }); */
+
+                        }, 6000);
+                    }
+                })
+                .catch(error => {
+                    this.tutorialValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tutorialValor);
+                    if (this.tutorial === 0) {
+                        setTimeout(() => {
+                            this.$tours['myTour'].start();
+                            event.preventDefault();
+                            let formData = new FormData(this.$refs.llaveForm);
+
+                            axios.post(this.$refs.llaveForm.action, formData)
+                                .then(response => {
+                                    // Handle the response
+                                    console.log(response);
+                                })
+                                .catch(error => {
+                                    // Handle the error
+                                    console.log(error);
+
+                                });
+
+                        }, 6000);
+                    }
+                    console.error(error);
+                });
+        },
+        onTourFinished() {
+            console.log('The tour has finished');
+        },
         mostrar(text) {
             this.displayText = text;
             setTimeout(() => {

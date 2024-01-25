@@ -41,6 +41,7 @@ class JuegoCompleto extends Controller
             'tiempo' => 0,
             'score' => 0,
             'llave' => 0,
+            'tutorial' => 0,
             'id_usuario' =>  Auth::user()->id,
         ]);
 

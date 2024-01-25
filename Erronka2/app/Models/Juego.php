@@ -19,6 +19,7 @@ class Juego extends Model
         'tiempo',
         'score',
         'llave',
+        'tutorial',
         'id_usuario',
     ];
 }

@@ -113,7 +113,6 @@ export default {
             clicked: false,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
             yourId: route().params,
-            route: document.querySelector('#juego5').dataset.route,
             rotateValue: 0,  // Initial rotation value
             areaTopAbs: 0,
             areaLeftAbs: 0,
@@ -215,7 +214,6 @@ export default {
 
 
         getLlaveValor() {
-            const gameId = document.querySelector('#juego5').dataset.route; // Get the game ID from the data-route attribute
             axios.get(this.route, this.yourId)
                 .then(response => {
                     this.llaveValor = response.data; // Store the value of llave in llaveValor
