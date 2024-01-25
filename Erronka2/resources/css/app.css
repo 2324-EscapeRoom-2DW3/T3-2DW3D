@@ -8,6 +8,12 @@
 
 
 /* PIZARRAAAA */
+.exit{
+    width: 5%;
+    top: 0vh;
+    left: 0%;
+
+}
 .fondo{
     position: absolute;
     top: 0vh;
