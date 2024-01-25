@@ -1,10 +1,45 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <v-tour name="myTour" @finished="onTourFinished" :steps="steps"></v-tour>
+        <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
+            <div
+                class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
+                <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-5 cursor-pointer hover:scale-110"
+                    @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
+                <h2 class="tracking-widest text-md title-font font-medium text-white mb-1">{{ hint_header }}</h2>
+                <h1 class="title-font sm:text-2xl text-xl font-medium text-white mb-3">{{ hint_title }}
+                </h1>
+                <p class="leading-relaxed mb-3 text-white">{{ hint_content }}</p><a
+                    class="text-white inline-flex items-center"><svg class="w-4 h-4 ml-2 cursor-pointer"
+                        @click.prevent="change_hint" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5l7 7-7 7"></path>
+                    </svg></a>
+                <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4"><span
+                        class="text-white mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"><svg
+                            class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                            <circle cx="12" cy="12" r="3"></circle>
+                        </svg>1.2K</span><span class="text-white inline-flex items-center leading-none text-sm"><svg
+                            class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
+                            stroke-linejoin="round" viewBox="0 0 24 24">
+                            <path
+                                d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z">
+                            </path>
+                        </svg>6</span></div>
+
+            </div>
+        </div>
+        <v-tour name="myTour" :steps="steps"></v-tour>
+        <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110 v-step-3"
+            @click.prevent="pista" src="../../storage/app/public/images/hint.png" alt="" v-show="toggle === 0">
 
         <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage2})` }"
             style="z-index: 1;" v-show="toggle === 3">
+            <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
+                @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/hint.png" alt="">
             <div @click.prevent="toggleDiv(0)" style="position: absolute;
             top: 1.5vh;
             left: 86%;
@@ -43,27 +78,25 @@
             background-color:#fff;
             opacity: 0.5;">
         </div>-->
-        <div id="v-step-0" style="position: absolute;
+        <div id="v-step-0" style="position: absolute; z-index: -1;
             top: 35.5vh;
             left: 45.3%;
             width: 9%;
             height: 11vh;">
         </div>
-        <div style="position: absolute;
+        <div class="v-step-1" style="position: absolute; z-index: -1;
             top: 69vh;
             left: 18%;
             width: 22%;
             height: 22vh;
-            background-color:#fff;
-            opacity: 0.5;" Class="v-step-1">
+      ">
         </div>
-        <div data-v-step="2" style="position: absolute;
+        <div data-v-step="2" style="position: absolute; z-index: -1;
             top: 31vh;
             left: 48.93%;
             width: 2%;
             height: 4vh;
-            background-color:#fff;
-            opacity: 0.5;">
+          ">
         </div>
         <!--   <div style="position: absolute;
             top: 37vh;
@@ -134,6 +167,9 @@ export default {
 
     data() {
         return {
+            hint_header: 'PISTA 1/2',
+            hint_title: 'Email-ak bidaltzen ditu',
+            hint_content: 'Programatzeko erabiltzen dugun gailua egunero, baita jolasteko...',
             route: document.querySelector('#juego4').dataset.route,
             routetutorial: document.querySelector('#juego4').dataset.routetutorial,
             isClickDisabled: false,
@@ -170,20 +206,27 @@ export default {
                 {
                     target: '#v-step-0',
                     header: {
-                        title: 'Get Started',
+                        title: 'Gelak',
                     },
-                    content: `Discover <strong>Vue Tour</strong>!`
-                   
+                    content: `<strong>Gelak</strong> escape room-ean oinarritutako jokoa da. Jokalariak gelan sartuko da eta bertan dauden objektuak erabiliz, puzlea ebatzi beharko du.`
+
                 },
                 {
                     target: '.v-step-1',
-                    content: 'An awesome plugin made with Vue.js!'
+                    content: 'Klik egin leku desberdinetan informazioa biltzeko!'
                 },
                 {
                     target: '[data-v-step="2"]',
-                    content: 'Try it, you\'ll love it!<br>You can put HTML in the steps and completely customize the DOM to suit your needs.',
+                    content: 'Birritan konprobatu dena, gauza ezkutuak egon daikezke',
                     params: {
                         placement: 'top'
+                    }
+                },
+                {
+                    target: '.v-step-3',
+                    content: 'Galduta bazaude, klik egin pista ikonoan',
+                    params: {
+                        placement: 'bottom'
                     }
                 }
             ]
@@ -207,7 +250,7 @@ export default {
                     if (this.tutorialValor === 0) {
                         setTimeout(() => {
                             this.$tours['myTour'].start();
-                           /*  let formData = new FormData(this.$refs.llaveForm);
+                            let formData = new FormData(this.$refs.llaveForm);
 
                             axios.post(this.$refs.llaveForm.action, formData)
                                 .then(response => {
@@ -218,7 +261,7 @@ export default {
                                     // Handle the error
                                     console.log(error);
 
-                                }); */
+                                });
 
                         }, 6000);
                     }
@@ -248,9 +291,24 @@ export default {
                     console.error(error);
                 });
         },
-        onTourFinished() {
-            console.log('The tour has finished');
+        pista() {
+
+            this.toggle = 4;
         },
+        change_hint() {
+            if (this.hint_header === "PISTA 1/2") {
+                this.hint_header = 'PISTA 2/2';
+                this.hint_title = 'Lekutan sartzeko erabiltzen dugu';
+                this.hint_content = 'Beste gela bat egon ditzake hemen ezkutaturik...';
+            } else {
+                this.hint_header = 'PISTA 1/2';
+                this.hint_title = 'Email-ak bidaltzen ditu';
+                this.hint_content = 'Programatzeko erabiltzen dugun gailua egunero, baita jolasteko...';
+            }
+
+
+        },
+
         mostrar(text) {
             this.displayText = text;
             setTimeout(() => {
@@ -301,7 +359,16 @@ export default {
                         }, 4000);
 
                     } else if (i == 6) {
-                        this.toggle = 3;
+                        let count = 0;
+                        let intervalId = setInterval(() => {
+                            this.toggle = this.toggle === 3 ? 0 : 3;
+                            count++;
+                            if (count === 6) {
+                                clearInterval(intervalId);
+                                this.toggle = 3;
+                            }
+                        }, 90); 
+                     
                         let audio = new Audio('../../storage/sounds/luz.mp3');
                         audio.play();
                     }
