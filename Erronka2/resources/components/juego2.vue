@@ -15,7 +15,10 @@
 
 
 <!-- PARA COMPONENTE -->
-
+<img class="carta absolute w-2/3  none" @click="activarAnimacion" src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
+<div class="letra">
+    <p class="letra-carta" id="letra-carta">T</p>
+</div>
 
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
         <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
