@@ -1,5 +1,5 @@
 <template>
-    
+
     <div id="fondoJuego" class="fondoJuego min-h-screen bg-cover bg-no-repeat bg-center"
         style="background-image: url('../../../storage/app/public/images/menu/fondo-menu.png'); ">
         <vue-countdown class="flex items-center justify-center text-white text-5xl" :time=" 1 * 60 * 60 * 1000" v-slot="{ days, hours, minutes, seconds }">

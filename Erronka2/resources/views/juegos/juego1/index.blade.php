@@ -1,4 +1,5 @@
 @extends('layout.plantilla')
+@extends('layout.plantilla')
 
 @section('title', 'Juego1')
 

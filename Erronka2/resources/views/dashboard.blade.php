@@ -11,7 +11,7 @@
                     @php
                     $imageUrl = url('storage/images' . Auth::user()->imagen); @endphp
                     <div class="flex flex-col items-center justify-center">
-                        <img src="{{ $imageUrl }}" alt="User Photo" class="mx-auto profile-image" 
+                        <img src="{{ $imageUrl }}" alt="User Photo" class="mx-auto profile-image"
                             onclick="location.href = location.href.replace('dashboard', 'profile');">
                         <h1 class="font-figtree font-bold text-5xl text-center text-username">
                             {{ Auth::user()->name}}
@@ -22,7 +22,7 @@
                         <h3 class="font-figtree text-5xl text-center text-score">
                             Partidas
                         </h3>
-                        
+
                         <div class="list-scores">
 
                             <div class="list-box" id="game-1">

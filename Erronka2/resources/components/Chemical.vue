@@ -61,6 +61,7 @@
                         <div id="main" class="pin"></div>
                     </div>
                 </div>
+
             </div>
             <div class="h-full rounded-md bg-opacity-20 shadow-xl inline-block pl-4 md:pl-8">
                 <vue-countdown ref="countdown" :auto-start="false" :time="60 * 1000" v-slot="{ seconds }">
@@ -84,6 +85,8 @@
 </template>
 
 
+
+
 <script>
 import axios from 'axios';
 import Bottleneck from 'bottleneck';
@@ -91,6 +94,7 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 import route from '../../vendor/tightenco/ziggy';
 
 const limiter = new Bottleneck({
+    minTime: 333 // Executes 3 requests per second
     minTime: 333 // Executes 3 requests per second
 });
 
