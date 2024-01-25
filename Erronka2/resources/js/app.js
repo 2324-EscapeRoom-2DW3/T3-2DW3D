@@ -18,7 +18,6 @@ import Juego4 from '../components/3raya.vue';
 import Juego5 from '../components/despacho.vue';
 import Armario from '../components/armario.vue';
 import VueDraggableResizable from 'vue-draggable-resizable'
-
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
 import 'vue-tour/dist/vue-tour.css';
@@ -68,11 +67,15 @@ armario.use(ZiggyVue);
 armario.mount('#armario');
 
 const menujuegoApp = createApp(Menu).use(ZiggyVue);
+menujuegoApp.component(VueCountdown.name, VueCountdown);
+
 menujuegoApp.mount('#menujuego');
+
+const Juego3App = createApp(Juego3);
+Juego3App.mount('#juego3');
 
 const Juego2App = createApp(Juego2);
 Juego2App.mount('#juego2');
-
 const Juego5App = createApp({
     components: {
         Juego5,

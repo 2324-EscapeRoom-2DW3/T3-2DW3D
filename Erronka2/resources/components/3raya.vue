@@ -81,12 +81,12 @@
             background-color:#fff;
             opacity: 0.5;">
         </div>  -->
-        <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1">
-
+        <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1"
+            @mouseenter="isClickDisabled = true" @mouseleave="isClickDisabled = false">
             <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
                 @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
 
-            <h3 class="mb-4 text-2xl text-bold text-white">{{ playerName }}</h3>
+            <h3 class="mb-4 text-4xl text-bold text-white">{{ playerName }}</h3>
 
             <div class="mb-8 flex flex-col items-center">
                 <!--Row y cell son los simbolos y x e y los indices. Los elementos en esos indices -->
@@ -100,18 +100,26 @@
             </div>
 
             <div class="text-center">
-                <h2 v-if="winner" class="mb-8 text-6xl font-bold text-white" :class="winnerClass">
+                <h2 v-if="winner" class="mb-8 text-4xl font-bold font-italic text-white" :class="winnerClass">
                     {{ winnerName }}
                 </h2>
                 <button @click="ResetGame"
                     class="smky-btn3 relative hover:text-white py-2 px-6 after:absolute after:h-1 after:hover:h-[200%] transition-all duration-500 hover:transition-all hover:duration-500 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden z-20 after:z-[-20] after:bg-[#32CD32] after:rounded-t-full after:w-full after:bottom-0 after:left-0 text-white scale-125">Reset</button>
             </div>
+            <vue-draggable-resizable class="fixed bottom-0 left-20 pt-20" ref="draggable4" v-show="isHidden === true">
+                <img class="transform slide-animation" src="../../storage/app/public/images/juego4/fondo_papel_z.png"
+                    alt="">
+            </vue-draggable-resizable>
         </div>
-        <div class="flex flex-col items-center justify-center min-h-screen" v-show="toggle === 2"> <img
-                class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
-                @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
-            <img src="../../storage/app/public/images/juego4/pizarra_juego4.png">
+        <div class="h-screen w-full bg-full bg-no-repeat bg-center" v-show="toggle === 2"
+            :style="{ backgroundImage: `url(${backgroundImage3})` }" style="z-index: 1;">
 
+            <div class="flex flex-col items-center justify-center min-h-screen">
+
+                <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
+                    @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
+                <img src="../../storage/app/public/images/juego4/pizarra_juego4.png">
+            </div>
         </div>
 
     </div>
@@ -130,6 +138,8 @@ export default {
             routetutorial: document.querySelector('#juego4').dataset.routetutorial,
             isClickDisabled: false,
             backgroundImage: '../../../storage/app/public/images/juego4/juego4.png',
+            backgroundImage3: '../../../storage/app/public/images/juego4/juego4_blur.png',
+            isHidden: false,
             backgroundImage2: '../../../storage/app/public/images/juego4/luz.png',
             dis: "hidden",
             displayText: '',
@@ -251,6 +261,9 @@ export default {
             }, 100);
         },
         clickImagen(event) {
+            if (this.isClickDisabled) {
+                return;
+            }
             let posX = event.offsetX;
             let posY = event.offsetY;
 
@@ -290,7 +303,7 @@ export default {
                     } else if (i == 6) {
                         this.toggle = 3;
                         let audio = new Audio('../../storage/sounds/luz.mp3');
-                audio.play();
+                        audio.play();
                     }
                 }
             }
@@ -382,16 +395,21 @@ export default {
             return this.player === "⚗️" ? "Tu turno" : "IA maligna";
         },
         winnerName() {
-            return this.winner === "⚗️" ? "Z" : "IA maligna gana...";
+            return this.winner === "⚗️" ? "Has ganado" : "IA maligna gana...";
         },
         winnerClass() {
-            return this.winner === "⚗️" ? "wordart shining-light animate-pulse" : "";
+            return this.winner === "⚗️" ? "wordart shining-light animate-pulse" : "shining-light animate-pulse wordart2";
         },
     },
     watch: {
         winner(newValue) {
             if (newValue === "⚗️") {
                 console.log('Ganaste');
+                setTimeout(() => {
+                    this.isHidden = true;
+
+                }, 500);
+
                 this.mostrar("Una de las letras para el código...");
 
             }

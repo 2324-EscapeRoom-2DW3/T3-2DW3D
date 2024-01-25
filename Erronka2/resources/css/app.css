@@ -577,7 +577,7 @@ button.ghost {
 }
 
 .wordart {
-    background: linear-gradient(45deg, #008000, #00ff00, #adff2f, #006400);
+    background: linear-gradient(45deg, #ffffff, #ffffff, #ffffff, #ffffff);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.5);
