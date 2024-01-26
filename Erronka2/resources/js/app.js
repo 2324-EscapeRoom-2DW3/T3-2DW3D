@@ -2,7 +2,7 @@ import './bootstrap';
 import { createApp } from 'vue';
 import draggable from 'vuedraggable'
 
-import { createPinia } from 'pinia';
+import { createPinia } from 'pinia'
 import route from '../../vendor/tightenco/ziggy';
 import App from '../App.vue';
 import Chemical from '../components/Chemical.vue';
@@ -23,6 +23,7 @@ import { ZiggyVue } from 'ziggy-js';
 import 'vue-tour/dist/vue-tour.css';
 
 const app = createApp({});
+const pinia = createPinia()
 
 import Alpine from 'alpinejs';
 window.Alpine = Alpine;
@@ -55,7 +56,8 @@ const juego4 = createApp({
         Juego4,
     },
 }).component("vue-draggable-resizable", VueDraggableResizable);
-juego4.use(ZiggyVue).use(Vue3Tour);
+juego4.use(ZiggyVue).use(Vue3Tour).use(pinia);
+juego4.component(VueCountdown.name, VueCountdown);
 juego4.mount('#juego4');
 
 const armario = createApp({
@@ -66,7 +68,7 @@ const armario = createApp({
 armario.use(ZiggyVue);
 armario.mount('#armario');
 
-const menujuegoApp = createApp(Menu).use(ZiggyVue);
+const menujuegoApp = createApp(Menu).use(ZiggyVue).use(pinia);
 menujuegoApp.component(VueCountdown.name, VueCountdown);
 
 menujuegoApp.mount('#menujuego');

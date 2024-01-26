@@ -1,6 +1,10 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+
+        <div>
+  {{ minutes }} minutes, {{ seconds }} seconds remaining
+        </div>
         <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
             <div
                 class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -41,11 +45,11 @@
             <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
                 @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/hint.png" alt="">
             <div @click.prevent="toggleDiv(0)" style="position: absolute;
-            top: 1.5vh;
-            left: 86%;
-            width: 8.2%;
-            height: 14vh;
-            z-index: 50;">
+                top: 1.5vh;
+                left: 86%;
+                width: 8.2%;
+                height: 14vh;
+                z-index: 50;">
             </div>
         </div>
         <form ref="llaveForm" method="POST" :action="route" enctype="multipart/form-data">
@@ -61,59 +65,59 @@
             <p>{{ displayText }}</p>
         </div>
         <!--         <img alt="fondo" class="fondo" src="../../storage/app/public/images/juego4/juego4.png" @click.prevent="clickImagen">
- -->
+    -->
         <!--   <div style="position: absolute;
-            top: 46vh;
-            left: 79%;
-            width: 6.5%;
-            height: 15vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div> -->
+                top: 46vh;
+                left: 79%;
+                width: 6.5%;
+                height: 15vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div> -->
         <!--     <div style="position: absolute;
-            top: 30vh;
-            left: 6%;
-            width: 11%;
-            height: 55vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div>-->
+                top: 30vh;
+                left: 6%;
+                width: 11%;
+                height: 55vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div>-->
         <div id="v-step-0" style="position: absolute; z-index: -1;
-            top: 35.5vh;
-            left: 45.3%;
-            width: 9%;
-            height: 11vh;">
+                top: 35.5vh;
+                left: 45.3%;
+                width: 9%;
+                height: 11vh;">
         </div>
         <div class="v-step-1" style="position: absolute; z-index: -1;
-            top: 69vh;
-            left: 18%;
-            width: 22%;
-            height: 22vh;
-      ">
+                top: 69vh;
+                left: 18%;
+                width: 22%;
+                height: 22vh;
+        ">
         </div>
         <div data-v-step="2" style="position: absolute; z-index: -1;
-            top: 31vh;
-            left: 48.93%;
-            width: 2%;
-            height: 4vh;
-          ">
+                top: 31vh;
+                left: 48.93%;
+                width: 2%;
+                height: 4vh;
+            ">
         </div>
         <!--   <div style="position: absolute;
-            top: 37vh;
-            left: 38.4%;
-            width: 6%;
-            height: 14vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div>  -->
+                top: 37vh;
+                left: 38.4%;
+                width: 6%;
+                height: 14vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div>  -->
         <!--    <div style="position: absolute;
-            top: 1.5vh;
-            left: 86%;
-            width: 8.2%;
-            height: 14vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div>  -->
+                top: 1.5vh;
+                left: 86%;
+                width: 8.2%;
+                height: 14vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div>  -->
         <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1"
             @mouseenter="isClickDisabled = true" @mouseleave="isClickDisabled = false">
             <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
@@ -161,10 +165,24 @@
 <script>
 import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
+import { useTimeStore } from './timeStore';
+import VueCountdown from '@chenfengyuan/vue-countdown';
+import { watchEffect } from 'vue';
 
 export default {
     name: 'my-tour',
+    setup() {
+  const timeStore = useTimeStore();
 
+  // Now you can access the minutes and seconds like this:
+  console.log(timeStore.minutes);
+  console.log(timeStore.seconds);
+
+  return {
+    minutes: timeStore.minutes,
+    seconds: timeStore.seconds
+  };
+},
     data() {
         return {
             hint_header: 'PISTA 1/2',
@@ -391,10 +409,10 @@ export default {
                 [6, 7, 8],
                 [0, 3, 6],
                 [1, 4, 7],      /*  0 | 1 | 2
-                                    ---------
-                                    3 | 4 | 5  --> Tablero posiciones
-                                    ---------
-                                    6 | 7 | 8 */
+                                        ---------
+                                        3 | 4 | 5  --> Tablero posiciones
+                                        ---------
+                                        6 | 7 | 8 */
                 [2, 5, 8],
                 [0, 4, 8],
                 [2, 4, 6],
@@ -450,12 +468,13 @@ export default {
         },
     },
     computed: {
+
         winner() { /* Cada vez que hay un cambio en el tablero comprueba si hay ganador
-             // Convierte el array a 1D, lo flatea porque el metodo calculateWinner recibe un array de 1D       X | O | X
-                                        ---------
-                                        O | X | O
-                                        ---------
-                                        X | O | X */
+                // Convierte el array a 1D, lo flatea porque el metodo calculateWinner recibe un array de 1D       X | O | X
+                                            ---------
+                                            O | X | O
+                                            ---------
+                                            X | O | X */
             return this.calculateWinner(this.board.flat());
         },
         playerName() {
