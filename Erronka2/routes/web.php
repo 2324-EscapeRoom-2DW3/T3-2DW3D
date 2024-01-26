@@ -6,6 +6,7 @@ use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Juego5Controller;
+use App\Http\Controllers\AdminController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -57,9 +58,14 @@ Route::get('juegos/juego2', function () {
 })->name('juego2');
 
 
-Route::get('adminpage', function () {
-    return view('/AdminPage');
-})->name('adminpage');
+// Route::get('adminpage', function () {
+//     return view('/AdminPage');
+// })->name('adminpage');
+
+Route::get('/adminpage', [AdminController::class, 'obtenerDatosErab','obtenerDatosPart'])->name('adminpage');
+// Route::get('/adminpage', [AdminController::class, 'obtenerDatosPart'])->name('adminpage');
+
+
 
 Route::get('juegos/juego3', function () {
     return view('juegos/juego3/index');
