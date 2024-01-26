@@ -1,5 +1,7 @@
 import './bootstrap';
 import { createApp } from 'vue';
+import draggable from 'vuedraggable'
+
 import { createPinia } from 'pinia';
 import route from '../../vendor/tightenco/ziggy';
 import App from '../App.vue';
@@ -8,8 +10,18 @@ import Register from '../components/register.vue';
 import Login from '../components/login.vue';
 import Menu from '../components/menujuego.vue';
 import Juego2 from '../components/juego2.vue';
+import Juego3 from '../components/juego3.vue';
+import Vue3Tour from 'vue3-tour';
+
+import 'vue3-tour/dist/vue3-tour.css';
+import Juego4 from '../components/3raya.vue';
+import Juego5 from '../components/despacho.vue';
+import Armario from '../components/armario.vue';
+import VueDraggableResizable from 'vue-draggable-resizable'
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
+import 'vue-tour/dist/vue-tour.css';
+
 const app = createApp({});
 
 import Alpine from 'alpinejs';
@@ -38,8 +50,38 @@ juego1.component(VueCountdown.name, VueCountdown);
 
 juego1.mount('#juego1');
 
+const juego4 = createApp({
+    components: {
+        Juego4,
+    },
+}).component("vue-draggable-resizable", VueDraggableResizable);
+juego4.use(ZiggyVue).use(Vue3Tour);
+juego4.mount('#juego4');
+
+const armario = createApp({
+    components: {
+        Armario,
+    },
+});
+armario.use(ZiggyVue);
+armario.mount('#armario');
+
 const menujuegoApp = createApp(Menu).use(ZiggyVue);
+menujuegoApp.component(VueCountdown.name, VueCountdown);
+
 menujuegoApp.mount('#menujuego');
+
+const Juego3App = createApp(Juego3);
+Juego3App.mount('#juego3');
 
 const Juego2App = createApp(Juego2);
 Juego2App.mount('#juego2');
+const Juego5App = createApp({
+    components: {
+        Juego5,
+
+    },
+}).component("vue-draggable-resizable", VueDraggableResizable);;
+
+Juego5App.use(ZiggyVue);
+Juego5App.mount('#juego5');

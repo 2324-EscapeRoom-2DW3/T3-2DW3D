@@ -18,6 +18,8 @@ class Juego extends Model
     protected $fillable = [
         'tiempo',
         'score',
+        'llave',
+        'tutorial',
         'id_usuario',
     ];
 }

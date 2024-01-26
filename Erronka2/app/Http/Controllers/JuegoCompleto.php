@@ -40,6 +40,8 @@ class JuegoCompleto extends Controller
         $juego_comp = Juego::create([
             'tiempo' => 0,
             'score' => 0,
+            'llave' => 0,
+            'tutorial' => 0,
             'id_usuario' =>  Auth::user()->id,
         ]);
 

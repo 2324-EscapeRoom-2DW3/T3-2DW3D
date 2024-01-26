@@ -3,11 +3,11 @@
         <p
             class="h-full w-full bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100
     text-[#0bd904] rounded-lg p-6 flex justify-center items-center text-2xl md:w-auto mx-4 md:mx-8 text-center type-text1">
-            <!-- Your text here -->
+
         </p>
 
         <main class="min-h-screen flex flex-col md:flex-row items-center justify-center">
-            <div class="loading-container" v-if="isLoading">
+            <div class="loading-container z-50" v-if="isLoading">
                 <div class="terminal-loader">
                     <div class="terminal-header">
                         <div class="terminal-title">Status</div>
@@ -47,7 +47,7 @@
                 {{ scoreUpdate }}
             </h1>
             <div class="p-8 md:p-4 lg:block hidden">
-                <div class="cloader">
+                <div class="cloader z-0">
                     <div class="clface">
                         <div class="clsface">
                             <div id="h2" class="hand"></div>
@@ -196,7 +196,7 @@ export default {
             const url_image = `https://api.rsc.org/compounds/v1/records/${randomNumber}/image`;
             const options = {
                 headers: {
-                    apikey: 'e8Q656qLidw0ldNDIUrjmxrnnjbDJVna',
+                    apikey: 'EmZo0m6sGO0XQkqJLIG8Z9G6OJgADMX9',
                     Accept: 'application/json',
                 },
             };
@@ -227,7 +227,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.$refs.countdown.start();
-        }, 15000);
+        }, 20000);
         this.executeThreeTimes();
     },
 
@@ -235,14 +235,14 @@ export default {
         imageClass() {
             return (image) => {
                 return this.check[1] && image === this.check[1].image ?
-                    'shadow-[0_20px_20px_-15px_rgba(255,20,147,1)]' : 'border-transparent';
+                    'shadow-[0_20px_20px_-15px_rgb(124,252,1)]' : 'border-transparent';
             };
         },
 
         formulaClass() {
             return (formula) => {
                 return this.check[0] && formula === this.check[0].formula ?
-                    'shadow-[0_20px_20px_-15px_rgba(255,20,147,1)]' : 'border-transparent';
+                    'shadow-[0_20px_20px_-15px_rgb(124,252,1)]' : 'border-transparent';
             };
         },
 
