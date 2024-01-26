@@ -322,8 +322,8 @@ export default {
             if (this.isClickDisabled) {
                 return;
             }
-            let posX = event.offsetX;
-            let posY = event.offsetY;
+            let posX = event.clientX;
+            let posY = event.clientY;
 
             for (let i = 0; i < this.objektuak.length; i++) {
                 var areaTopAbs = (this.objektuak[i].areaTop / 100) * event.target.clientHeight;
@@ -367,8 +367,8 @@ export default {
                                 clearInterval(intervalId);
                                 this.toggle = 3;
                             }
-                        }, 90); 
-                     
+                        }, 90);
+
                         let audio = new Audio('../../storage/sounds/luz.mp3');
                         audio.play();
                     }
