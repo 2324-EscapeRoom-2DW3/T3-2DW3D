@@ -55,3 +55,7 @@ Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
 
+Route::get('adminpage', function () {
+    return view('/AdminPage');
+})->name('adminpage');
+
