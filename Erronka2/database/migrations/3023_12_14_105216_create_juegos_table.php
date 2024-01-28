@@ -17,6 +17,8 @@ return new class extends Migration
             $table->bigInteger('score');
             $table->bigInteger('llave');
             $table->bigInteger('tutorial');
+            $table->bigInteger('tiempo_min');
+            $table->bigInteger('tiempo_sec');
             $table->unsignedBigInteger('id_usuario');
             $table->foreign('id_usuario')->references('id')->on('users');
 

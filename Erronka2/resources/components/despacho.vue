@@ -213,7 +213,7 @@ export default {
                     this.played = true;
                     this.mostrar("Se ha abierto!");
                     setTimeout(() => {
-                        window.location.href = route('menujuego', { id: route().params });
+                        window.location.href = route('menu.index', { id: route().params });
 
                     }, 3000);
 

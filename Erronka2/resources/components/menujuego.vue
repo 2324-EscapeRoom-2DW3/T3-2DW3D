@@ -1,10 +1,18 @@
 <template>
     <div id="fondoJuego" class="fondoJuego min-h-screen bg-cover bg-no-repeat bg-center"
         style="background-image: url('../../../storage/app/public/images/menu/fondo-menu.png'); ">
-        <vue-countdown class="middle text-white text-4xl" :time="30 * 60 * 1000" @progress="updateTime"
+        <vue-countdown class="middle text-white text-4xl" :time="(1* min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
-            {{ minutes }} minutes, {{ seconds }} seconds.
+            {{ minutes }}:{{ seconds }}
         </vue-countdown>
+
+        <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="_method" value="PUT">
+            <input name="tiempo_min" type="hidden" :value="min">
+            <input name="tiempo_sec" type="hidden" :value="sec">
+            <input name="id_juego" type="hidden" :value="yourId">
+        </form>
         <div class="flex place-content-center gap-32">
             <div id="izq" class="pt-32" @click.prevent="cambiarFondoIzq">
                 <img class="w-32" src="../../storage/app/public/images/menu/flecha-izquierda.png" alt="">
@@ -33,29 +41,74 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 import { useTimeStore } from './timeStore';
 
 export default {
-    setup() {
-    const timeStore = useTimeStore();
+    /* setup() {
+        const timeStore = useTimeStore();
 
-    const updateTime = ({ totalMinutes }) => {
-      const minutes = Math.floor(totalMinutes / 1000 / 60);
-      const seconds = Math.floor(totalMinutes / 1000 % 60);
-      timeStore.minutes = minutes;
-      timeStore.seconds = seconds;
-    };
+        const updateTime = ({ totalMinutes }) => {
+            const minutes = Math.floor(totalMinutes / 1000 / 60);
+            const seconds = Math.floor(totalMinutes / 1000 % 60);
+            timeStore.minutes = minutes;
+            timeStore.seconds = seconds;
+        };
 
-    return {
-      updateTime
-    };
-  },
+        return {
+            updateTime
+        };
+    }, */
     data() {
         return {
+            routetiempo: document.querySelector('#menujuego').dataset.routetiempo,
+            routetiempovalor: document.querySelector('#menujuego').dataset.routetiempoval,
             contador: 0,
             yourId: route().params,
             openImage: [new Image(), new Image(), new Image(), new Image(), new Image()],
             empezado: null,
+            tiempoValor: null,
+            yourId: route().params,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            min: 29,
+            sec: 60,
+            pendingMin: null,
+        pendingSec: null,
         };
     },
     methods: {
+        updateTime({ days, hours, minutes, seconds }) {
+        this.pendingMin = minutes;
+        this.pendingSec = seconds;
+        this.updateTiempo_db();
+    },
+    updateTiempo_db() {
+        let formData = new FormData(this.$refs.tiempoForm);
+
+        axios.post(this.$refs.tiempoForm.action, formData)
+            .then(response => {
+                // Update min and sec only when the request completes
+                this.min = this.pendingMin;
+                this.sec = this.pendingSec;
+                console.log(response);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+    // .
+        getTiempo() {
+            axios.get(this.routetiempovalor, this.yourId)
+                .then(response => {
+                    this.tiempoValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tiempoValor);
+                    if (this.tiempoValor.tiempo_min != 0 && this.tiempoValor.tiempo_sec != 0) {
+                        this.min = this.tiempoValor.tiempo_min;
+                        this.sec = this.tiempoValor.tiempo_sec;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+
 
         cambiarFondoIzq() {
             console.log("izq");
@@ -120,6 +173,7 @@ export default {
     },
 
     mounted() {
+        this.getTiempo();
         this.empezado = 0;
         // ???????????????
         /*   let fondoTemplate = document.getElementById("fondoJuego");

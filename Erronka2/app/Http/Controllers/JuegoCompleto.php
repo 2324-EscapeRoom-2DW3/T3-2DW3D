@@ -42,6 +42,8 @@ class JuegoCompleto extends Controller
             'score' => 0,
             'llave' => 0,
             'tutorial' => 0,
+            'tiempo_min' => 0,
+            'tiempo_sec' => 0,
             'id_usuario' =>  Auth::user()->id,
         ]);
 
@@ -64,6 +66,22 @@ class JuegoCompleto extends Controller
     public function edit(string $id)
     {
         //
+    }
+
+    public function tiempo(Request $request, string $id)
+    {
+        $juego = Juego::findOrFail($id);
+        $juego->update(['tiempo_min' => $request->tiempo_min]);
+        $juego->update(['tiempo_sec' => $request->tiempo_sec]);
+    }
+
+    public function tiempo_val(Request $request, string $id)
+    {
+        $juego = Juego::findOrFail($id);
+        $tiempo_min = $juego->tiempo_min;
+        $tiempo_sec = $juego->tiempo_sec;
+
+        return compact('tiempo_min', 'tiempo_sec');
     }
 
     /**

@@ -1,10 +1,18 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+        <vue-countdown class="middle text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+            v-slot="{ days, hours, minutes, seconds }">
+            {{ minutes }}:{{ seconds }}
+        </vue-countdown>
 
-        <div>
-  {{ minutes }} minutes, {{ seconds }} seconds remaining
-        </div>
+        <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="_method" value="PUT">
+            <input name="tiempo_min" type="hidden" :value="min">
+            <input name="tiempo_sec" type="hidden" :value="sec">
+            <input name="id_juego" type="hidden" :value="yourId">
+        </form>
         <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
             <div
                 class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -172,17 +180,17 @@ import { watchEffect } from 'vue';
 export default {
     name: 'my-tour',
     setup() {
-  const timeStore = useTimeStore();
+        const timeStore = useTimeStore();
 
-  // Now you can access the minutes and seconds like this:
-  console.log(timeStore.minutes);
-  console.log(timeStore.seconds);
+        // Now you can access the minutes and seconds like this:
+        console.log(timeStore.minutes);
+        console.log(timeStore.seconds);
 
-  return {
-    minutes: timeStore.minutes,
-    seconds: timeStore.seconds
-  };
-},
+        return {
+            minutes: timeStore.minutes,
+            seconds: timeStore.seconds
+        };
+    },
     data() {
         return {
             hint_header: 'PISTA 1/2',
@@ -198,10 +206,18 @@ export default {
             dis: "hidden",
             displayText: '',
             toggle: 0,
-            tutorialValor: null,
             yourId: route().params,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
+            // Tiempo
+            tutorialValor: null,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            min: 29,
+            sec: 60,
+            pendingMin: null,
+            pendingSec: null,
+            tiempoValor: null,
+            routetiempo: document.querySelector('#juego4').dataset.routetiempo,
+            routetiempovalor: document.querySelector('#juego4').dataset.routetiempoval,
             objektuak: [
                 // Ordenador
                 { areaTop: 46, areaLeft: 79, areaWidth: 6.5, areaHeight: 15 },
@@ -251,6 +267,8 @@ export default {
         };
     },
     mounted() {
+        this.getTiempo();
+
         this.mostrar("La IA se esconde entre nosotros... Lo puedo notar... Debe de estar en algun aparato electrónico.");
         this.getTutorialValor();
 
@@ -259,6 +277,42 @@ export default {
     },
 
     methods: {
+
+        updateTime({ days, hours, minutes, seconds }) {
+            this.pendingMin = minutes;
+            this.pendingSec = seconds;
+            this.updateTiempo_db();
+        },
+        updateTiempo_db() {
+            let formData = new FormData(this.$refs.tiempoForm);
+
+            axios.post(this.$refs.tiempoForm.action, formData)
+                .then(response => {
+                    // Update min and sec only when the request completes
+                    this.min = this.pendingMin;
+                    this.sec = this.pendingSec;
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        // .
+        getTiempo() {
+            axios.get(this.routetiempovalor, this.yourId)
+                .then(response => {
+                    this.tiempoValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tiempoValor);
+                    if (this.tiempoValor.tiempo_min != 0 && this.tiempoValor.tiempo_sec != 0) {
+                        this.min = this.tiempoValor.tiempo_min;
+                        this.sec = this.tiempoValor.tiempo_sec;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
         getTutorialValor() {
 
             axios.get(this.routetutorial, this.yourId)
@@ -359,7 +413,7 @@ export default {
                         this.toggle = 1;
                     } else if (i == 1) {
                         if (window.confirm('Estas seguro que quieres irte?')) {
-                            window.location.href = route('menujuego', { id: route().params });
+                            window.location.href = route('menu.index', { id: route().params });
                         }
                     } else if (i == 2) {
                         this.toggle = 2;
