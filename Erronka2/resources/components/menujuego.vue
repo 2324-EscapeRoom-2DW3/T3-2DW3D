@@ -75,7 +75,7 @@ export default {
     methods: {
         updateTime({ days, hours, minutes, seconds }) {
         this.pendingMin = minutes;
-        this.pendingSec = seconds;
+        this.pendingSec = seconds; // Previene el render lag al trigger-ear el updateTiempo_db() cada segundo en axios.post()
         this.updateTiempo_db();
     },
     updateTiempo_db() {
