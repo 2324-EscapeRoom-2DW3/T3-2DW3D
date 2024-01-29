@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Juego1Controller;
 use App\Http\Controllers\JuegoCompleto;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -37,12 +38,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 /* Route::resource('juegos/juego1', Juego1Controller::class);
  */
-Route::get('juegocompleto/store', [JuegoCompleto::class, 'store']) -> name('juegocompleto.store');
+Route::get('juegocompleto/store', [JuegoCompleto::class, 'store'])->name('juegocompleto.store');
 Route::get('juegos/juego1/{id}', [Juego1Controller::class, 'index'])->name('juego1.index');
-Route::post('juegos/juego1/store', [Juego1Controller::class, 'store']) -> name('juego1.store');
+Route::post('juegos/juego1/store', [Juego1Controller::class, 'store'])->name('juego1.store');
 Route::get('/guri', function () {
     return view('guri');
 })->name('guri');
@@ -59,3 +60,6 @@ Route::get('juegos/juego2', function () {
     return view('juegos/juego3/index');
 })->name('juego3');
 
+Route::get('/perfilIndex', [ProfileController::class, 'index'])->name('profile.index');
+
+Route::delete('/borrar-juego/{id}', [PerfilController::class, 'destroy'])->name('juego.borrar');
