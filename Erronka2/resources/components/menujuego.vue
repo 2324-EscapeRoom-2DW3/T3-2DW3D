@@ -1,7 +1,7 @@
 <template>
     <div id="fondoJuego" class="fondoJuego min-h-screen bg-cover bg-no-repeat bg-center"
         style="background-image: url('../../../storage/app/public/images/menu/fondo-menu.png'); ">
-        <vue-countdown class="middle text-white text-4xl" :time="(1* min * 60 + sec) * 1000" @progress="updateTime"
+        <vue-countdown class="middle text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
@@ -13,24 +13,27 @@
             <input name="tiempo_sec" type="hidden" :value="sec">
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
-        <div class="flex place-content-center gap-32">
-            <div id="izq" class="pt-32" @click.prevent="cambiarFondoIzq">
+        <div class="bg-black glow-green text-white mt-56 p-6 rounded-md middle" v-show="isHidden === true">
+            <input v-model="inputText" class="bg-black border-none focus:outline-none active:outline-none text-white p-2 rounded-md" type="text"
+                placeholder="Kodea idatzi...">
+        </div>
+        <div class="flex place-content-center justify-center items-center gap-32 pt-20">
+            <div id="izq" class="" @click.prevent="cambiarFondoIzq">
                 <img class="w-32" src="../../storage/app/public/images/menu/flecha-izquierda.png" alt="">
             </div>
-            <div id="dr" class="pt-32" @click.prevent="cambiarFondoDrc">
-                <img class="w-32" src="../../storage/app/public/images/menu/flecha-derecha.png" alt="">
-            </div>
-
-        </div>
-
-        <div class="flex place-content-center pt-16 pr-2">
             <!-- <a :href="route('juego4.index', { id: yourId })">
                 <button
                     class="opacity-75 shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-3 px-6 border-b-4 border-green-700 hover:border-green-500 rounded">SARTU</button>
             </a> -->
             <button @click="redirigirAJuego"
-                class="opacity-75 shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-3 px-6 border-b-4 border-green-700 hover:border-green-500 rounded">SARTU</button>
+                class="shadow-xl bg-green-700 hover:bg-green-400 text-white font-bold py-12 px-6 border-b-4 border-green-700 hover:border-green-500 rounded  place-content-center h-2">SARTU</button>
+            <div id="dr" class="" @click.prevent="cambiarFondoDrc">
+                <img class="w-32" src="../../storage/app/public/images/menu/flecha-derecha.png" alt="">
+            </div>
+
         </div>
+
+
 
     </div>
 </template>
@@ -69,30 +72,33 @@ export default {
             min: 29,
             sec: 60,
             pendingMin: null,
-        pendingSec: null,
+            pendingSec: null,
+            isHidden: false,
+            inputText: ''
+
         };
     },
     methods: {
         updateTime({ days, hours, minutes, seconds }) {
-        this.pendingMin = minutes;
-        this.pendingSec = seconds; // Previene el render lag al trigger-ear el updateTiempo_db() cada segundo en axios.post()
-        this.updateTiempo_db();
-    },
-    updateTiempo_db() {
-        let formData = new FormData(this.$refs.tiempoForm);
+            this.pendingMin = minutes;
+            this.pendingSec = seconds; // Previene el render lag al trigger-ear el updateTiempo_db() cada segundo en axios.post()
+            this.updateTiempo_db();
+        },
+        updateTiempo_db() {
+            let formData = new FormData(this.$refs.tiempoForm);
 
-        axios.post(this.$refs.tiempoForm.action, formData)
-            .then(response => {
-                // Update min and sec only when the request completes
-                this.min = this.pendingMin;
-                this.sec = this.pendingSec;
-                console.log(response);
-            })
-            .catch(error => {
-                console.log(error);
-            });
-    },
-    // .
+            axios.post(this.$refs.tiempoForm.action, formData)
+                .then(response => {
+                    // Update min and sec only when the request completes
+                    this.min = this.pendingMin;
+                    this.sec = this.pendingSec;
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        // .
         getTiempo() {
             axios.get(this.routetiempovalor, this.yourId)
                 .then(response => {
@@ -128,18 +134,28 @@ export default {
             switch (this.contador) {
                 case 0:
                     fondoTemplate.style.backgroundImage = "url('" + this.openImage[4].src + "')";
+                    this.isHidden = false;
+
                     break;
                 case 1:
                     fondoTemplate.style.backgroundImage = "url('" + this.openImage[0].src + "')";
+                    this.isHidden = false;
+
                     break;
                 case 2:
                     fondoTemplate.style.backgroundImage = "url('" + this.openImage[1].src + "')";
+                    this.isHidden = false;
+
                     break;
                 case -1:
                     fondoTemplate.style.backgroundImage = "url('" + this.openImage[2].src + "')";
+                    this.isHidden = false;
+
                     break;
                 case -2:
                     fondoTemplate.style.backgroundImage = "url('" + this.openImage[3].src + "')";
+                    this.isHidden = false;
+
                     break;
             }
 
@@ -151,8 +167,10 @@ export default {
             let rutaJuego;
             switch (this.contador) {
                 case 0:
-                    rutaJuego = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
-                    break;
+                    this.isHidden = true;
+
+/*                     rutaJuego = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
+ */                    break;
                 case -1:
                     rutaJuego = route('juego2');  // Reemplaza 'juego2' con la ruta correcta
                     break;
@@ -167,8 +185,8 @@ export default {
                     break;
             }
 
-            window.location.href = rutaJuego;
-        }
+/*             window.location.href = rutaJuego;
+ */        }
 
     },
 
@@ -190,7 +208,15 @@ export default {
         this.openImage[4].src = "../../../storage/app/public/images/menu/fondo-menu.png";
 
 
+    },
+    watch: {
+    inputText(newVal) {
+        if (newVal.toUpperCase() === 'DTZK') {
+            window.location.href = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
+
+        }
     }
+  }
 
 }
 

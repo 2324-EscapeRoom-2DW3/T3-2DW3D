@@ -33,6 +33,8 @@
         "vite-plugin-windicss": "^1.9.2",
         "vue": "^3.4.7",
         "vue-draggable-resizable": "^3.0.0-beta.2",
+        "vue-router": "^4.2.5",
+        "vue-shell": "^1.0.3",
         "vue-tour": "^2.0.0",
         "vue3-tour": "^0.3.4",
         "vuedraggable": "^4.1.0",

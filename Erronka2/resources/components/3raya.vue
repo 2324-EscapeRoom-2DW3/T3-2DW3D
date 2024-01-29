@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <vue-countdown class="middle text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+        <vue-countdown class="fixed top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>

@@ -22,6 +22,8 @@ import VueCountdown from '@chenfengyuan/vue-countdown';
 import { ZiggyVue } from 'ziggy-js';
 import 'vue-tour/dist/vue-tour.css';
 
+
+
 const app = createApp({});
 const pinia = createPinia()
 
