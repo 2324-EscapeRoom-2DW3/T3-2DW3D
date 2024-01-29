@@ -62,8 +62,16 @@ Route::get('juegos/juego2', function () {
 //     return view('/AdminPage');
 // })->name('adminpage');
 
-Route::get('/adminpage', [AdminController::class, 'obtenerDatosErab','obtenerDatosPart'])->name('adminpage');
+Route::get('/adminpage', [AdminController::class, 'general'])->name('adminpage');
 // Route::get('/adminpage', [AdminController::class, 'obtenerDatosPart'])->name('adminpage');
+
+Route::get('/adminpage/erabiltzaileak', [AdminController::class, 'obtenerDatosErab'])->name('adminpageErab');
+Route::get('/adminpage/partidak', [AdminController::class, 'obtenerDatosPart'])->name('adminpagePart');
+Route::delete('/adminpage/erabiltzaileak/{id}', [AdminController::class, 'destroy'])->name('adminpageErab.destroy');
+Route::get('/adminpage/partidak/{id}/edit', [AdminController::class, 'editDatosPart'])->name('adminpagePart.edit');
+Route::patch('/adminpage/erabiltzaileak/{id}/edit-rol', [AdminController::class, 'editRol'])->name('adminpageErab.updateRole');
+
+
 
 
 
