@@ -41,8 +41,8 @@
 <script>
 import route from '../../vendor/tightenco/ziggy';
 import VueCountdown from '@chenfengyuan/vue-countdown';
-import { useTimeStore } from './timeStore';
-
+/* import { useTimeStore } from './timeStore';
+ */
 export default {
     /* setup() {
         const timeStore = useTimeStore();

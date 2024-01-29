@@ -173,13 +173,12 @@
 <script>
 import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
-import { useTimeStore } from './timeStore';
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { watchEffect } from 'vue';
 
 export default {
     name: 'my-tour',
-    setup() {
+  /*   setup() {
         const timeStore = useTimeStore();
 
         // Now you can access the minutes and seconds like this:
@@ -190,7 +189,7 @@ export default {
             minutes: timeStore.minutes,
             seconds: timeStore.seconds
         };
-    },
+    }, */
     data() {
         return {
             hint_header: 'PISTA 1/2',
