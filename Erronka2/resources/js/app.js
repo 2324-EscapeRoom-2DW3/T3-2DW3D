@@ -45,10 +45,13 @@ headerApp.mount('#header-app');
 const footerApp = createApp(App);
 footerApp.mount('#footer-app');
 
-const juego1 = createApp(Chemical).use(ZiggyVue);;
+const juego1 = createApp({
+    components: {
+        Chemical,
+    },
+}).component("vue-draggable-resizable", VueDraggableResizable);
+juego1.use(ZiggyVue).use(Vue3Tour).use(pinia);
 juego1.component(VueCountdown.name, VueCountdown);
-
-
 juego1.mount('#juego1');
 
 const juego4 = createApp({

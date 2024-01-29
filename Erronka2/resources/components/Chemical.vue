@@ -21,6 +21,13 @@
 
                 </div>
             </div>
+            <v-tour name="myTour" :steps="steps" :callbacks="myCallbacks"></v-tour>
+
+            <vue-draggable-resizable class="fixed bottom-0 left-100 right-60 pt-20" ref="draggable4" id="v-step-0"
+                v-show="isHidden === true">
+                <img class="transform slide-animation" src="../../storage/app/public/images/juego4/fondo_papel_z.png"
+                    alt="">
+            </vue-draggable-resizable>
             <div :style="{ backgroundImage: `url(${backgroundImage})` }"
                 class="h-full bg-contain bg-no-repeat bg-center p-8 sm:p-16 md:p-24 lg:p-40 shadow-xl inline-block">
 
@@ -95,9 +102,16 @@ const limiter = new Bottleneck({
 });
 
 export default {
+    name: 'my-tour',
+
     el: '#juego1',
     data() {
         return {
+            myCallbacks: {
+                onFinish: this.myCustomonFinishCallback,
+            },  
+            isHidden: false,
+
             elementos: [],
             backgroundImage: '../../storage/images/pizarra.png',
             check: [],
@@ -108,10 +122,28 @@ export default {
             route: document.querySelector('#juego1').dataset.route,
             idjuego: document.querySelector('#juego1').dataset.id,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            steps: [
+                {
+                    target: '#v-step-0',
+                    header: {
+                        title: 'Erantzunak',
+                    },
+                    content: "Minijoko bat bukatzerakoan, letra bat agertuko da pantailan, letra guztiak bildu eta atea finala ireki, denbora bat duzu Escape Room-a bukatzeko",
+                    params: {
+                        placement: 'top'
+                    }
+                },
+
+            ]
         };
     },
     methods: {
+        myCustomonFinishCallback(){
+            this.isLoading = true;
+            this.$refs.scoreForm.submit();
+        },
 
+      
         handleClick(element, bool) {
             this.clicked_times++;
             if (this.clicked_times > 1) {
@@ -257,12 +289,17 @@ export default {
     watch: {
         scoreUpdate(newScore) {
             if (newScore === 3) {
-                this.isLoading = true;
-                /*                 this.$refs.scoreForm.action = route('juegos/juego1.store');
-                 */
-                this.$refs.scoreForm.submit();
-                /*                 window.location.href = route('welcome');
-                 */
+                /*                 this.isLoading = true;
+                 */                /*                 this.$refs.scoreForm.action = route('juegos/juego1.store');
+                               */
+                this.isHidden = true;
+                setTimeout(() => {
+                    this.$tours['myTour'].start();
+
+                }, 1000);
+
+                //this.$refs.scoreForm.submit();
+
             }
         }
     },

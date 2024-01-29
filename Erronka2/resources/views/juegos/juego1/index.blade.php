@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('layout.plantilla2')
 
 @section('title', 'Juego1')
 
@@ -39,6 +39,7 @@
                 </div>
             </section>
             <div id="juego1" class="pt-12" data-id="{{ $id }}" data-route="{{ route('juego1.store') }}">
+                <Chemical> </Chemical>
             </div>
         </div>
 
