@@ -6,10 +6,10 @@
 
     <body >
         @include('partials.header')
-        @auth
+        {{-- @auth --}}
 
-        @if (Auth::user()->rol == 1)
-        <h1>ONGI ETORRI {{ Auth::user()->name }}</h1>
+        {{-- @if (Auth::user()->rol == 1) --}}
+        {{-- <h1>ONGI ETORRI {{ Auth::user()->name }}</h1> --}}
         <p>Partidak</p>
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
             <table class="w-full text-sm text-left rtl:text-right text-green-400">
@@ -19,6 +19,8 @@
                         <th scope="col" class="px-6 py-3">Denbora</th>
                         <th scope="col" class="px-6 py-3">Score</th>
                         <th scope="col" class="px-6 py-3">Izena</th>
+                        <th scope="col" class="px-6 py-3">Ezabatu</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +41,41 @@
                             <td class="px-6 py-4">
                                 <p>{{ $usuario->name }}</p>
                             </td>
+                            <td>
+                                <x-danger-button x-data=""
+                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-perfilAdminUser-deletion-{{ $datoPart->id }}')">
+                                        <p>Ezabatu kontua</p>
+                                    </x-danger-button>
+
+                                    <x-modal name="confirm-perfilAdminUser-deletion-{{ $datoPart->id }}" :show="$errors->userDeletion->isNotEmpty()"
+                                        focusable>
+                                        <form method="post" action="{{ route('adminpagePart.destroy', $datoPart->id) }}"
+                                            class="p-6">
+                                            @csrf
+                                            @method('delete')
+
+                                            <input type="hidden" name="perfilId" value="{{ $datoPart->id }}">
+
+                                            <h2 class="text-xl font-medium text-[#fff]">
+                                                Ziur zaude erabiltzailea ezabatu nahi duzula?
+                                            </h2>
+
+                                            <p class="mt-1 text-md text-[#0BD904]">
+                                                Erabiltzailea ezabatzean, erabiltzailearen informazio guztia ezabatuko da.
+                                            </p>
+
+                                            <div class="mt-6 flex justify-end">
+                                                <x-secondary-button x-on:click="$dispatch('close')">
+                                                    Ez
+                                                </x-secondary-button>
+
+                                                <x-danger-button class="ms-3">
+                                                    Bai
+                                                </x-danger-button>
+                                            </div>
+                                        </form>
+                                    </x-modal>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
@@ -46,12 +83,12 @@
         </div>
 
 
-    @else
+    {{-- @else
         <h1>ADMIN IZAN BEHAR ZARA</h1>
             @endif
     @else
         <h1>ADMIN IZAN BEHAR ZARA</h1>
-    @endauth
+    @endauth --}}
     @include('partials.footer')
 </body>
 

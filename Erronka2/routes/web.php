@@ -67,9 +67,14 @@ Route::get('/adminpage', [AdminController::class, 'general'])->name('adminpage')
 
 Route::get('/adminpage/erabiltzaileak', [AdminController::class, 'obtenerDatosErab'])->name('adminpageErab');
 Route::get('/adminpage/partidak', [AdminController::class, 'obtenerDatosPart'])->name('adminpagePart');
-Route::delete('/adminpage/erabiltzaileak/{id}', [AdminController::class, 'destroy'])->name('adminpageErab.destroy');
+Route::delete('/adminpage/erabiltzaileak/{id}', [AdminController::class, 'destroyErab'])->name('adminpageErab.destroy');
 Route::get('/adminpage/partidak/{id}/edit', [AdminController::class, 'editDatosPart'])->name('adminpagePart.edit');
 Route::patch('/adminpage/erabiltzaileak/{id}/edit-rol', [AdminController::class, 'editRol'])->name('adminpageErab.updateRole');
+Route::delete('/adminpage/partidak/{id}', [AdminController::class, 'destroyPart'])->name('adminpagePart.destroy');
+Route::get('/adminpage/administrazioa', [AdminController::class, 'obtenerDatosAdmin'])->name('adminpageAdmin');
+Route::delete('/adminpage/administrazioa/{id}', [AdminController::class, 'destroyAdmin'])->name('adminpageAdmin.destroy');
+Route::patch('/adminpage/administrazioa/{id}/edit-rol', [AdminController::class, 'editRolAdmin'])->name('adminpageAdmin.updateRole');
+
 
 
 

@@ -27,6 +27,18 @@ class AdminController extends Controller
         return view('ErabiltzailePage', ['datosErab' => $datosErab, 'datosPart' => $datosPart]);
     }
 
+    public function obtenerDatosAdmin()
+    {
+        $datosAdmin = User::all();
+
+        $datosAdmin = User::where('rol', 1)->paginate(5);
+
+        // dd($datos);
+
+
+        return view('AdminErab', ['datosAdmin' => $datosAdmin]);
+    }
+
     public function obtenerDatosPart()
     {
         $datosErab = User::all();
@@ -38,13 +50,19 @@ class AdminController extends Controller
         return view('PartidakPage', ['datosErab' => $datosErab, 'datosPart' => $datosPart]);
     }
 
-    public function destroy($id)
+    public function destroyErab($id)
     {
         $erab = User::find($id);
         $erab->delete();
         return redirect()->route('adminpageErab');
     }
 
+    public function destroyPart($id)
+    {
+        $part = Juego::find($id);
+        $part->delete();
+        return redirect()->route('adminpagePart');
+    }
     public function edit(Request $request): View
     {
         return view('profile.edit', [
@@ -65,6 +83,17 @@ class AdminController extends Controller
     $user->save();
 
     return redirect()->route('adminpageErab');
+}
+
+public function editRolAdmin(Request $request, $id)
+{
+    $user = User::find($id);
+
+
+    $user->rol = 0; // Update the "rol" field to 1
+    $user->save();
+
+    return redirect()->route('adminpageAdmin');
 }
 
 

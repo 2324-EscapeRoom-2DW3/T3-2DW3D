@@ -24,7 +24,7 @@
                             {{-- <button id="boton2" class="bg-green-500">Partidak</button> --}}
                         </div>
                         <div class="bg-green-800 w-full p-10">
-                            <button id="boton3" class="bg-green-500">Administrazioa</button>
+                            <a href="{{route('adminpageAdmin')}}">Administrazioa</a>
                         </div>
                     </div>
 

@@ -9,46 +9,45 @@
 
         <p>Erabiltzaileak</p>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
-            <table class="w-full text-sm text-left rtl:text-right text-green-400">
-                <thead class="text-xs uppercase bg-green-700 text-green-400">
-                    <tr>
-                        <th scope="col" class="px-6 py-3">ID</th>
-                        <th scope="col" class="px-6 py-3">Izena</th>
-                        <th scope="col" class="px-6 py-3">Email</th>
-                        <th scope="col" class="px-6 py-3">Ezabatu</th>
-
-
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($datosErab as $datoErab)
-                        @if ($datoErab->rol == 0)
+        <div class="overflow-x-auto shadow-md sm:rounded-lg pt-10">
+            <div class="table-responsive">
+                <table class="w-full text-sm text-left rtl:text-right text-green-400 whitespace-nowrap">
+                    <thead class="text-xs uppercase bg-green-700 text-green-400">
+                        <tr>
+                            <th scope="col" class="px-6 py-3">ID</th>
+                            <th scope="col" class="px-6 py-3">Izena</th>
+                            <th scope="col" class="px-6 py-3 sm:table-cell">Email</th>
+                            <th scope="col" class="px-6 py-3">Ezabatu</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($datosAdmin as $datoAdmin)
+                            @if ($datoAdmin->rol == 1)
                             <tr class="border-b bg-green-800 border-green-700">
-                                <td class="px-6 py-4">
-                                    <p>{{ $datoErab->id }}</p>
+                                <td class="px-6 py-4 sm:table-cell">
+                                    <p>{{ $datoAdmin->id }}</p>
                                 </td>
                                 <td class="px-6 py-4">
-                                    <p>{{ $datoErab->name }}</p>
+                                    <p>{{ $datoAdmin->name }}</p>
                                 </td>
-                                <td class="px-6 py-4">
-                                    <p>{{ $datoErab->email }}</p>
+                                <td class="px-6 py-4 hidden sm:table-cell">
+                                    <p>{{ $datoAdmin->email }}</p>
                                 </td>
                                 <td>
                                     <x-danger-button x-data=""
-                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-perfilAdminUser-deletion-{{ $datoErab->id }}')">
+                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-perfilAdminUser-deletion-{{ $datoAdmin->id }}')">
                                         <p>Ezabatu kontua</p>
                                     </x-danger-button>
 
-                                    <x-modal name="confirm-perfilAdminUser-deletion-{{ $datoErab->id }}" :show="$errors->userDeletion->isNotEmpty()"
+                                    <x-modal name="confirm-perfilAdminUser-deletion-{{ $datoAdmin->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                         focusable>
-                                        <form method="post" action="{{ route('adminpageErab.destroy', $datoErab->id) }}"
+                                        <form method="post" action="{{ route('adminpageAdmin.destroy', $datoAdmin->id) }}"
                                             class="p-6">
                                             @csrf
                                             @method('delete')
 
-                                            <input type="hidden" name="perfilId" value="{{ $datoErab->id }}">
+                                            <input type="hidden" name="perfilId" value="{{ $datoAdmin->id }}">
 
                                             <h2 class="text-xl font-medium text-[#fff]">
                                                 Ziur zaude erabiltzailea ezabatu nahi duzula?
@@ -72,18 +71,18 @@
                                 <td>
 
                                     <x-danger-button x-data=""
-                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-perfilAdminUser-updaterol-{{ $datoErab->id }}')">
-                                        <p>Admin Egin</p>
+                                        x-on:click.prevent="$dispatch('open-modal', 'confirm-perfilAdminUser-updaterol-{{ $datoAdmin->id }}')">
+                                        <p>Admin Kendu</p>
                                     </x-danger-button>
 
-                                    <x-modal name="confirm-perfilAdminUser-updaterol-{{ $datoErab->id }}" :show="$errors->userDeletion->isNotEmpty()"
+                                    <x-modal name="confirm-perfilAdminUser-updaterol-{{ $datoAdmin->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                         focusable>
-                                        <form method="post" action="{{ route('adminpageErab.updateRole', $datoErab->id) }}"
+                                        <form method="post" action="{{ route('adminpageAdmin.updateRole', $datoAdmin->id) }}"
                                             class="p-6">
                                             @csrf
                                             @method('patch')
 
-                                            <input type="hidden" name="perfilId" value="{{ $datoErab->id }}">
+                                            <input type="hidden" name="perfilId" value="{{ $datoAdmin->id }}">
 
                                             <h2 class="text-xl font-medium text-[#fff]">
                                                 Ziur zaude erabiltzailea ezabatu nahi duzula?
@@ -104,27 +103,17 @@
                                             </div>
                                         </form>
                                     </x-modal>
-
-                                    {{-- <form method="post" action="{{ route('adminpageErab.updateRole', $datoErab->id) }}">
-                                        @csrf
-                                        @method('patch')
-                                        <input type="hidden" name="perfilId" value="{{ $datoErab->id }}">
-                                        <button type="submit" class="text-blue-500 hover:text-blue-700 focus:outline-none">
-                                            Aldatu rola (Admin)
-                                        </button>
-                                    </form> --}}
                                 </td>
-                                </td>
-
                             </tr>
-                        @endif
-                    @endforeach
-                </tbody>
-            </table>
+                            @endif
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
         </div>
 
         <div>
-            {{ $datosErab->links() }}
+            {{ $datosAdmin->links() }}
         </div>
 
         @include('partials.footer')
