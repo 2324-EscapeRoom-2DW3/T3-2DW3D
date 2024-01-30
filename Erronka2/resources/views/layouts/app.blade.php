@@ -15,7 +15,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
+        <div  id="mainFrame" class="min-h-screen bg-gray-100 dark:bg-gray-900">
             <br>
             <br>
             
@@ -36,3 +36,18 @@
         </div>
     </body>
 </html>
+
+
+<style>
+
+
+    #mainFrame{
+
+
+        background-color: #252525;
+
+    }
+
+
+
+</style>

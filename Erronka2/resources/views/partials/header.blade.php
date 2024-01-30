@@ -61,6 +61,9 @@
     <nav class="inline-flex items-center py-1 px-3 focus:outline-none rounded text-base mt-4 md:mt-0 z-50">
       @if (Route::has('login'))
       @auth
+      @if (Auth::user()->rol==1)
+      <!-- <a href="{{ route('login') }}" class="mr-5 underline-spacing">Usuarios</a> -->
+      @endif
       @if(!isset($valor))
       <a href="{{ url('/perfilIndex') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
       </a>

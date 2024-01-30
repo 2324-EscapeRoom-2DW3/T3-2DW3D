@@ -8,14 +8,14 @@
                     @php
                     $imageUrl = url('storage/images' . Auth::user()->imagen); @endphp
                     <div class="flex flex-col items-center justify-center">
-                        <img src="{{ $imageUrl }}" alt="User Photo" class="mx-auto profile-image" onclick="location.href = location.href.replace('dashboard', 'profile');">
-                        <h1 class="font-figtree font-bold text-5xl text-center text-username">
+                        <img id="imagenCosas" src="{{ $imageUrl }}" alt="User Photo" class="mx-auto profile-image" onclick="location.href = location.href.replace('dashboard', 'profile');">
+                        <h1 id="nombreCosas" class="font-figtree font-bold text-5xl text-center text-username">
                             {{ Auth::user()->name}}
                         </h1>
-                        <h2 class="font-figtree font-bold text-5xl text-center text-email">
+                        <h2 id="emailCosas" class="font-figtree font-bold text-5xl text-center text-email">
                             {{ Auth::user()->email}}
                         </h2>
-                        <h3 class="font-figtree text-5xl text-center text-score">
+                        <h3 id="partidasCosas" class="font-figtree text-5xl text-center text-score">
                             Partidas
                         </h3>
                         @if (isset($success))
@@ -32,12 +32,12 @@
 
 
                             <div class="list-box" id="game-{{ $juego->id }}">
-                                <div class="game-header">
-                                    <h2 class="font-figtree text-5xl">
+                                <div id="headerCosas" class="game-header">
+                                    <h2 class="font-figtree text-5xl" id="letrasCosas">
                                         Partida {{ $juego->id }}
                                     </h2>
                                     <button class="display-info-button" onclick="displayGameInfo(this)">
-                                        <img src="{{ url('storage/images/arrow-down.png') }}" alt="arrow-down" class=".display-info-button-icon">
+                                        <img id="fotoCosas" src="{{ url('storage/images/arrow-down.png') }}" alt="arrow-down" class=".display-info-button-icon">
                                     </button>
                                     <script>
                                         function displayGameInfo(button) {
@@ -57,11 +57,11 @@
 
                                 <div class="game-info" id="game-{{ $juego->id }}-info">
                                     <div class="info">
-                                        <div class="info-labels">
+                                        <div class="info-labels" id="infoCosas">
                                             <p>Puntuación</p>
                                             <p>Tiempo</p>
                                         </div>
-                                        <div class="info-data">
+                                        <div class="info-data" id="dataCosas">
                                             <p>{{$juego->score}}</p>
                                             <p>{{$juego->tiempo}}</p>
                                         </div>
@@ -73,7 +73,7 @@
                                             BORRAR SESION
                                         </x-boton-borrar-juego>
                                         </form>
-                                        <div class="info-button">
+                                        <div id="campoCosas" class="info-button">
                                             <!-- aqui hay q hacer un if para los botones completado o continuar -->
                                             <a class="continuar" href="">Continuar</a>
 
@@ -93,3 +93,73 @@
     </div>
 </x-app-layout>
 @endsection
+
+
+<style>
+
+#nombreCosas{
+
+
+    color: lawngreen;
+
+
+}
+
+
+#imagenCosas{
+
+    border-color: lawngreen;
+}
+
+#emailCosas{
+
+
+    color: lawngreen;
+
+
+}
+
+#partidasCosas{
+
+    color: lawngreen;
+
+}
+
+
+#letrasCosas{
+
+
+color: lawngreen;
+
+
+}
+
+
+#fotoCosas{
+
+color: lawngreen;
+
+}
+
+#campoCosas{
+
+
+    background-color: lawngreen;
+
+}
+
+#infoCosas{
+
+    color: lawngreen;
+
+}
+
+
+#dataCosas{
+
+
+    color: lawngreen;
+
+}
+
+</style>

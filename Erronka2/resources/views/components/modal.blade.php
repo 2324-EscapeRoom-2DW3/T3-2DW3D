@@ -62,7 +62,7 @@ $maxWidth = [
         <div class="absolute inset-0 bg-gray-500 dark:bg-gray-900 opacity-75"></div>
     </div>
 
-    <div
+    <div id="modal"
         x-show="show"
         class="mb-6 bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full {{ $maxWidth }} sm:mx-auto"
         x-transition:enter="ease-out duration-300"
@@ -75,3 +75,12 @@ $maxWidth = [
         {{ $slot }}
     </div>
 </div>
+
+
+<style>
+
+    #modal{
+
+        background-color: lawngreen;
+    }
+</style>
