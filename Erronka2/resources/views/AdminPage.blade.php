@@ -10,7 +10,7 @@
 
         {{-- @auth --}}
             {{-- @if (Auth::user()->rol == 1) --}}
-                <div class="bg-black text-white text-center min-h-screen bg-cover bg-center" style="background-image: url('storage/images/fondo16_9.png');">
+                <div class="bg-black text-white text-center min-h-screen bg-cover bg-center" style="background-image: url('../storage/app/public/images/fondo16_9.png');">
                     {{-- <h1>ONGI ETORRI {{ Auth::user()->name }}</h1> --}}
 
                     <div class="min-h-screen flex items-center justify-center">

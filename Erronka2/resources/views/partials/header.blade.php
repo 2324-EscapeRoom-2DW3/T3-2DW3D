@@ -37,7 +37,7 @@
 
       <div class="relative">
         <a href="{{ route('welcome') }}">
-          <img src="{{ url('storage/images/logo.webp') }}" alt="" class="w-14 h-12 rounded-full">
+          <img src="{{ url('../storage/app/public/images/logo.webp') }}" alt="" class="w-14 h-12 rounded-full">
         </a>
       </div>
 
