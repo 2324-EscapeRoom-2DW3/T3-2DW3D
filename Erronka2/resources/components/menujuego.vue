@@ -189,7 +189,7 @@ export default {
 /*                     rutaJuego = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
  */                    break;
                 case -1:
-                window.location.href = route('juego2');  // Reemplaza 'juego2' con la ruta correcta
+                window.location.href = route('juego2.index', { id: this.yourId }); // Reemplaza 'juego2' con la ruta correcta
                     break;
                 case -2:
                 window.location.href = route('juego1.index', { id: this.yourId });  // Reemplaza 'juego3' con la ruta correcta

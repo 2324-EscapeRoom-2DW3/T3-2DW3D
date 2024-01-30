@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BossController;
 use App\Http\Controllers\Juego1Controller;
+use App\Http\Controllers\Juego2Controller;
 use App\Http\Controllers\Juego4Controller;
 use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\PerfilController;
@@ -61,9 +62,11 @@ Route::get('/guri', function () {
 Route::get('juegos/menu/{id}', [MenuController::class, 'index'])->name('menu.index')->middleware('checkgame');
 
 
-Route::get('juegos/juego2', function () {
+/* Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
+ */
+Route::get('juegos/juego2/{id}', [Juego2Controller::class, 'index'])->name('juego2.index');
 
 
 // Route::get('adminpage', function () {
