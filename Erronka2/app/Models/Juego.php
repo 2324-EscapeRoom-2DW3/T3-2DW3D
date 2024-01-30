@@ -16,10 +16,12 @@ class Juego extends Model
     protected $primaryKey="id";
 
     protected $fillable = [
-        'tiempo',
+        'tiempo_parts',
         'score',
         'llave',
         'tutorial',
+        'tiempo_min',
+        'tiempo_sec',
         'id_usuario',
     ];
 }

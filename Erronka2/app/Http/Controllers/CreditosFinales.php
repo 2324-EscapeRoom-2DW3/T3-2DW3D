@@ -1,24 +1,20 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Prueba;
+use App\Models\Juego;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\StoreAlumno;
-use App\Models\Alumno;
-use App\Models\Curso;
-use App\Models\Prueba;
-use Illuminate\Support\Facades\Storage;
-
-class Juego1Controller extends Controller
+class CreditosFinales extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index($id)
     {
-        return view('juegos/juego1.index', ['id' => $id]);
+        return view('juegos/creditos.index', ['id' => $id]);
     }
 
     /**
@@ -34,21 +30,16 @@ class Juego1Controller extends Controller
      */
     public function store(Request $request)
     {
-
-        $juego1 = Prueba::create($request->all());
-        /*         dd($juego1);
- */
-        $juego1->save();
-        return redirect()->route('menu.index', ['id' => $juego1->id_juego]);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    /*   public function show(string $id)
+    public function show(string $id)
     {
         //
-    } */
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -63,7 +54,20 @@ class Juego1Controller extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $totalTiempoPartida = Prueba::where('id_juego', $id)->sum('tiempoPartida');
+        $totalScorePartida = Prueba::where('id_juego', $id)->sum('scorePartida');
+    
+        // Find the Juego with the given id
+        $juego = Juego::find($id);
+    
+        // Update the tiempo and score fields of the Juego
+        $juego->tiempo_parts = $totalTiempoPartida;
+        $juego->score = $totalScorePartida;
+    
+        // Save the changes
+        $juego->save();
+        return redirect()-> route('welcome');
+
     }
 
     /**
@@ -73,4 +77,6 @@ class Juego1Controller extends Controller
     {
         //
     }
+
+
 }

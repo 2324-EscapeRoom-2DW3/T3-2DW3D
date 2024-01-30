@@ -1,4 +1,4 @@
-@extends('layout.plantilla')
+@extends('layout.plantilla2')
 
 @section('title', 'Juego1')
 
@@ -22,7 +22,7 @@
                         ikasleak. Gaurko egunean, laborategian praktika bat egin behar zuten, baina zerbait gaizki joan zen.
                         Likido bat eskapatu zen, eta laborategiko ateak itxi egin ziren. Alarmak hasi ziren soinatzeko, eta
                         bozgorailu bat esan zuen: "Kontuz, kontuz! Quimikoki kutsatutako eremua. Ateak irekitzeko, kodea
-                        sartu behar duzue. Kodea lortzeko, laborategiko pistak jarraitu behar dituzue. Zuek bakarrik atera
+                        sartu behar duzue. Baina zerbait gertatzen zen, klasean genuen IA (ChatGPT) maltzurra bihurtu da! Kodea lortzeko, laborategiko pistak jarraitu behar dituzue. Zuek bakarrik atera
                         ahal zarete hemendik. Zorte on!"</p>
                     <br>
 
@@ -39,6 +39,7 @@
                 </div>
             </section>
             <div id="juego1" class="pt-12" data-id="{{ $id }}" data-route="{{ route('juego1.store') }}">
+                <Chemical> </Chemical>
             </div>
         </div>
 

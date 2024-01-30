@@ -1,24 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Models\Juego;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Http\Requests\StoreAlumno;
-use App\Models\Alumno;
-use App\Models\Curso;
-use App\Models\Prueba;
-use Illuminate\Support\Facades\Storage;
-
-class Juego1Controller extends Controller
+class BossController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index($id)
     {
-        return view('juegos/juego1.index', ['id' => $id]);
+        return view('juegos/boss.index', ['id' => $id]);
     }
 
     /**
@@ -34,21 +29,16 @@ class Juego1Controller extends Controller
      */
     public function store(Request $request)
     {
-
-        $juego1 = Prueba::create($request->all());
-        /*         dd($juego1);
- */
-        $juego1->save();
-        return redirect()->route('menu.index', ['id' => $juego1->id_juego]);
+        //
     }
 
     /**
      * Display the specified resource.
      */
-    /*   public function show(string $id)
+    public function show(string $id)
     {
         //
-    } */
+    }
 
     /**
      * Show the form for editing the specified resource.
@@ -72,5 +62,12 @@ class Juego1Controller extends Controller
     public function destroy(string $id)
     {
         //
+    }
+
+    public function keyvalue (string $id){
+        $juego = Juego::findOrFail($id);
+        $llave_valor = $juego->llave;
+
+        return $llave_valor;
     }
 }

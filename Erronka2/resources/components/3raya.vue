@@ -1,6 +1,18 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+        <vue-countdown class="fixed top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+            v-slot="{ days, hours, minutes, seconds }">
+            {{ minutes }}:{{ seconds }}
+        </vue-countdown>
+
+        <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="_method" value="PUT">
+            <input name="tiempo_min" type="hidden" :value="min">
+            <input name="tiempo_sec" type="hidden" :value="sec">
+            <input name="id_juego" type="hidden" :value="yourId">
+        </form>
         <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
             <div
                 class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -41,11 +53,11 @@
             <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
                 @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/hint.png" alt="">
             <div @click.prevent="toggleDiv(0)" style="position: absolute;
-            top: 1.5vh;
-            left: 86%;
-            width: 8.2%;
-            height: 14vh;
-            z-index: 50;">
+                top: 1.5vh;
+                left: 86%;
+                width: 8.2%;
+                height: 14vh;
+                z-index: 50;">
             </div>
         </div>
         <form ref="llaveForm" method="POST" :action="route" enctype="multipart/form-data">
@@ -61,59 +73,59 @@
             <p>{{ displayText }}</p>
         </div>
         <!--         <img alt="fondo" class="fondo" src="../../storage/app/public/images/juego4/juego4.png" @click.prevent="clickImagen">
- -->
+    -->
         <!--   <div style="position: absolute;
-            top: 46vh;
-            left: 79%;
-            width: 6.5%;
-            height: 15vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div> -->
+                top: 46vh;
+                left: 79%;
+                width: 6.5%;
+                height: 15vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div> -->
         <!--     <div style="position: absolute;
-            top: 30vh;
-            left: 6%;
-            width: 11%;
-            height: 55vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div>-->
+                top: 30vh;
+                left: 6%;
+                width: 11%;
+                height: 55vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div>-->
         <div id="v-step-0" style="position: absolute; z-index: -1;
-            top: 35.5vh;
-            left: 45.3%;
-            width: 9%;
-            height: 11vh;">
+                top: 35.5vh;
+                left: 45.3%;
+                width: 9%;
+                height: 11vh;">
         </div>
         <div class="v-step-1" style="position: absolute; z-index: -1;
-            top: 69vh;
-            left: 18%;
-            width: 22%;
-            height: 22vh;
-      ">
+                top: 69vh;
+                left: 18%;
+                width: 22%;
+                height: 22vh;
+        ">
         </div>
         <div data-v-step="2" style="position: absolute; z-index: -1;
-            top: 31vh;
-            left: 48.93%;
-            width: 2%;
-            height: 4vh;
-          ">
+                top: 31vh;
+                left: 48.93%;
+                width: 2%;
+                height: 4vh;
+            ">
         </div>
         <!--   <div style="position: absolute;
-            top: 37vh;
-            left: 38.4%;
-            width: 6%;
-            height: 14vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div>  -->
+                top: 37vh;
+                left: 38.4%;
+                width: 6%;
+                height: 14vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div>  -->
         <!--    <div style="position: absolute;
-            top: 1.5vh;
-            left: 86%;
-            width: 8.2%;
-            height: 14vh;
-            background-color:#fff;
-            opacity: 0.5;">
-        </div>  -->
+                top: 1.5vh;
+                left: 86%;
+                width: 8.2%;
+                height: 14vh;
+                background-color:#fff;
+                opacity: 0.5;">
+            </div>  -->
         <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1"
             @mouseenter="isClickDisabled = true" @mouseleave="isClickDisabled = false">
             <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
@@ -161,10 +173,23 @@
 <script>
 import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
+import VueCountdown from '@chenfengyuan/vue-countdown';
+import { watchEffect } from 'vue';
 
 export default {
     name: 'my-tour',
+  /*   setup() {
+        const timeStore = useTimeStore();
 
+        // Now you can access the minutes and seconds like this:
+        console.log(timeStore.minutes);
+        console.log(timeStore.seconds);
+
+        return {
+            minutes: timeStore.minutes,
+            seconds: timeStore.seconds
+        };
+    }, */
     data() {
         return {
             hint_header: 'PISTA 1/2',
@@ -180,10 +205,18 @@ export default {
             dis: "hidden",
             displayText: '',
             toggle: 0,
-            tutorialValor: null,
             yourId: route().params,
-            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
 
+            // Tiempo
+            tutorialValor: null,
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            min: 29,
+            sec: 60,
+            pendingMin: null,
+            pendingSec: null,
+            tiempoValor: null,
+            routetiempo: document.querySelector('#juego4').dataset.routetiempo,
+            routetiempovalor: document.querySelector('#juego4').dataset.routetiempoval,
             objektuak: [
                 // Ordenador
                 { areaTop: 46, areaLeft: 79, areaWidth: 6.5, areaHeight: 15 },
@@ -233,6 +266,8 @@ export default {
         };
     },
     mounted() {
+        this.getTiempo();
+
         this.mostrar("La IA se esconde entre nosotros... Lo puedo notar... Debe de estar en algun aparato electrónico.");
         this.getTutorialValor();
 
@@ -241,6 +276,42 @@ export default {
     },
 
     methods: {
+
+        updateTime({ days, hours, minutes, seconds }) {
+            this.pendingMin = minutes;
+            this.pendingSec = seconds;
+            this.updateTiempo_db();
+        },
+        updateTiempo_db() {
+            let formData = new FormData(this.$refs.tiempoForm);
+
+            axios.post(this.$refs.tiempoForm.action, formData)
+                .then(response => {
+                    // Update min and sec only when the request completes
+                    this.min = this.pendingMin;
+                    this.sec = this.pendingSec;
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        // .
+        getTiempo() {
+            axios.get(this.routetiempovalor, this.yourId)
+                .then(response => {
+                    this.tiempoValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tiempoValor);
+                    if (this.tiempoValor.tiempo_min != 0 && this.tiempoValor.tiempo_sec != 0) {
+                        this.min = this.tiempoValor.tiempo_min;
+                        this.sec = this.tiempoValor.tiempo_sec;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
         getTutorialValor() {
 
             axios.get(this.routetutorial, this.yourId)
@@ -322,8 +393,8 @@ export default {
             if (this.isClickDisabled) {
                 return;
             }
-            let posX = event.offsetX;
-            let posY = event.offsetY;
+            let posX = event.clientX;
+            let posY = event.clientY;
 
             for (let i = 0; i < this.objektuak.length; i++) {
                 var areaTopAbs = (this.objektuak[i].areaTop / 100) * event.target.clientHeight;
@@ -341,7 +412,7 @@ export default {
                         this.toggle = 1;
                     } else if (i == 1) {
                         if (window.confirm('Estas seguro que quieres irte?')) {
-                            window.location.href = route('menujuego', { id: route().params });
+                            window.location.href = route('menu.index', { id: route().params });
                         }
                     } else if (i == 2) {
                         this.toggle = 2;
@@ -367,8 +438,8 @@ export default {
                                 clearInterval(intervalId);
                                 this.toggle = 3;
                             }
-                        }, 90); 
-                     
+                        }, 90);
+
                         let audio = new Audio('../../storage/sounds/luz.mp3');
                         audio.play();
                     }
@@ -391,10 +462,10 @@ export default {
                 [6, 7, 8],
                 [0, 3, 6],
                 [1, 4, 7],      /*  0 | 1 | 2
-                                    ---------
-                                    3 | 4 | 5  --> Tablero posiciones
-                                    ---------
-                                    6 | 7 | 8 */
+                                        ---------
+                                        3 | 4 | 5  --> Tablero posiciones
+                                        ---------
+                                        6 | 7 | 8 */
                 [2, 5, 8],
                 [0, 4, 8],
                 [2, 4, 6],
@@ -450,12 +521,13 @@ export default {
         },
     },
     computed: {
+
         winner() { /* Cada vez que hay un cambio en el tablero comprueba si hay ganador
-             // Convierte el array a 1D, lo flatea porque el metodo calculateWinner recibe un array de 1D       X | O | X
-                                        ---------
-                                        O | X | O
-                                        ---------
-                                        X | O | X */
+                // Convierte el array a 1D, lo flatea porque el metodo calculateWinner recibe un array de 1D       X | O | X
+                                            ---------
+                                            O | X | O
+                                            ---------
+                                            X | O | X */
             return this.calculateWinner(this.board.flat());
         },
         playerName() {
