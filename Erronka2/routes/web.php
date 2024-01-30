@@ -4,6 +4,7 @@ use App\Http\Controllers\BossController;
 use App\Http\Controllers\Juego1Controller;
 use App\Http\Controllers\Juego4Controller;
 use App\Http\Controllers\JuegoCompleto;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Juego5Controller;
@@ -43,18 +44,16 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
 /* Route::resource('juegos/juego1', Juego1Controller::class);
  */
-Route::get('juegocompleto/store', [JuegoCompleto::class, 'store']) -> name('juegocompleto.store');
+Route::get('juegocompleto/store', [JuegoCompleto::class, 'store'])->name('juegocompleto.store');
 Route::put('juegocompleto/tiempo/{id}', [JuegoCompleto::class, 'tiempo']) -> name('juegocompleto.tiempo');
 Route::get('juegocompleto/tiempo_val/{id}', [JuegoCompleto::class, 'tiempo_val']) -> name('juegocompleto.tiempo_val');
 
 
 Route::get('juegos/juego1/{id}', [Juego1Controller::class, 'index'])->name('juego1.index');
 Route::post('juegos/juego1/store', [Juego1Controller::class, 'store']) -> name('juego1.store');
-
-
 Route::get('/guri', function () {
     return view('guri');
 })->name('guri');
@@ -105,3 +104,6 @@ Route::get('juegos/boss/{id}', [BossController::class, 'index'])->name('boss.ind
 
 Route::get('juegos/creditos/{id}', [CreditosFinales::class, 'index'])->name('creditos.index')->middleware('checkgame');
 Route::get('juegos/creditos/update/{id}', [CreditosFinales::class, 'update'])->name('creditos.update')->middleware('checkgame');
+Route::get('/perfilIndex', [ProfileController::class, 'index'])->name('profile.index');
+
+Route::delete('/borrar-juego/{id}', [PerfilController::class, 'destroy'])->name('juego.borrar');
