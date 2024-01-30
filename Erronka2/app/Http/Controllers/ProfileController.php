@@ -8,9 +8,23 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use App\Models\User;
+use App\Models\Juego;
 
 class ProfileController extends Controller
 {
+
+
+    public function index()
+    {
+        //
+        $id = Auth::id();
+        $user = User::find($id);
+        $juegos = Juego::where('id_usuario', $id)->get();
+        $valor = "josean";
+
+        return view('dashboard', compact('user', 'juegos', 'valor'));
+    }
     /**
      * Display the user's profile form.
      */
@@ -56,5 +70,10 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function show(string $id)
+    {
+        //
     }
 }

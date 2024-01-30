@@ -15,8 +15,10 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-            @include('layouts.navigation')
+        <div  id="mainFrame" class="min-h-screen bg-gray-100 dark:bg-gray-900">
+            <br>
+            <br>
+            
 
             <!-- Page Heading -->
             @if (isset($header))
@@ -34,3 +36,18 @@
         </div>
     </body>
 </html>
+
+
+<style>
+
+
+    #mainFrame{
+
+
+        background-color: #252525;
+
+    }
+
+
+
+</style>
