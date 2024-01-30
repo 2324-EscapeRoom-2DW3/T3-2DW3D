@@ -4,12 +4,19 @@
 @tailwind components;
 @tailwind utilities;
 /* Your other CSS rules */
+.exit{
+    width: 5%;
+    top: 0vh;
+    left: 0%;
+
+}
 @font-face {
     font-family: 'Digital Numbers Regular';
     font-style: normal;
     font-weight: normal;
     src: local('Digital Numbers Regular'), url('../../public/fonts/DigitalNumbers-Regular.woff') format('woff');
     }
+
 
 /* PIZARRAAAA */
 .fondo {
@@ -130,16 +137,33 @@
     top: 90%;
     width: 25%;
     transition: transform 0.5s ease, width 0.5s ease;
+    display: none;
 
 }
 
-.carta:hover {
+.activarAnimacion{
+    transform: translate(150%, -125%) scale(1.2);
+}
+
+.letra-carta{
+    position: absolute;
+    font-size: 100px;
+    display: none;
+}
+.letra{
+
+    padding-top: 20%;
+    display: flex;
+    justify-content: center;
+}
+
+/* .carta:hover {
     transform: translateY(-30px);
 
     /* AL HACER CLICK
     transform: translate(150%, -125%) scale(1.2); */
 
-}
+
 
 @keyframes slideAnimation {
     from {

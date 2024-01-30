@@ -3,11 +3,11 @@
     <div id="footer-app" class="z-0"></div>
 
     <div class=" mr-10 ml-10">
-        <div class="px-5 py-24 flex items-center">
+        <div class="px-5 py-24 flex flex-col items-center sm:flex-row">
             <div class="md:flex-1 z-50">
                 <a class="flex title-font items-center md:justify-start text-white-900">
                     <img src="{{ url('../storage/app/public/images/logo.webp') }}" alt="" class="w-32">
-                    <span class="ml-3 text-xl title-font font-medium">QUIMM<span class="text-green-400">ICA</span> </span>
+                    <span class="ml-3 text-xl title-font font-medium">QUIMM<span class="text-lime-400">ICA</span> </span>
                 </a>
                 <p class="mt-2 text-sm w-80 text-white">Ihesi kimika escape room-ean: Elementu kimikoetan oinarritutako
                     misterioak argitu eta formula sekretua askatu taldearekin. Adrenalinaz beteriko esperientzia
@@ -46,10 +46,10 @@
                     </a>
                 </span>
             </div>
-            <div class="w-full md:w-1/5 mb-10 md:mb-0 mt-12 z-50 ">
-                <div class="ml-15 ">
-                    <h2 class="title-font font-medium text-white-900 mb-3 text-xl">ACE<span class="text-green-400">RCA</span></h2>
-                    <nav class="list-disc mb-10 ">
+            <div class="w-full md:w-1/5 mb-10 md:mb-0 mt-12 z-50 sm:mt-5 sm:ml-5 flex items-center justify-center">
+                <div class="ml-15">
+                    <h2 class="title-font font-medium text-white-900 mb-3 text-xl">ACE<span class="text-lime-400">RCA</span></h2>
+                    <nav class="list-disc mb-10">
                         <li class="pb-3">
                             <a class="">Guri buruz</a>
                         </li>
@@ -68,8 +68,9 @@
                     </nav>
                 </div>
             </div>
+
             <div class="w-16 md:w-2/5 pb-10 z-50">
-                <h2 class="title-font font-medium text-white-900 mb-3 text-xl text-center">CONT<span class="text-green-400">ACT</span></h2>
+                <h2 class="title-font font-medium text-white-900 mb-3 text-xl text-center">CONT<span class="text-lime-400">ACT</span></h2>
 
 
                 <span class=" items-center sm:ml-auto sm:mt-0 mt-10 justify-center sm:justify-start">

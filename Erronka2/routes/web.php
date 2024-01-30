@@ -7,6 +7,7 @@ use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Juego5Controller;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CreditosFinales;
 
@@ -64,6 +65,29 @@ Route::get('juegos/menu/{id}', [MenuController::class, 'index'])->name('menu.ind
 Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
+
+
+// Route::get('adminpage', function () {
+//     return view('/AdminPage');
+// })->name('adminpage');
+
+Route::get('/adminpage', [AdminController::class, 'general'])->name('adminpage');
+// Route::get('/adminpage', [AdminController::class, 'obtenerDatosPart'])->name('adminpage');
+
+Route::get('/adminpage/erabiltzaileak', [AdminController::class, 'obtenerDatosErab'])->name('adminpageErab');
+Route::get('/adminpage/partidak', [AdminController::class, 'obtenerDatosPart'])->name('adminpagePart');
+Route::delete('/adminpage/erabiltzaileak/{id}', [AdminController::class, 'destroyErab'])->name('adminpageErab.destroy');
+Route::get('/adminpage/partidak/{id}/edit', [AdminController::class, 'editDatosPart'])->name('adminpagePart.edit');
+Route::patch('/adminpage/erabiltzaileak/{id}/edit-rol', [AdminController::class, 'editRol'])->name('adminpageErab.updateRole');
+Route::delete('/adminpage/partidak/{id}', [AdminController::class, 'destroyPart'])->name('adminpagePart.destroy');
+Route::get('/adminpage/administrazioa', [AdminController::class, 'obtenerDatosAdmin'])->name('adminpageAdmin');
+Route::delete('/adminpage/administrazioa/{id}', [AdminController::class, 'destroyAdmin'])->name('adminpageAdmin.destroy');
+Route::patch('/adminpage/administrazioa/{id}/edit-rol', [AdminController::class, 'editRolAdmin'])->name('adminpageAdmin.updateRole');
+
+
+
+
+
 
 Route::get('juegos/juego3', function () {
     return view('juegos/juego3/index');
