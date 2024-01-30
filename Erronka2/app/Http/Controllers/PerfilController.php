@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Juego;
+use App\Models\Prueba;
 
 class PerfilController extends Controller
 {
@@ -61,12 +62,15 @@ class PerfilController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-
+        // Find the Juego with the given id
         $juego = Juego::findOrFail($id);
+    
+        // Delete the related Prueba rows
+        Prueba::where('id_juego', $id)->delete();
+    
+        // Delete the Juego
         $juego->delete();
     
         return redirect()->back()->with('success', 'Juego borrado exitosamente');
-
     }
 }

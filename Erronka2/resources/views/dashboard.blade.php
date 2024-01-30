@@ -63,7 +63,7 @@
                                         </div>
                                         <div class="info-data" id="dataCosas">
                                             <p>{{$juego->score}}</p>
-                                            <p>{{$juego->tiempo}}</p>
+                                            <p>{{$juego->tiempo_parts}}</p>
                                         </div>
                                     </div>
                                     <form action="{{ route('juego.borrar', ['id' => $juego->id]) }}" method="POST">

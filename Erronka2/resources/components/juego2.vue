@@ -22,8 +22,8 @@
 
 <div>
 <a href="rutaDestino"></a>
-<img class="absolute exit" src="../../storage/app/public/images/juego2/exit.png" alt="" >
-</div>
+<img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+            @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir"></div>
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
         <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
             <div class="number-input">
