@@ -15,9 +15,15 @@
 
 
 <!-- PARA COMPONENTE -->
-<img class="carta absolute w-2/3 " src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
+<img class="carta absolute w-2/3  none" @click="activarAnimacion" src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
+<div class="letra">
+    <p  class="letra-carta" id="letra-carta">T</p>
+</div>
 
-
+<div>
+<a href="rutaDestino"></a>
+<img class="absolute exit" src="../../storage/app/public/images/juego2/exit.png" alt="" >
+</div>
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
         <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
             <div class="number-input">
@@ -170,6 +176,12 @@ export default {
             isVibrando2: false,
             isVibrando3: false,
 
+            isDone1: false,
+            isDone2: false,
+            isDone3: false,
+
+            // rutaDestino: route('menujuego'),
+
 
             currentIndex: 0,
 
@@ -254,6 +266,9 @@ export default {
             var close = document.getElementById("close");
             var pizarra = document.getElementById("pizarra-rota");
             var textoPizarra = document.getElementById("texto-pizarra");
+            let carta = document.querySelector(".carta");
+            var letra = document.getElementById("letra-carta");
+
 
             close.style.display = "none";
             pizarra.style.display = "none";
@@ -261,6 +276,9 @@ export default {
             fondo.style.filter = "blur(0px)";
             botella.style.display = "none";
             mostrarJuegoBotellas.style.display = "none";
+                carta.style.display = "none";
+                letra.style.display = "none";
+
 
         },
 
@@ -299,6 +317,8 @@ export default {
                 this.result1_3 === "A"
             ) {
                 boton1.style.backgroundColor = "#35B331";
+                this.isDone1 = true;
+                this.CartaFinal();
 
 
             } else {
@@ -322,6 +342,8 @@ export default {
                 this.result2_3 === "P"
             ) {
                 boton2.style.backgroundColor = "#35B331";
+                this.isDone2 = true;
+                this.CartaFinal();
 
 
             } else {
@@ -345,6 +367,9 @@ export default {
                 this.result3_3 === "C"
             ) {
                 boton3.style.backgroundColor = "#35B331";
+                this.isDone3 = true;
+                this.CartaFinal();
+
 
 
             } else {
@@ -359,17 +384,38 @@ export default {
             if (
                 this.result1_1 === "K" && this.result1_2 === "I" && this.result1_3 === "A" &&
                 this.result2_1 === "M" && this.result2_2 === "C" && this.result2_3 === "P"&&
-                this.result3_1 === "KT" && this.result3_2 === "S" && this.result3_3 === "C"
+                this.result3_1 === "T" && this.result3_2 === "S" && this.result3_3 === "C"
             ) {
 
-
+                console.log("GANASTE");
+                let carta = document.querySelector(".carta");
+                carta.style.display = "block";
 
             }
         },
 
+        CartaFinal(){
+            console.log("NO COMPLETADO");
+            if (this.isDone1 && this.isDone2 && this.isDone3) {
+                console.log("CARTA FINAL");
+            var carta = document.getElementById("carta");
+            carta.style.display = "block";
+            }
+        },
 
 
+        activarAnimacion() {
+            console.log("ANIMAR");
+            let carta = document.querySelector(".carta");
+            carta.classList.add("activarAnimacion");
+            setTimeout(() => {
+                var mostrarJuegoBotellas = document.getElementById("botones");
+                var letra = document.getElementById("letra-carta");
+                letra.style.display = "block";
+                mostrarJuegoBotellas.style.display = "none";
 
+                }, 500);
+        },
 
         toggleVibracion() {
             console.log("VIBRAR");
