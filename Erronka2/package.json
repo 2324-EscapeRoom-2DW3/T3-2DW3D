@@ -23,13 +23,17 @@
         "@tailwindcss/typography": "^0.5.10",
         "@vitejs/plugin-vue": "^4.5.2",
         "bottleneck": "^2.19.5",
+        "draggable-vue-directive": "^2.1.0",
         "fluid-canvas": "github:malik-tillman/fluid-js",
         "i": "^0.3.7",
         "pinia": "^2.1.7",
+        "sweetalert2": "^11.10.4",
         "tailwind-typewriter": "^1.0.1",
         "typeface-inter": "^3.18.1",
         "vite-plugin-windicss": "^1.9.2",
         "vue": "^3.4.7",
+        "vue-draggable-resizable": "^3.0.0-beta.2",
+        "vuedraggable": "^4.1.0",
         "ziggy": "^2.4.0",
         "ziggy-js": "^1.8.1"
     }

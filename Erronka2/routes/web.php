@@ -1,11 +1,12 @@
 <?php
 
 use App\Http\Controllers\Juego1Controller;
+use App\Http\Controllers\Juego4Controller;
 use App\Http\Controllers\JuegoCompleto;
 use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Juego5Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -48,7 +49,7 @@ Route::get('/guri', function () {
     return view('guri');
 })->name('guri');
 
-Route::get('juegos/menu', function () {
+Route::get('juegos/menu/{id}', function () {
     return view('juegos/menu/menujuego');
 })->name('menujuego');
 
@@ -56,10 +57,19 @@ Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
 
-Route::get('juegos/juego2', function () {
+Route::get('juegos/juego3', function () {
     return view('juegos/juego3/index');
 })->name('juego3');
 
+Route::get('juegos/juego4/{id}', [Juego4Controller::class, 'index'])->name('juego4.index')->middleware('checkgame');
+
+Route::get('juegos/juego4/show/{id}', [Juego4Controller::class, 'show'])->name('juego4.show')->middleware('checkgame');
+
+Route::put('juegos/juego4/update/{id}', [Juego4Controller::class, 'update'])->name('juego4.update')->middleware('checkgame');
+
+Route::get('juegos/juego5/{id}', [Juego5Controller::class, 'index'])->name('juego5.index')->middleware('checkgame');
+
+Route::get('juegos/juego5/llave/{id}', [Juego5Controller::class, 'keyvalue'])->name('juego5.keyvalue')->middleware('checkgame');
 Route::get('/perfilIndex', [ProfileController::class, 'index'])->name('profile.index');
 
 Route::delete('/borrar-juego/{id}', [PerfilController::class, 'destroy'])->name('juego.borrar');

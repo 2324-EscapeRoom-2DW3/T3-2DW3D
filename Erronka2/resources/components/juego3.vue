@@ -20,11 +20,12 @@
     <p id="bot"></p>
 </template>
 <script>
+import Swal from 'sweetalert2'
 
 const MAXIMOS_INTENTOS = 8, // Intentos máximos que tiene el jugador
     COLUMNAS = 4, // Columnas del memorama
     SEGUNDOS_ESPERA_VOLTEAR_IMAGEN = 1, // Por cuántos segundos mostrar ambas imágenes
-    NOMBRE_IMAGEN_OCULTA = "./img/LogoFinal.png"; // La imagen que se muestra cuando la real está oculta
+    NOMBRE_IMAGEN_OCULTA =                 "../../storage/app/public/images/juego4/pizarra_juego4.png";// La imagen que se muestra cuando la real está oculta
 
 
 export default {
@@ -35,12 +36,13 @@ export default {
             win: false,
             lost: false,
             imagenes: [
-                "./img/Formaldehído.png",
-                "./img/Galactosa.jpg",
-                "./img/Ribosa.jpg",
-                "./img/Fructosa.png",
-                "./img/Piruvato.png",
-                "./img/Glucosa.png",
+                "../../storage/app/public/images/juego4/pizarra_juego4.png",
+                "../../storage/app/public/images/juego4/armario.png",
+                "../../storage/app/public/images/juego4/abierta.png",
+                ".../../storage/app/public/images/juego4/pizarra_juego4.png",
+                "../../storage/app/public/images/juego4/armario.png",
+                "../../storage/app/public/images/juego4/pizarra_juego4.png",
+
             ],
             memorama: [],
             // Útiles para saber cuál fue la carta anteriormente seleccionada

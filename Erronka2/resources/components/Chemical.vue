@@ -3,7 +3,7 @@
         <p
             class="h-full w-full bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-3xl bg-opacity-10 border border-gray-100
     text-[#0bd904] rounded-lg p-6 flex justify-center items-center text-2xl md:w-auto mx-4 md:mx-8 text-center type-text1">
-            <!-- Your text here -->
+
         </p>
 
         <main class="min-h-screen flex flex-col md:flex-row items-center justify-center">
@@ -227,7 +227,7 @@ export default {
     mounted() {
         setTimeout(() => {
             this.$refs.countdown.start();
-        }, 15000);
+        }, 20000);
         this.executeThreeTimes();
     },
 
