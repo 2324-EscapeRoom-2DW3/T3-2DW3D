@@ -8,22 +8,24 @@
 
         @include('partials.header')
 
-        {{-- @auth --}}
-            {{-- @if (Auth::user()->rol == 1) --}}
-                <div class="bg-black text-white text-center min-h-screen bg-cover bg-center" style="background-image: url('../storage/app/public/images/fondo16_9.png');">
-                    {{-- <h1>ONGI ETORRI {{ Auth::user()->name }}</h1> --}}
+        <h1 class="absolute text-2xl border-black border-spacing-5 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Ongi etorri AdminPage orrialdera</h1>
 
-                    <div class="min-h-screen flex items-center justify-center">
-                        <div class="bg-green-800 w-full p-10 ">
+        @auth
+             @if (Auth::user()->rol == 1)
+                <div class="bg-black text-white text-center min-h-screen bg-cover bg-center flex items-center justify-center h-screen" style="  background-image: url('../storage/app/public/images/fondo16_9.png'); ">
+                     <h1>ONGI ETORRI {{ Auth::user()->name }}</h1>
+
+                    <div class="min-h-screen flex items-center justify-center w-1/2 gap-10 rounded-2xl	">
+                        <div class="bg-green-800 w-1/3 p-10 border-2 rounded-2xl">
                             <a href="{{route('adminpageErab')}}">Erabiltzaileak</a>
                             {{-- <button onclick="{{route('adminpageErab')}}" id="boton1" class="bg-green-500">Erabiltzaileak</button> --}}
                         </div>
-                        <div class="bg-green-800 w-full p-10">
+                        <div class="bg-green-800 w-1/3 p-10 border-2 rounded-2xl">
                             <a href="{{route('adminpagePart')}}">Partidak</a>
 
                             {{-- <button id="boton2" class="bg-green-500">Partidak</button> --}}
                         </div>
-                        <div class="bg-green-800 w-full p-10">
+                        <div class="bg-green-800 w-1/3 p-10 border-2 rounded-2xl">
                             <a href="{{route('adminpageAdmin')}}">Administrazioa</a>
                         </div>
                     </div>
@@ -63,12 +65,12 @@
 
                 </div>
 
-        {{-- @else
+        @else
             <h1>ADMIN IZAN BEHAR ZARA</h1>
                  @endif
         @else
-            <h1>ADMIN IZAN BEHAR ZARA</h1> --}}
-        {{-- @endauth --}}
+            <h1>ADMIN IZAN BEHAR ZARA</h1>
+         @endauth
         @include('partials.footer')
     </body>
 
