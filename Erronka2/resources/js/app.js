@@ -82,7 +82,10 @@ const Juego3App = createApp(Juego3);
 Juego3App.mount('#juego3');
 
 const Juego2App = createApp(Juego2);
+Juego2App.use(ZiggyVue);
 Juego2App.mount('#juego2');
+
+
 const Juego5App = createApp({
     components: {
         Juego5,

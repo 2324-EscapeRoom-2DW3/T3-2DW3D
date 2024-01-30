@@ -169,6 +169,8 @@
 </template>
 
 <script>
+import route from '../../vendor/tightenco/ziggy';
+
 export default {
     data() {
         return {
@@ -195,6 +197,9 @@ export default {
     },
     
     methods: {
+        navigateToMenu() {
+            window.location.href = route('menu.index', { id: route().params });
+    },
         moveLeft() {
             this.currentIndex = (this.currentIndex - 1 + 26) % 26; // Va de Z a A
             this.updateInput();
