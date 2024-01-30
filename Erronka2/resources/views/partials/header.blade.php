@@ -62,11 +62,15 @@
       @if (Route::has('login'))
       @auth
       @if (Auth::user()->rol==1)
-      <!-- <a href="{{ route('login') }}" class="mr-5 underline-spacing">Usuarios</a> -->
+       <a href="{{ route('adminpage') }}" class="mr-5 underline-spacing">Usuarios</a>
       @endif
       @if(!isset($valor))
       <a href="{{ url('/perfilIndex') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
       </a>
+      <form action="{{ route('logout') }}" method="POST">
+        @csrf
+      <input type="submit" value="LOGOUT">
+      </form>
       @else
       <a href="{{ url('/profile') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
       </a>

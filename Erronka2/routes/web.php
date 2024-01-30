@@ -107,3 +107,5 @@ Route::get('juegos/creditos/update/{id}', [CreditosFinales::class, 'update'])->n
 Route::get('/perfilIndex', [ProfileController::class, 'index'])->name('profile.index');
 
 Route::delete('/borrar-juego/{id}', [PerfilController::class, 'destroy'])->name('juego.borrar');
+
+
