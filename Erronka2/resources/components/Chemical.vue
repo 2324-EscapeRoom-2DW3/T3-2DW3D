@@ -25,7 +25,7 @@
 
             <vue-draggable-resizable class="fixed bottom-0 left-100 right-60 pt-20" ref="draggable4" id="v-step-0"
                 v-show="isHidden === true">
-                <img class="transform slide-animation" src="../../storage/app/public/images/juego4/fondo_papel_z.png"
+                <img class="transform slide-animation" src="../../storage/app/public/images/juego1/fondo_papel_d.png"
                     alt="">
             </vue-draggable-resizable>
             <div :style="{ backgroundImage: `url(${backgroundImage})` }"

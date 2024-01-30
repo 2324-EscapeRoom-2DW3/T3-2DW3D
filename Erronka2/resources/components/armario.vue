@@ -1,6 +1,8 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+     
+
         <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
             :class="dis">
             <p>{{ displayText }}</p>
@@ -12,8 +14,8 @@
 
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
-        <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
-            @click="irte" src="../../storage/app/public/images/juego2/close.png" alt="">
+        <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-12 cursor-pointer  hover:scale-110"
+            @click="irte" src="../../storage/app/public/images/exit.png" alt="">
 
         <!--  <div style="position: absolute;
             top: 28vh;

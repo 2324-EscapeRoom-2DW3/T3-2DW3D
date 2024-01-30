@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Juego5Controller;
 use App\Http\Controllers\MenuController;
+use App\Http\Controllers\CreditosFinales;
 
 /*
 |--------------------------------------------------------------------------
@@ -77,3 +78,6 @@ Route::get('juegos/juego5/{id}', [Juego5Controller::class, 'index'])->name('jueg
 Route::get('juegos/juego5/llave/{id}', [Juego5Controller::class, 'keyvalue'])->name('juego5.keyvalue')->middleware('checkgame');
 
 Route::get('juegos/boss/{id}', [BossController::class, 'index'])->name('boss.index')->middleware('checkgame');
+
+Route::get('juegos/creditos/{id}', [CreditosFinales::class, 'index'])->name('creditos.index')->middleware('checkgame');
+Route::get('juegos/creditos/update/{id}', [CreditosFinales::class, 'update'])->name('creditos.update')->middleware('checkgame');

@@ -91,4 +91,5 @@ const Juego5App = createApp({
 }).component("vue-draggable-resizable", VueDraggableResizable);;
 
 Juego5App.use(ZiggyVue);
+Juego5App.component(VueCountdown.name, VueCountdown);
 Juego5App.mount('#juego5');

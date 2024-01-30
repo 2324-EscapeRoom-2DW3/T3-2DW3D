@@ -16,7 +16,7 @@ class Juego extends Model
     protected $primaryKey="id";
 
     protected $fillable = [
-        'tiempo',
+        'tiempo_parts',
         'score',
         'llave',
         'tutorial',

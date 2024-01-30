@@ -1,8 +1,21 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
+        <vue-countdown class="fixed top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+            v-slot="{ days, hours, minutes, seconds }">
+            {{ minutes }}:{{ seconds }}
+        </vue-countdown>
+        <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
+            <input type="hidden" name="_token" :value="csrf">
+            <input type="hidden" name="_method" value="PUT">
+            <input name="tiempo_min" type="hidden" :value="min">
+            <input name="tiempo_sec" type="hidden" :value="sec">
+            <input name="id_juego" type="hidden" :value="yourId">
+        </form>
         <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110 v-step-3"
             @click.prevent="pista" src="../../storage/app/public/images/hint.png" alt="" v-show="toggle === 0">
+            <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+            @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="" v-show="toggle === 0">
         <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
             <div
                 class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -120,12 +133,15 @@
 <script>
 import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
 export default {
 
 
     data() {
         return {
+            routetiempo: document.querySelector('#juego5').dataset.routetiempo,
+            routetiempovalor: document.querySelector('#juego5').dataset.routetiempoval,
             hint_header: 'PISTA 1/1',
             hint_title: 'Askotan gauzak, ez ditugu ikusten lehenengo aldian',
             hint_content: 'Giltza beste gela batean ezkutatuta dago',
@@ -156,12 +172,18 @@ export default {
             areaHeightAbs: 0,
             played: false,
             played2: false,
-
+            min: 29,
+            sec: 60,
+            pendingMin: null,
+            pendingSec: null,
+            tiempoValor: null,
             /*  items: ['draggable0', 'draggable1', 'draggable2', 'draggable3', 'draggable4', 'draggable5', 'draggable6', 'draggable7', 'draggable8', 'draggable9'],            topClasses: ['top-10', 'top-20', 'top-30', 'top-40', 'top-50', 'top-60', 'top-70', 'top-80', 'top-90', 'top-96'], */
 
         };
     },
     mounted() {
+        this.getTiempo();
+
         this.openImage.src =
             "../../../storage/app/public/images/juego5/despacho_blur.png";
         this.getLlaveValor();
@@ -174,6 +196,44 @@ export default {
                  window.location.href = route('juego4.index', { id: route().params });
              }
          }, */
+         
+        updateTime({ days, hours, minutes, seconds }) {
+            this.pendingMin = minutes;
+            this.pendingSec = seconds;
+            this.updateTiempo_db();
+        },
+        updateTiempo_db() {
+            let formData = new FormData(this.$refs.tiempoForm);
+
+            axios.post(this.$refs.tiempoForm.action, formData)
+                .then(response => {
+                    // Update min and sec only when the request completes
+                    this.min = this.pendingMin;
+                    this.sec = this.pendingSec;
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        // .
+        getTiempo() {
+            axios.get(this.routetiempovalor, this.yourId)
+                .then(response => {
+                    this.tiempoValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tiempoValor);
+                    if (this.tiempoValor.tiempo_min != 0 && this.tiempoValor.tiempo_sec != 0) {
+                        this.min = this.tiempoValor.tiempo_min;
+                        this.sec = this.tiempoValor.tiempo_sec;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+         navigateToMenu() {
+            window.location.href = route('menu.index', { id: route().params });
+    },
         pista() {
 
             this.toggle = 4;
@@ -213,7 +273,7 @@ export default {
                     this.played = true;
                     this.mostrar("Se ha abierto!");
                     setTimeout(() => {
-                        window.location.href = route('menu.index', { id: route().params });
+                        window.location.href = route('boss.index', { id: route().params });
 
                     }, 3000);
 

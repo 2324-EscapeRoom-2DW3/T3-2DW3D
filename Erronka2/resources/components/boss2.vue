@@ -8,6 +8,7 @@
 <script>
 import { store } from './store/store'
 import { mapState, mapActions } from 'pinia'
+import route from '../../vendor/tightenco/ziggy';
 
 export default {
     props: {
@@ -67,20 +68,20 @@ export default {
     },
     mounted() {
         this.send_to_terminal = "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "Ez duzu gaindituko" + "\n" + "\n" + "Recuento y detección de E. coli en alimentos";
-     
+
 
     },
     methods: {
         ...mapActions(store, ['incrementar_cont', 'incrementar_ques', 'reset'])
         ,
-        
+
         prompt(value) {
             if (this.played === 0){
                 let audio = new Audio('../../storage/sounds/boss2.mp3');
                 audio.play();
                 this.played = 1;
             }
-            
+
             if (this.questionNumber === 4 && value.toLowerCase().replace(/\s/g, '') === "tsx") {
                 this.incrementar_cont();
 
@@ -107,9 +108,9 @@ export default {
 
                 this.send_to_terminal = "Me... has... vencido... ⚗️...";
 
-                /*  setTimeout(() => {
-                     this.$router.push('/2');
-                 }, 3000); */
+                 setTimeout(() => {
+                    window.location.href = route('creditos.index', { id: route().params });
+                }, 3000);
 
                 this.incrementar_ques();
             } else if (this.questionNumber === 7 && this.contador === 7) {

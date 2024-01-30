@@ -5,7 +5,10 @@
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
-
+        <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
+            :class="dis">
+            <p>{{ displayText }}</p>
+        </div>
         <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
             <input type="hidden" name="_token" :value="csrf">
             <input type="hidden" name="_method" value="PUT">
@@ -14,7 +17,8 @@
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
         <div class="bg-black glow-green text-white mt-56 p-6 rounded-md middle" v-show="isHidden === true">
-            <input v-model="inputText" class="bg-black border-none focus:outline-none active:outline-none text-white p-2 rounded-md" type="text"
+            <input v-model="inputText"
+                class="bg-black border-none focus:outline-none active:outline-none text-white p-2 rounded-md" type="text"
                 placeholder="Kodea idatzi...">
         </div>
         <div class="flex place-content-center justify-center items-center gap-32 pt-20">
@@ -60,6 +64,8 @@ export default {
     }, */
     data() {
         return {
+            displayText: '',
+
             routetiempo: document.querySelector('#menujuego').dataset.routetiempo,
             routetiempovalor: document.querySelector('#menujuego').dataset.routetiempoval,
             contador: 0,
@@ -74,11 +80,22 @@ export default {
             pendingMin: null,
             pendingSec: null,
             isHidden: false,
-            inputText: ''
+            inputText: '',
+            dis: "hidden",
+
 
         };
     },
     methods: {
+        mostrar(text) {
+            this.displayText = text;
+            setTimeout(() => {
+                this.dis = "dissapear_text";
+                setTimeout(() => {
+                    this.dis = "hidden";
+                }, 5000);
+            }, 100);
+        },
         updateTime({ days, hours, minutes, seconds }) {
             this.pendingMin = minutes;
             this.pendingSec = seconds; // Previene el render lag al trigger-ear el updateTiempo_db() cada segundo en axios.post()
@@ -172,16 +189,16 @@ export default {
 /*                     rutaJuego = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
  */                    break;
                 case -1:
-                    rutaJuego = route('juego2');  // Reemplaza 'juego2' con la ruta correcta
+                window.location.href = route('juego2');  // Reemplaza 'juego2' con la ruta correcta
                     break;
                 case -2:
-                    rutaJuego = route('juego1.index', { id: this.yourId });  // Reemplaza 'juego3' con la ruta correcta
+                window.location.href = route('juego1.index', { id: this.yourId });  // Reemplaza 'juego3' con la ruta correcta
                     break;
                 case 1:
-                    rutaJuego = route('juego3');  // Reemplaza 'juego4' con la ruta correcta
+                    this.mostrar("Esta puerta no lleva a ninguna parte... No creo que se esconda aquí...");
                     break;
                 case 2:
-                    rutaJuego = route('juego4.index', { id: this.yourId });  // Reemplaza 'juego5' con la ruta correcta
+                window.location.href = route('juego4.index', { id: this.yourId });  // Reemplaza 'juego5' con la ruta correcta
                     break;
             }
 
@@ -210,13 +227,13 @@ export default {
 
     },
     watch: {
-    inputText(newVal) {
-        if (newVal.toUpperCase() === 'DTZK') {
-            window.location.href = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
+        inputText(newVal) {
+            if (newVal.toUpperCase() === 'DTZK') {
+                window.location.href = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
 
+            }
         }
     }
-  }
 
 }
 

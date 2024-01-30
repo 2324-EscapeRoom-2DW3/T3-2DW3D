@@ -38,7 +38,7 @@ class JuegoCompleto extends Controller
     public function store(/* Request $request */)
     {
         $juego_comp = Juego::create([
-            'tiempo' => 0,
+            'tiempo_parts' => 0,
             'score' => 0,
             'llave' => 0,
             'tutorial' => 0,
