@@ -193,6 +193,7 @@ export default {
             ],
         };
     },
+    
     methods: {
         moveLeft() {
             this.currentIndex = (this.currentIndex - 1 + 26) % 26; // Va de Z a A
@@ -398,7 +399,7 @@ export default {
             console.log("NO COMPLETADO");
             if (this.isDone1 && this.isDone2 && this.isDone3) {
                 console.log("CARTA FINAL");
-            var carta = document.getElementById("carta");
+                let carta = document.querySelector(".carta");
             carta.style.display = "block";
             }
         },
