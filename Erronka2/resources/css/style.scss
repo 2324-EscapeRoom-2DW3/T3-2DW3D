@@ -1,0 +1,17 @@
+//VARIABLES
+$colorHoverLogoutFondo: rgb(252, 252, 252);
+$colorHoverLogoutLetra: rgb(0, 0, 0);
+
+#botonLogout:hover{
+
+
+    background-color: $colorHoverLogoutFondo;
+    color: $colorHoverLogoutLetra;
+    border-radius: 5px;
+    width: 80px;
+    display: flex;
+    justify-content: center;
+
+
+}
+
