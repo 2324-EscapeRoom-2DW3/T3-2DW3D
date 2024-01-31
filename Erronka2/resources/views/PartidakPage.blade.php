@@ -15,7 +15,7 @@
                 <thead class="text-xs uppercase bg-green-700 text-green-200">
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
-                        <th scope="col" class="px-6 py-3">Denbora</th>
+                        <th scope="col" class="px-6 py-3 hidden sm:table-cell">Denbora</th>
                         <th scope="col" class="px-6 py-3">Score</th>
                         <th scope="col" class="px-6 py-3">Ezabatu</th>
 
@@ -27,7 +27,7 @@
                             <td class="px-6 py-4 text-white">
                                 <p>{{ $datoPart->id }}</p>
                             </td>
-                            <td class="px-6 py-4 text-white">
+                            <td class="px-6 py-4 text-white hidden sm:table-cell">
                                 <p>{{ $datoPart->tiempo }}</p>
                             </td>
                             <td class="px-6 py-4 text-white">

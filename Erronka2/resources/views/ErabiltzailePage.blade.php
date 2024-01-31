@@ -15,7 +15,7 @@
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
                         <th scope="col" class="px-6 py-3">Izena</th>
-                        <th scope="col" class="px-6 py-3 sm:table-cell">Email</th>
+                        <th scope="col" class="px-6 py-3 hidden sm:table-cell">Email</th>
                         <th scope="col" class="px-6 py-3">Ezabatu</th>
                         <th></th>
                     </tr>
@@ -122,7 +122,7 @@
             {{ $datosErab->links() }}
         </div>
 
-        
+
 
         @include('partials.footer')
     </body>
