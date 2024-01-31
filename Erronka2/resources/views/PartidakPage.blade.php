@@ -12,7 +12,7 @@
         <div class="h-1/2 bg-black w-full bg-full bg-no-repeat bg-center relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
             <a class="text-white" href="{{route('adminpage')}}">MENU</a>
             <table class="w-full text-sm text-left rtl:text-right text-green-400">
-                <thead class="text-xs uppercase bg-green-700 text-green-400">
+                <thead class="text-xs uppercase bg-green-700 text-green-200">
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
                         <th scope="col" class="px-6 py-3">Denbora</th>
@@ -24,13 +24,13 @@
                 <tbody>
                     @foreach ($datosPart as $datoPart)
                         <tr class="border-b bg-green-800 border-green-700">
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-white">
                                 <p>{{ $datoPart->id }}</p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-white">
                                 <p>{{ $datoPart->tiempo }}</p>
                             </td>
-                            <td class="px-6 py-4">
+                            <td class="px-6 py-4 text-white">
                                 <p>{{ $datoPart->score }}</p>
                             </td>
 

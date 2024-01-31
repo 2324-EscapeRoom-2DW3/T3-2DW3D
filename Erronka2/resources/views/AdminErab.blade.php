@@ -8,7 +8,7 @@
     @include('partials.header')
 
 
-    <div class="bg-black w-full bg-full bg-no-repeat bg-center relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
+    <div class="h-1/2 bg-black w-full bg-full bg-no-repeat bg-center relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
         <a class="text-white" href="{{route('adminpage')}}">MENU</a>
         <table class="w-full text-sm text-left rtl:text-right text-green-400">
             <thead class="text-xs uppercase bg-green-700 text-green-200">
@@ -109,12 +109,11 @@
                     </tbody>
                 </table>
 
+                {{ $datosAdmin->links() }}
             </div>
         </div>
 
-        <div>
-            {{ $datosAdmin->links() }}
-        </div>
+
 
         @include('partials.footer')
     </body>
