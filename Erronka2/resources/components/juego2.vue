@@ -1,5 +1,4 @@
 <template>
-
     <!-- <div id="fondoJuego" class="relative min-h-screen flex items-center justify-center bg-cover bg-no-repeat bg-center" style="background-image: url('../../storage/app/public/images/juego2/fondo.png');">
     <button class="botoi fixed  transform  bg-transparent border-none p-0 focus:outline-none" @click.prevent="aparecerPizarra">
         <img id="pizarra" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="Botón con imagen" class="w-96 opacity-50 h-32 ">
@@ -7,23 +6,36 @@
     <!-- </div> -->
     <img id="fondo" @click.prevent="clickFondo" src="../../storage/app/public/images/juego2/fondo.png" alt=""
         class="fondo" />
-
+    <vue-countdown
+        class="fixed contador_letra  mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl"
+        :time="(1 * min * 60 + sec) * 1000" @progress="updateTime" v-slot="{ days, hours, minutes, seconds }">
+        {{ minutes }}:{{ seconds }}
+    </vue-countdown>
+    <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
+        <input type="hidden" name="_token" :value="csrf">
+        <input type="hidden" name="_method" value="PUT">
+        <input name="tiempo_min" type="hidden" :value="min">
+        <input name="tiempo_sec" type="hidden" :value="sec">
+        <input name="id_juego" type="hidden" :value="yourId">
+    </form>
     <img id="pizarra-rota" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="" class="pizarra-rota" />
     <img id="botella" src="../../storage/app/public/images/juego2/botellas.png" alt="" class="botella" />
     <img id="close" class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden" @click="close"
         src="../../storage/app/public/images/juego2/close.png" alt="" />
 
 
-<!-- PARA COMPONENTE -->
-<img class="carta absolute w-2/3  none" @click="activarAnimacion" src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
-<div class="letra">
-    <p  class="letra-carta" id="letra-carta">T</p>
-</div>
+    <!-- PARA COMPONENTE -->
+    <img class="carta absolute w-2/3  none" @click="activarAnimacion"
+        src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
+    <div class="letra">
+        <p class="letra-carta" id="letra-carta">T</p>
+    </div>
 
-<div>
-<a href="rutaDestino"></a>
-<img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
-            @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir"></div>
+    <div>
+        <a href="rutaDestino"></a>
+        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+            @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir">
+    </div>
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
         <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
             <div class="number-input">
@@ -170,6 +182,7 @@
 
 <script>
 import route from '../../vendor/tightenco/ziggy';
+import VueCountdown from '@chenfengyuan/vue-countdown';
 
 export default {
     data() {
@@ -177,10 +190,18 @@ export default {
             isVibrando1: false,
             isVibrando2: false,
             isVibrando3: false,
-
+            csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+            min: 29,
+            sec: 60,
+            pendingMin: null,
+            pendingSec: null,
+            tiempoValor: null,
+            routetiempo: document.querySelector('#juego2').dataset.routetiempo,
+            routetiempovalor: document.querySelector('#juego2').dataset.routetiempoval,
             isDone1: false,
             isDone2: false,
             isDone3: false,
+            yourId: route().params,
 
             // rutaDestino: route('menujuego'),
 
@@ -195,11 +216,50 @@ export default {
             ],
         };
     },
-    
+    mounted() {
+        this.getTiempo();
+    },
+
+
     methods: {
+
+        updateTime({ days, hours, minutes, seconds }) {
+            this.pendingMin = minutes;
+            this.pendingSec = seconds;
+            this.updateTiempo_db();
+        },
+        updateTiempo_db() {
+            let formData = new FormData(this.$refs.tiempoForm);
+
+            axios.post(this.$refs.tiempoForm.action, formData)
+                .then(response => {
+                    // Update min and sec only when the request completes
+                    this.min = this.pendingMin;
+                    this.sec = this.pendingSec;
+                    console.log(response);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+        // .
+        getTiempo() {
+            axios.get(this.routetiempovalor, this.yourId)
+                .then(response => {
+                    this.tiempoValor = response.data; // Store the value of llave in llaveValor
+                    console.log(this.tiempoValor);
+                    if (this.tiempoValor.tiempo_min != 0 && this.tiempoValor.tiempo_sec != 0) {
+                        this.min = this.tiempoValor.tiempo_min;
+                        this.sec = this.tiempoValor.tiempo_sec;
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
         navigateToMenu() {
             window.location.href = route('menu.index', { id: route().params });
-    },
+        },
         moveLeft() {
             this.currentIndex = (this.currentIndex - 1 + 26) % 26; // Va de Z a A
             this.updateInput();
@@ -282,8 +342,8 @@ export default {
             fondo.style.filter = "blur(0px)";
             botella.style.display = "none";
             mostrarJuegoBotellas.style.display = "none";
-                carta.style.display = "none";
-                letra.style.display = "none";
+            carta.style.display = "none";
+            letra.style.display = "none";
 
 
         },
@@ -389,7 +449,7 @@ export default {
 
             if (
                 this.result1_1 === "K" && this.result1_2 === "I" && this.result1_3 === "A" &&
-                this.result2_1 === "M" && this.result2_2 === "C" && this.result2_3 === "P"&&
+                this.result2_1 === "M" && this.result2_2 === "C" && this.result2_3 === "P" &&
                 this.result3_1 === "T" && this.result3_2 === "S" && this.result3_3 === "C"
             ) {
 
@@ -400,12 +460,12 @@ export default {
             }
         },
 
-        CartaFinal(){
+        CartaFinal() {
             console.log("NO COMPLETADO");
             if (this.isDone1 && this.isDone2 && this.isDone3) {
                 console.log("CARTA FINAL");
                 let carta = document.querySelector(".carta");
-            carta.style.display = "block";
+                carta.style.display = "block";
             }
         },
 
@@ -420,7 +480,7 @@ export default {
                 letra.style.display = "block";
                 mostrarJuegoBotellas.style.display = "none";
 
-                }, 500);
+            }, 500);
         },
 
         toggleVibracion() {

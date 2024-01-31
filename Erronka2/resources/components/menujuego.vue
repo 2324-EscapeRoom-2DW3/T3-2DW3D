@@ -1,7 +1,7 @@
 <template>
     <div id="fondoJuego" class="fondoJuego min-h-screen bg-cover bg-no-repeat bg-center"
         style="background-image: url('../../../storage/app/public/images/menu/fondo-menu.png'); ">
-        <vue-countdown class="middle text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+        <vue-countdown class="fixed contador_letra  mt-60 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
@@ -228,7 +228,7 @@ export default {
     },
     watch: {
         inputText(newVal) {
-            if (newVal.toUpperCase() === 'DTZK') {
+            if (newVal.toUpperCase() === 'DTZ') {
                 window.location.href = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
 
             }

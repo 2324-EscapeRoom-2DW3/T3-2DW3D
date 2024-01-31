@@ -109,7 +109,7 @@ export default {
         return {
             myCallbacks: {
                 onFinish: this.myCustomonFinishCallback,
-            },  
+            },
             isHidden: false,
 
             elementos: [],
@@ -143,7 +143,7 @@ export default {
             this.$refs.scoreForm.submit();
         },
 
-      
+
         handleClick(element, bool) {
             this.clicked_times++;
             if (this.clicked_times > 1) {
@@ -228,7 +228,7 @@ export default {
             const url_image = `https://api.rsc.org/compounds/v1/records/${randomNumber}/image`;
             const options = {
                 headers: {
-                    apikey: 'EmZo0m6sGO0XQkqJLIG8Z9G6OJgADMX9',
+                    apikey: 'VMjIXT9AO28wV4NdhY0T16BpB21CcQ6Y',
                     Accept: 'application/json',
                 },
             };

@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <vue-countdown class="fixed top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+        <vue-countdown class="fixed contador_letra top-0 left-0 mt-12 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
@@ -196,7 +196,7 @@ export default {
                  window.location.href = route('juego4.index', { id: route().params });
              }
          }, */
-         
+
         updateTime({ days, hours, minutes, seconds }) {
             this.pendingMin = minutes;
             this.pendingSec = seconds;
