@@ -67,10 +67,12 @@
       @if(!isset($valor))
       <a href="{{ url('/perfilIndex') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
       </a>
-      <form action="{{ route('logout') }}" method="POST">
+      <div id="botonLogout">
+      <form action="{{ route('logout2') }}" method="POST">
         @csrf
       <input type="submit" value="LogOut">
       </form>
+      </div>
       @else
       <a href="{{ url('/profile') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
       </a>
