@@ -30,7 +30,7 @@
                 </a>
             </div>
 
-            <div class="w-full mt-6 px-6 py-4  shadow-md overflow-hidden rounded-lg">
+            <div class="lg:w-full mt-6 lg:px-6 py-4  shadow-md lg:overflow-hidden rounded-lg">
                 {{ $slot }}
             </div>
         </div>
