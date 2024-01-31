@@ -3,7 +3,7 @@
         <div class=" container flex justify-between gap-10 " id="container">
 
             <div
-                class="lg:block hidden  border-lime-300 half-width bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green">
+                class="block  border-lime-300 half-width bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green">
 
                 <h1 class=" pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">
                     ERREGISTROA EGIN</h1>
@@ -80,7 +80,7 @@
             </div>
 
                 <div
-                    class=" block  half-width border-lime-300 ml-44 h-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green ">
+                    class=" lg:block hidden  half-width border-lime-300 ml-44 h-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green ">
                     <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">
                         SAIOA HASI</h1>
 
