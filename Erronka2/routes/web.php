@@ -12,6 +12,7 @@ use App\Http\Controllers\Juego5Controller;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CreditosFinales;
+use App\Http\Controllers\MyAuthenticatedSessionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -110,5 +111,7 @@ Route::get('juegos/creditos/update/{id}', [CreditosFinales::class, 'update'])->n
 Route::get('/perfilIndex', [ProfileController::class, 'index'])->name('profile.index');
 
 Route::delete('/borrar-juego/{id}', [PerfilController::class, 'destroy'])->name('juego.borrar');
+
+Route::post('/logout', [MyAuthenticatedSessionController::class, 'destroy'])->name('logout2');
 
 

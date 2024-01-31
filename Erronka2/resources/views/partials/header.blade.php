@@ -68,7 +68,7 @@
       <a href="{{ url('/perfilIndex') }}" class="mr-5 underline-spacing"><?php echo Auth::user()->name; ?>
       </a>
       <div id="botonLogout">
-      <form action="{{ route('logout') }}" method="POST">
+      <form action="{{ route('logout2') }}" method="POST">
         @csrf
       <input type="submit" value="LogOut">
       </form>
