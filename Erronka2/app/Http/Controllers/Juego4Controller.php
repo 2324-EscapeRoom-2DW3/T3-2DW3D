@@ -20,7 +20,7 @@ class Juego4Controller extends Controller
     public function index($id)
     {
 
-        return view('juegos/juego4.index', ['id' => $id]);
+        return view('juegos/juego4.index', compact('id'));
 /*         return view('juegos/juego4.show', ['id' => $id]); */
 
 }
@@ -29,7 +29,7 @@ class Juego4Controller extends Controller
 
     public function show($id)
     {
-        return view('juegos/juego4.show', ['id' => $id]);
+        return view('juegos/juego4.show', compact('id'));
     }
 
 
