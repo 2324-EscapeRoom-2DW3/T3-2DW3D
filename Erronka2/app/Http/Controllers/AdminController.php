@@ -17,7 +17,7 @@ class AdminController extends Controller
 
     public function obtenerDatosErab()
     {
-        $datosErab = User::all();
+
         $datosPart = Juego::all();
         $datosErab = User::where('rol', 0)->paginate(5);
 
@@ -29,7 +29,7 @@ class AdminController extends Controller
 
     public function obtenerDatosAdmin()
     {
-        $datosAdmin = User::all();
+
 
         $datosAdmin = User::where('rol', 1)->paginate(5);
 

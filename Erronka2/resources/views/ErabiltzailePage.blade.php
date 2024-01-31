@@ -119,11 +119,10 @@
                     @endforeach
                 </tbody>
             </table>
-        </div>
-
-        <div>
             {{ $datosErab->links() }}
         </div>
+
+        
 
         @include('partials.footer')
     </body>
