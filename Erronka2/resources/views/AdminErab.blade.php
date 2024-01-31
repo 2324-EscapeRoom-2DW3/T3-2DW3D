@@ -9,7 +9,7 @@
 
         <p>Erabiltzaileak</p>
 
-        <div class="overflow-x-auto shadow-md sm:rounded-lg pt-10">
+        <div class="overflow-x-auto shadow-md sm:rounded-lg pt-10 bg-black">
             <div class="table-responsive">
                 <table class="w-full text-sm text-left rtl:text-right text-green-400 whitespace-nowrap">
                     <thead class="text-xs uppercase bg-green-700 text-green-400">
