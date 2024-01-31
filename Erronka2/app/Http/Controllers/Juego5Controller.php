@@ -13,7 +13,7 @@ class Juego5Controller extends Controller
      */
     public function index($id)
     {
-        return view('juegos/juego5.index', ['id' => $id]);
+        return view('juegos/juego5.index', compact('id'));
     }
 
     /**

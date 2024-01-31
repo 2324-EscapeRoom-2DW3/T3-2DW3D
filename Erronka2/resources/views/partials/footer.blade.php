@@ -47,7 +47,7 @@
                 </span>
             </div>
             <div class="w-full md:w-1/5 mb-10 md:mb-0 mt-12 z-50 sm:mt-5 sm:ml-5 flex items-center justify-center">
-                <div class="ml-15">
+                <div class="mr-20">
                     <h2 class="title-font font-medium text-white-900 mb-3 text-xl">ACE<span class="text-lime-400">RCA</span></h2>
                     <nav class="list-disc mb-10">
                         <li class="pb-3">
@@ -90,7 +90,7 @@
     </div>
     <div class="relative z-10 bg-green-700">
         <div class="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row z-10">
-            <p class=" text-white-500 text-sm text-center sm:text-left">© 2020 QUIMMICA
+            <p class=" text-white-500 text-sm text-center sm:text-left">© 2024 QUIMMICA fptxurdinaga
             </p>
 
         </div>

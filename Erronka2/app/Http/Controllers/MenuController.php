@@ -12,7 +12,7 @@ class MenuController extends Controller
      */
     public function index($id)
     {
-        return view('juegos/menu.index', ['id' => $id]);
+        return view('juegos/menu.index', compact('id'));
     }
 
     /**

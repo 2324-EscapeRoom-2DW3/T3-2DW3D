@@ -37,12 +37,29 @@ _QUIMMICA_ ihesak zailtasun-maila moderatua du, trebetasun logikoak eta kimikako
 **Coming Soon** 
 **Prueba Soon** 
 
-
+# :shield: Instalazioa
+1. Laravel proiektua beheratu github-etik.
+2. Terminala ireki (Ctrl + ñ)
+3. Proiektuan sartu (cd “Erronka2”)
+4. composer install
+5. cp .env.example .env
+6. php artisan key:generate
+7. php artisan migrate
+8. php artisan db:seed
+“node_modules” egin:
+1. Laravel proiektua beheratu github-etik.
+2. Terminala ireki (Ctrl + ñ)
+3. Proiektuan sartu (cd “Erronka2”)
+4. 	npm install
 
 npm install --save vue-draggable-resizable
 npm install -i
 composer require tightenco/ziggy
+php artisan migrate:fresh
+php artisan storage:link
 
+npm run dev
+php artisan serve
 
 
 
