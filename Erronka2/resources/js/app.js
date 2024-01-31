@@ -83,6 +83,8 @@ Juego3App.mount('#juego3');
 
 const Juego2App = createApp(Juego2);
 Juego2App.use(ZiggyVue);
+Juego2App.component(VueCountdown.name, VueCountdown);
+
 Juego2App.mount('#juego2');
 
 

@@ -69,5 +69,6 @@ class Kernel extends HttpKernel
     protected $routeMiddleware = [
         // ...
         'checkgame' => \App\Http\Middleware\CheckGame::class,
+        'checkllave' => \App\Http\Middleware\Checkllave::class,
     ];
 }

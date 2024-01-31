@@ -1,7 +1,7 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <vue-countdown class="fixed top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+        <vue-countdown class="fixed contador_letra mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
@@ -13,6 +13,8 @@
             <input name="tiempo_sec" type="hidden" :value="sec">
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
+        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+            @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir">
         <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
             <div
                 class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
@@ -276,7 +278,9 @@ export default {
     },
 
     methods: {
-
+        navigateToMenu() {
+            window.location.href = route('menu.index', { id: route().params });
+        },
         updateTime({ days, hours, minutes, seconds }) {
             this.pendingMin = minutes;
             this.pendingSec = seconds;

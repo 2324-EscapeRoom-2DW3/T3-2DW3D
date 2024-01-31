@@ -107,10 +107,11 @@ export default {
                 this.incrementar_cont();
 
                 this.send_to_terminal = "Me... has... vencido... ⚗️...";
-
+                let audio = new Audio('../../storage/sounds/kill.mp3');
+                audio.play();
                  setTimeout(() => {
                     window.location.href = route('creditos.index', { id: route().params });
-                }, 3000);
+                }, 3500);
 
                 this.incrementar_ques();
             } else if (this.questionNumber === 7 && this.contador === 7) {
