@@ -1,4 +1,4 @@
-@extends('layout.plantilla2')
+@extends('layout.plantilla3')
 
 @section('title', 'AdminPage')
 
@@ -6,19 +6,17 @@
 
     <body >
         @include('partials.header')
-        {{-- @auth --}}
+        @auth
 
-        {{-- @if (Auth::user()->rol == 1) --}}
-        {{-- <h1>ONGI ETORRI {{ Auth::user()->name }}</h1> --}}
-        <p>Partidak</p>
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
+        @if (Auth::user()->rol == 1)
+        <div class="h-1/2 bg-black w-full bg-full bg-no-repeat bg-center relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
+            <a class="text-white" href="{{route('adminpage')}}">MENU</a>
             <table class="w-full text-sm text-left rtl:text-right text-green-400">
                 <thead class="text-xs uppercase bg-green-700 text-green-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
                         <th scope="col" class="px-6 py-3">Denbora</th>
                         <th scope="col" class="px-6 py-3">Score</th>
-                        <th scope="col" class="px-6 py-3">Izena</th>
                         <th scope="col" class="px-6 py-3">Ezabatu</th>
 
                     </tr>
@@ -35,22 +33,17 @@
                             <td class="px-6 py-4">
                                 <p>{{ $datoPart->score }}</p>
                             </td>
-                            @php
-                                $usuario = App\Models\User::find($datoPart->id_usuario);
-                            @endphp
-                            <td class="px-6 py-4">
-                                <p>{{ $usuario->name }}</p>
-                            </td>
+
                             <td>
                                 <x-danger-button x-data=""
                                         x-on:click.prevent="$dispatch('open-modal', 'confirm-perfilAdminUser-deletion-{{ $datoPart->id }}')">
-                                        <p>Ezabatu kontua</p>
+                                        <p>Ezabatu partida</p>
                                     </x-danger-button>
 
                                     <x-modal name="confirm-perfilAdminUser-deletion-{{ $datoPart->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                         focusable>
                                         <form method="post" action="{{ route('adminpagePart.destroy', $datoPart->id) }}"
-                                            class="p-6">
+                                            class="p-4 bg-green-800">
                                             @csrf
                                             @method('delete')
 
@@ -80,15 +73,17 @@
                     @endforeach
                 </tbody>
             </table>
+            {{ $datosPart->links() }}
         </div>
 
 
-    {{-- @else
+
+     @else
         <h1>ADMIN IZAN BEHAR ZARA</h1>
             @endif
     @else
         <h1>ADMIN IZAN BEHAR ZARA</h1>
-    @endauth --}}
+    @endauth
     @include('partials.footer')
 </body>
 

@@ -1,38 +1,36 @@
-@extends('layout.plantilla2')
+@extends('layout.plantilla3')
 
 @section('title', 'AdminPage')
 
 @section('content')
 
-    <body>
-        @include('partials.header')
+<body>
+    @include('partials.header')
 
-        <p>Erabiltzaileak</p>
+        <div class="h-1/2 bg-black w-full bg-full bg-no-repeat bg-center relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
+            <a class="text-white" href="{{route('adminpage')}}">MENU</a>
 
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg pt-10">
             <table class="w-full text-sm text-left rtl:text-right text-green-400">
-                <thead class="text-xs uppercase bg-green-700 text-green-400">
+                <thead class="text-xs uppercase bg-green-700 text-green-200">
                     <tr>
                         <th scope="col" class="px-6 py-3">ID</th>
                         <th scope="col" class="px-6 py-3">Izena</th>
-                        <th scope="col" class="px-6 py-3">Email</th>
+                        <th scope="col" class="px-6 py-3 sm:table-cell">Email</th>
                         <th scope="col" class="px-6 py-3">Ezabatu</th>
-
-
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($datosErab as $datoErab)
                         @if ($datoErab->rol == 0)
-                            <tr class="border-b bg-green-800 border-green-700">
-                                <td class="px-6 py-4">
+                            <tr class=" bg-green-800 border-green-700">
+                                <td class="px-6 py-4 text-white">
                                     <p>{{ $datoErab->id }}</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 text-white">
                                     <p>{{ $datoErab->name }}</p>
                                 </td>
-                                <td class="px-6 py-4">
+                                <td class="px-6 py-4 text-white hidden sm:table-cell">
                                     <p>{{ $datoErab->email }}</p>
                                 </td>
                                 <td>
@@ -44,7 +42,7 @@
                                     <x-modal name="confirm-perfilAdminUser-deletion-{{ $datoErab->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                         focusable>
                                         <form method="post" action="{{ route('adminpageErab.destroy', $datoErab->id) }}"
-                                            class="p-6">
+                                            class="p-4 bg-green-800">
                                             @csrf
                                             @method('delete')
 
@@ -79,7 +77,7 @@
                                     <x-modal name="confirm-perfilAdminUser-updaterol-{{ $datoErab->id }}" :show="$errors->userDeletion->isNotEmpty()"
                                         focusable>
                                         <form method="post" action="{{ route('adminpageErab.updateRole', $datoErab->id) }}"
-                                            class="p-6">
+                                            class="p-4 bg-green-800">
                                             @csrf
                                             @method('patch')
 

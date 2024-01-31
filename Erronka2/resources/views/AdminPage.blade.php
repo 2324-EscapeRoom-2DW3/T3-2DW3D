@@ -8,7 +8,6 @@
 
         @include('partials.header')
 
-        <h1 class="pb-52 absolute text-2xl border-black border-spacing-5 text-white  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">Ongi etorri AdminPage orrialdera</h1>
 
         @auth
              @if (Auth::user()->rol == 1)

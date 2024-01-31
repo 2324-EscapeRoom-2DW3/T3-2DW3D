@@ -42,10 +42,9 @@ class AdminController extends Controller
     public function obtenerDatosPart()
     {
         $datosErab = User::all();
-        $datosPart = Juego::all();
 
-        // dd($datos);
-
+        $datosPart = Juego::paginate(5);
+        // dd($datosPart);
 
         return view('PartidakPage', ['datosErab' => $datosErab, 'datosPart' => $datosPart]);
     }
