@@ -71,7 +71,7 @@
                 </div>
             </form>
         </div>
-        <div class=" block  half-width border-lime-300 lg:ml-44 h-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green
+        <div class=" block  half-width border-lime-300 ml-44 h-full bg-gray-700 rounded-md bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-30 glow-green
         ">
         <h1 class="pt-6 text-center text-2xl italic font-inter opacity-90 block font-medium text-white">SAIOA HASI</h1>
         <a class=" lg:hidden block text-center mr-4 underline text-sm text-gray-400  hover:text-gray-100 "

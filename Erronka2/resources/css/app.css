@@ -3,27 +3,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 /* Your other CSS rules */
-.exit {
+.exit{
     width: 5%;
     top: 0vh;
     left: 0%;
 
 }
-
 @font-face {
     font-family: 'Digital Numbers Regular';
     font-style: normal;
     font-weight: normal;
     src: local('Digital Numbers Regular'), url('../../public/fonts/DigitalNumbers-Regular.woff') format('woff');
-}
+    }
 
-.contador_letra {
-    font-family: 'Digital Numbers Regular';
-    font-size: 40px;
-    text-align: center;
-}
 
 /* PIZARRAAAA */
 .fondo {
@@ -148,17 +141,16 @@
 
 }
 
-.activarAnimacion {
+.activarAnimacion{
     transform: translate(150%, -125%) scale(1.2);
 }
 
-.letra-carta {
+.letra-carta{
     position: absolute;
     font-size: 100px;
     display: none;
 }
-
-.letra {
+.letra{
 
     padding-top: 20%;
     display: flex;

@@ -63,7 +63,6 @@ Route::get('/guri', function () {
 Route::get('juegos/menu/{id}', [MenuController::class, 'index'])->name('menu.index')->middleware('checkgame');
 
 
-
 /* Route::get('juegos/juego2', function () {
     return view('juegos/juego2/index');
 })->name('juego2');
@@ -105,7 +104,7 @@ Route::put('juegos/juego4/tutorial/{id}', [Juego4Controller::class, 'tutorial'])
 Route::get('juegos/juego5/{id}', [Juego5Controller::class, 'index'])->name('juego5.index')->middleware('checkgame');
 Route::get('juegos/juego5/llave/{id}', [Juego5Controller::class, 'keyvalue'])->name('juego5.keyvalue')->middleware('checkgame');
 
-Route::get('juegos/boss/{id}', [BossController::class, 'index'])->name('boss.index')->middleware(['checkgame', 'checkllave']);
+Route::get('juegos/boss/{id}', [BossController::class, 'index'])->name('boss.index')->middleware('checkgame');
 
 Route::get('juegos/creditos/{id}', [CreditosFinales::class, 'index'])->name('creditos.index')->middleware('checkgame');
 Route::get('juegos/creditos/update/{id}', [CreditosFinales::class, 'update'])->name('creditos.update')->middleware('checkgame');

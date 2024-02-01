@@ -75,7 +75,7 @@
                                         </form>
                                         <div id="campoCosas" class="info-button">
                                             <!-- aqui hay q hacer un if para los botones completado o continuar -->
-                                            <a class="continuar" href="{{ route('menu.index', ['id' => $juego->id]) }}">Continuar</a>
+                                            <a class="continuar" href="">Continuar</a>
 
                                             <!-- poner el link de la partida en el href -->
                                             <!--<a class="completado">Completado</a>-->
