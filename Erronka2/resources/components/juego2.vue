@@ -6,7 +6,7 @@
     <!-- </div> -->
     <img id="fondo" @click.prevent="clickFondo" src="../../storage/app/public/images/juego2/fondo.png" alt=""
         class="fondo" />
-    <vue-countdown
+        <vue-countdown
         class="fixed contador_letra  mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl"
         :time="(1 * min * 60 + sec) * 1000" @progress="updateTime" v-slot="{ days, hours, minutes, seconds }">
         {{ minutes }}:{{ seconds }}
@@ -38,6 +38,7 @@
     </div>
     <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
         <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
+       
             <div class="number-input">
                 <button class="btn-decrement b-botoi" @click="changeValue(-1, 'letterInput1_1')" :disabled="inputsBlocked">
                     &#8595;
@@ -202,7 +203,7 @@ export default {
             isDone2: false,
             isDone3: false,
             yourId: route().params,
-
+            toggle : 1,
             // rutaDestino: route('menujuego'),
 
 
@@ -224,10 +225,13 @@ export default {
     methods: {
 
         updateTime({ days, hours, minutes, seconds }) {
+        if (this.toggle === 1) {
             this.pendingMin = minutes;
             this.pendingSec = seconds;
             this.updateTiempo_db();
-        },
+        }
+    },
+          
         updateTiempo_db() {
             let formData = new FormData(this.$refs.tiempoForm);
 
@@ -313,6 +317,7 @@ export default {
                     }
 
                     if (i == 1) {
+                        this.toggle = 0;
                         var mostrarJuegoBotellas = document.getElementById("botones");
                         var botella = document.getElementById("botella");
                         var close = document.getElementById("close");
@@ -328,6 +333,8 @@ export default {
         },
 
         close() {
+            this.toggle = 1;
+
             var mostrarJuegoBotellas = document.getElementById("botones");
             var close = document.getElementById("close");
             var pizarra = document.getElementById("pizarra-rota");
