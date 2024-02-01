@@ -29,9 +29,8 @@
                             </div>
                         </summary>
                         <p class="text-xs pt-3 text-white">
-                            Yes, in order to use My Page, you must allow the use of cookies in
-                            your browser.<br /><br />
-                            See also: What is a cookie and what does it do?
+                            Bai, Ondo nago.<br /><br />
+                            Web responsive-da: Zer da cookie bat?
                         </p>
                     </details>
                     <details
@@ -46,9 +45,8 @@
                             </div>
                         </summary>
                         <p class="text-xs pt-3 text-white">
-                            Yes, in order to use My Page, you must allow the use of cookies in
-                            your browser.<br /><br />
-                            See also: What is a cookie and what does it do?
+                          Jolasteko saioa hasi behar duzu eta klik egin Play botoian<br /><br />
+                            Baita ere ikuzi: Non jolastu?
                         </p>
                     </details>
                     <details
@@ -63,9 +61,8 @@
                             </div>
                         </summary>
                         <p class="text-xs pt-3 text-white">
-                            Yes, in order to use My Page, you must allow the use of cookies in
-                            your browser.<br /><br />
-                            See also: What is a cookie and what does it do?
+                            Pasahitza ahaztuz gero, email bat jasoko duzu<br /><br />
+                            Baita ere ikuzi: Non jolastu?
                         </p>
                     </details>
                     <details
@@ -80,9 +77,8 @@
                             </div>
                         </summary>
                         <p class="text-xs pt-3 text-white">
-                            Yes, in order to use My Page, you must allow the use of cookies in
-                            your browser.<br /><br />
-                            See also: What is a cookie and what does it do?
+                           Jolasak, jolasa atalean aurkitzen dira, edo nire perfilan, hor puntuazio ikusi ahal duzu<br /><br />
+                           Baita ere ikuzi: Nola jolastu?
                         </p>
                     </details>
                     <details
@@ -97,9 +93,8 @@
                             </div>
                         </summary>
                         <p class="text-xs pt-3 text-white">
-                            Yes, in order to use My Page, you must allow the use of cookies in
-                            your browser.<br /><br />
-                            See also: What is a cookie and what does it do?
+                          Erabiltzaile bat sortzeko, erregistratu<br /><br />
+                          Baita ere ikuzi: Zer jolastu?
                         </p>
                     </details>
                 </div>
