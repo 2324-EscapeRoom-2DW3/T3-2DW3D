@@ -12,7 +12,7 @@ import Menu from '../components/menujuego.vue';
 import Juego2 from '../components/juego2.vue';
 import Juego3 from '../components/juego3.vue';
 import Vue3Tour from 'vue3-tour';
-
+import Juego6 from '../components/juego6.vue';
 import 'vue3-tour/dist/vue3-tour.css';
 import Juego4 from '../components/3raya.vue';
 import Juego5 from '../components/despacho.vue';
@@ -98,3 +98,12 @@ const Juego5App = createApp({
 Juego5App.use(ZiggyVue);
 Juego5App.component(VueCountdown.name, VueCountdown);
 Juego5App.mount('#juego5');
+
+const juego6 = createApp({
+    components: {
+        Juego6,
+    },
+}).component("vue-draggable-resizable", VueDraggableResizable);
+juego6.use(ZiggyVue).use(pinia);
+juego6.component(VueCountdown.name, VueCountdown);
+juego6.mount('#juego6');

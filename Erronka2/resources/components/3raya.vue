@@ -13,7 +13,7 @@
             <input name="tiempo_sec" type="hidden" :value="sec">
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
-        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110"
             @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir">
         <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
             <div
@@ -252,7 +252,7 @@ export default {
                 },
                 {
                     target: '[data-v-step="2"]',
-                    content: 'Birritan konprobatu dena, gauza ezkutuak egon daikezke',
+                    content: 'Birritan konprobatu dana',
                     params: {
                         placement: 'top'
                     }
@@ -438,7 +438,7 @@ export default {
                         let intervalId = setInterval(() => {
                             this.toggle = this.toggle === 3 ? 0 : 3;
                             count++;
-                            if (count === 6) {
+                            if (count === 3) {
                                 clearInterval(intervalId);
                                 this.toggle = 3;
                             }

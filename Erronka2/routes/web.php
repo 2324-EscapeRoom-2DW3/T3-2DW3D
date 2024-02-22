@@ -13,7 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CreditosFinales;
 use App\Http\Controllers\MyAuthenticatedSessionController;
-
+use App\Http\Controllers\Juego6Controller;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -104,6 +104,7 @@ Route::get('juegos/juego4/tutorialvalue/{id}', [Juego4Controller::class, 'tutori
 Route::put('juegos/juego4/tutorial/{id}', [Juego4Controller::class, 'tutorial'])->name('juego4.tutorial')->middleware('checkgame');
 Route::get('juegos/juego5/{id}', [Juego5Controller::class, 'index'])->name('juego5.index')->middleware('checkgame');
 Route::get('juegos/juego5/llave/{id}', [Juego5Controller::class, 'keyvalue'])->name('juego5.keyvalue')->middleware('checkgame');
+Route::get('juegos/juego6/{id}', [Juego6Controller::class, 'index'])->name('juego6.index')->middleware('checkgame');
 
 Route::get('juegos/boss/{id}', [BossController::class, 'index'])->name('boss.index')->middleware(['checkgame', 'checkllave']);
 

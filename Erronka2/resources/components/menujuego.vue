@@ -195,7 +195,7 @@ export default {
                 window.location.href = route('juego1.index', { id: this.yourId });  // Reemplaza 'juego3' con la ruta correcta
                     break;
                 case 1:
-                    this.mostrar("Esta puerta no lleva a ninguna parte... No creo que se esconda aquí...");
+                window.location.href = route('juego6.index', { id: this.yourId });  // Reemplaza 'juego3' con la ruta correcta
                     break;
                 case 2:
                 window.location.href = route('juego4.index', { id: this.yourId });  // Reemplaza 'juego5' con la ruta correcta
