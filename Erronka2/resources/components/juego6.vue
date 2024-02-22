@@ -1,10 +1,17 @@
 <template>
     <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <vue-countdown class="fixed contador_letra mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
-            v-slot="{ days, hours, minutes, seconds }">
+        <vue-countdown
+            class="fixed contador_letra mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl"
+            :time="(1 * min * 60 + sec) * 1000" @progress="updateTime" v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
+        <vue-draggable-resizable class="flex items-center justify-center" ref="draggable4" v-show="luz_valor === true"
+            :class="{ 'pointer-events-none': isPointerEventsNone }" @dragging="onDragging" @drag-stop="onDragStop">
+            <img src="../../storage/app/public/images/juego6/black23.png" alt=""
+                style="max-width: none; width: 13300px; max-height: none; height: 10000px;" />
+        </vue-draggable-resizable>
+
 
         <form ref="tiempoForm" method="POST" :action="routetiempo" enctype="multipart/form-data">
             <input type="hidden" name="_token" :value="csrf">
@@ -49,17 +56,62 @@
         <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
             @click.prevent="pista" src="../../storage/app/public/images/hint.png" alt="" v-show="toggle === 0">
 
-        
+        <img class="absolute bottom-10 right-10 bg-transparent border-none p-0  w-16 cursor-pointer hover:scale-110"
+            @click.prevent="luz" src="../../storage/app/public/images/juego6/flashlight2.png" alt="" v-show="lint === 0">
+
 
         <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
             :class="dis">
             <p>{{ displayText }}</p>
         </div>
-   
-    
-       
 
+        <div class="middle w-80">
+
+        <div id="gridContainer" v-show="hive===true">
+            <p class="text-2xl text-white align-middle text-center">{{ selectedLetter }}</p>
+            <br>
+                    <ul id="grid" class="clear">
+                        <li >
+                            <div class="hexagon fake-hexagon"></div>
+                        </li>
+                        <li @click="updateLetter('O')">
+                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">O</span></div>
+                        </li>
+                        <li @click="updateLetter('L')">
+                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">L</span></div>
+                        </li>
+                        <li @click="updateLetter('G')">
+                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">G</span></div>
+                        </li>
+                        <li @click="updateLetter('I')">
+                            <div class="hexagon central-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">I</span></div>
+                        </li>
+                        <li @click="updateLetter('A')">
+                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">A</span></div>
+                        </li>
+                        <li>
+                            <div class="hexagon fake-hexagon"></div>
+                        </li>
+                        <li @click="updateLetter('N')">
+                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">N</span></div>
+                        </li>
+                        <li @click="updateLetter('M')">
+                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">M</span></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
     </div>
+        <!--    <div style="position: absolute;
+                top: 41vh;
+                left: 68%;
+                width: 6%;
+                height: 12vh;
+                background-color:#fff;
+                opacity: 0.5;">
+        </div> -->
+
+
 </template>
 
 <script>
@@ -70,34 +122,37 @@ import { watchEffect } from 'vue';
 
 export default {
     name: 'my-tour',
-  /*   setup() {
-        const timeStore = useTimeStore();
+    /*   setup() {
+          const timeStore = useTimeStore();
 
-        // Now you can access the minutes and seconds like this:
-        console.log(timeStore.minutes);
-        console.log(timeStore.seconds);
+          // Now you can access the minutes and seconds like this:
+          console.log(timeStore.minutes);
+          console.log(timeStore.seconds);
 
-        return {
-            minutes: timeStore.minutes,
-            seconds: timeStore.seconds
-        };
-    }, */
+          return {
+              minutes: timeStore.minutes,
+              seconds: timeStore.seconds
+          };
+      }, */
     data() {
         return {
+            selectedLetter: '',
+
             hint_header: 'PISTA 1/2',
-            hint_title: 'Email-ak bidaltzen ditu',
-            hint_content: 'Programatzeko erabiltzen dugun gailua egunero, baita jolasteko...',
-            
+            hint_title: 'Linterna erabili',
+            hint_content: 'Ezin badut ikusi ez zait ezertarako balio hemen egotea...',
+            disable_inter: false,
             isClickDisabled: false,
-            backgroundImage: '../../../storage/app/public/images/juego6/juego6.png',
-            backgroundImage3: '../../../storage/app/public/images/juego4/juego4_blur.png',
+            lint: 0,
+            backgroundImage: '../../../storage/app/public/images/juego6/black.jpg',
+            backgroundImage2: '../../../storage/app/public/images/juego6/juego3.jpg',
             isHidden: false,
-            backgroundImage2: '../../../storage/app/public/images/juego4/luz.png',
+            overlay_bg: '../../../storage/app/public/images/juego6/black33.png',
             dis: "hidden",
             displayText: '',
             toggle: 0,
             yourId: route().params,
-
+            luz_valor: false,
             // Tiempo
             tutorialValor: null,
             csrf: document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
@@ -109,25 +164,32 @@ export default {
             routetiempo: document.querySelector('#juego6').dataset.routetiempo,
             routetiempovalor: document.querySelector('#juego6').dataset.routetiempoval,
             objektuak: [
-             
-                { areaTop: 30, areaLeft: 6, areaWidth: 11, areaHeight: 55 },
+
+                { areaTop: 41, areaLeft: 68, areaWidth: 6, areaHeight: 12 },
 
             ],
+            hive: false,
+            isPointerEventsNone: false,
+            intervalId: null,
+            openImage: new Image(),
 
-           
-      
+
         };
     },
     mounted() {
         this.getTiempo();
 
-        this.mostrar("La IA se esconde entre nosotros... Lo puedo notar... Debe de estar en algun aparato electrónico.");
+        this.mostrar("La luz no llega hasta este sitio... Qué extraño tiene que haber alguna fuente de corriente cerca ");
 
-
+        this.openImage.src =
+            "../../../storage/app/public/images/juego6/juego6_2.jpg";
 
     },
 
     methods: {
+        updateLetter(letter) {
+      this.selectedLetter += letter; // Append the clicked letter to the existing string
+    },
         navigateToMenu() {
             window.location.href = route('menu.index', { id: route().params });
         },
@@ -166,20 +228,41 @@ export default {
                 });
         },
 
-        
+
         pista() {
 
             this.toggle = 4;
         },
+        luz() {
+            this.backgroundImage = this.backgroundImage2;
+            this.luz_valor = true;
+            this.startTogglingPointerEvents();
+
+        },
+        startTogglingPointerEvents() {
+            this.intervalId = setInterval(() => {
+                this.isPointerEventsNone = !this.isPointerEventsNone;
+            }, 200);
+        },
+        stopTogglingPointerEvents() {
+            clearInterval(this.intervalId);
+            this.intervalId = null;
+        },
+        onDragging() {
+            this.stopTogglingPointerEvents();
+        },
+        onDragStop() {
+            this.startTogglingPointerEvents();
+        },
         change_hint() {
             if (this.hint_header === "PISTA 1/2") {
                 this.hint_header = 'PISTA 2/2';
-                this.hint_title = 'Lekutan sartzeko erabiltzen dugu';
-                this.hint_content = 'Beste gela bat egon ditzake hemen ezkutaturik...';
+                this.hint_title = 'Linterna erabili';
+                this.hint_content = 'Ezin badut ikusi ez zait ezertarako balio hemen egotea';
             } else {
                 this.hint_header = 'PISTA 1/2';
-                this.hint_title = 'Email-ak bidaltzen ditu';
-                this.hint_content = 'Programatzeko erabiltzen dugun gailua egunero, baita jolasteko...';
+                this.hint_title = 'Linterna erabili';
+                this.hint_content = 'Ezin badut ikusi ez zait ezertarako balio hemen egotea...';
             }
 
 
@@ -213,9 +296,19 @@ export default {
                     posX >= areaLeftAbs &&
                     posX <= areaLeftAbs + areaWidthAbs
                 ) {
-                   if (i == 0) {
-                        if (window.confirm('Estas seguro que quieres irte?')) {
-                            window.location.href = route('menu.index', { id: route().params });
+                    if (i == 0) {
+                        if (!this.disable_inter) {
+
+
+                            if (window.confirm('Encender el interruptor?')) {
+                                this.disable_inter = true;
+                                this.audio = new Audio('../../storage/images/juego6/luz.mp3');
+                                this.audio.play();
+                                this.backgroundImage = this.openImage.src;
+                                this.luz_valor = false;
+                                this.mostrar("La luz ha vuelto!");
+
+                            }
                         }
                     }
                 }
@@ -229,10 +322,16 @@ export default {
     },
     computed: {
 
-          
+
     },
     watch: {
-      
+        backgroundImage(newVal) {
+            if (newVal === this.openImage.src) {
+                this.lint = 1;
+                this.hive = true;
+
+            }
+        },
     },
 
 };
