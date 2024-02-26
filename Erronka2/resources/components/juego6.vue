@@ -1,8 +1,7 @@
 <template>
-    <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
+    <div class="w-full h-screen bg-center bg-no-repeat bg-full" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <vue-countdown
-            class="fixed contador_letra mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl"
+        <vue-countdown class="right-0 z-50 flex items-start justify-center pt-12 text-4xl text-white contador_letra"
             :time="(1 * min * 60 + sec) * 1000" @progress="updateTime" v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
@@ -20,30 +19,30 @@
             <input name="tiempo_sec" type="hidden" :value="sec">
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
-        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110"
+        <img class="absolute p-0 bg-transparent border-none cursor-pointer top-10 left-10 w-14 hover:scale-110"
             @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir">
-        <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
+        <div class="p-4 p-10 lg:w-1/3 middle" style="z-index: 99;" v-show="toggle === 4">
             <div
-                class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-5 cursor-pointer hover:scale-110"
+                class="relative h-full px-8 pt-16 pb-24 overflow-hidden text-center border rounded-lg bg-slate-950 border-emerald-500">
+                <img class="absolute w-5 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110"
                     @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
-                <h2 class="tracking-widest text-md title-font font-medium text-white mb-1">{{ hint_header }}</h2>
-                <h1 class="title-font sm:text-2xl text-xl font-medium text-white mb-3">{{ hint_title }}
+                <h2 class="mb-1 font-medium tracking-widest text-white text-md title-font">{{ hint_header }}</h2>
+                <h1 class="mb-3 text-xl font-medium text-white title-font sm:text-2xl">{{ hint_title }}
                 </h1>
-                <p class="leading-relaxed mb-3 text-white">{{ hint_content }}</p><a
-                    class="text-white inline-flex items-center"><svg class="w-4 h-4 ml-2 cursor-pointer"
+                <p class="mb-3 leading-relaxed text-white">{{ hint_content }}</p><a
+                    class="inline-flex items-center text-white"><svg class="w-4 h-4 ml-2 cursor-pointer"
                         @click.prevent="change_hint" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14"></path>
                         <path d="M12 5l7 7-7 7"></path>
                     </svg></a>
-                <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4"><span
-                        class="text-white mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"><svg
+                <div class="absolute bottom-0 left-0 flex justify-center w-full py-4 mt-2 leading-none text-center"><span
+                        class="inline-flex items-center py-1 pr-3 mr-3 text-sm leading-none text-white border-r-2 border-gray-200"><svg
                             class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" viewBox="0 0 24 24">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
-                        </svg>1.2K</span><span class="text-white inline-flex items-center leading-none text-sm"><svg
+                        </svg>1.2K</span><span class="inline-flex items-center text-sm leading-none text-white"><svg
                             class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" viewBox="0 0 24 24">
                             <path
@@ -53,56 +52,78 @@
 
             </div>
         </div>
-        <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
+        <img class="absolute w-10 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110"
             @click.prevent="pista" src="../../storage/app/public/images/hint.png" alt="" v-show="toggle === 0">
 
-        <img class="absolute bottom-10 right-10 bg-transparent border-none p-0  w-16 cursor-pointer hover:scale-110"
+        <img class="absolute w-16 p-0 bg-transparent border-none cursor-pointer bottom-10 right-10 hover:scale-110"
             @click.prevent="luz" src="../../storage/app/public/images/juego6/flashlight2.png" alt="" v-show="lint === 0">
 
 
-        <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
+        <div class="z-50 p-5 text-center text-white bg-black border-2 border-green-600 rounded middle glow-green"
             :class="dis">
             <p>{{ displayText }}</p>
         </div>
 
         <div class="middle w-80">
 
-        <div id="gridContainer" v-show="hive===true">
-            <p class="text-2xl text-white align-middle text-center">{{ selectedLetter }}</p>
-            <br>
-                    <ul id="grid" class="clear">
-                        <li >
-                            <div class="hexagon fake-hexagon"></div>
-                        </li>
-                        <li @click="updateLetter('O')">
-                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">O</span></div>
-                        </li>
-                        <li @click="updateLetter('L')">
-                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">L</span></div>
-                        </li>
-                        <li @click="updateLetter('G')">
-                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">G</span></div>
-                        </li>
-                        <li @click="updateLetter('I')">
-                            <div class="hexagon central-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">I</span></div>
-                        </li>
-                        <li @click="updateLetter('A')">
-                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">A</span></div>
-                        </li>
-                        <li>
-                            <div class="hexagon fake-hexagon"></div>
-                        </li>
-                        <li @click="updateLetter('N')">
-                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">N</span></div>
-                        </li>
-                        <li @click="updateLetter('M')">
-                            <div class="hexagon outer-hexagon"><span class="transform transition duration-500 ease-in-out hover:scale-110">M</span></div>
-                        </li>
-                    </ul>
+            <div id="gridContainer" v-show="hive === true">
+                <p class="text-4xl font-bold text-center text-white align-middle glow-green2">{{ selectedLetter }}</p>
+                <br>
+                <ul id="grid" class="clear">
+                    <li>
+                        <div class="hexagon fake-hexagon"></div>
+                    </li>
+                    <li @click="updateLetter('O')">
+                        <div class="hexagon outer-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">O</span></div>
+                    </li>
+                    <li @click="updateLetter('L')">
+                        <div class="hexagon outer-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">L</span></div>
+                    </li>
+                    <li @click="updateLetter('G')">
+                        <div class="hexagon outer-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">G</span></div>
+                    </li>
+                    <li @click="updateLetter('I')">
+                        <div class="hexagon central-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">I</span></div>
+                    </li>
+                    <li @click="updateLetter('A')">
+                        <div class="hexagon outer-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">A</span></div>
+                    </li>
+                    <li>
+                        <div class="hexagon fake-hexagon"></div>
+                    </li>
+                    <li @click="updateLetter('N')">
+                        <div class="hexagon outer-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">N</span></div>
+                    </li>
+                    <li @click="updateLetter('M')">
+                        <div class="hexagon outer-hexagon"><span
+                                class="transition duration-500 ease-in-out transform hover:scale-110">M</span></div>
+                    </li>
+                </ul>
+                <br>
+                <div class="flex">
+                  
+                    <div class="p-5 font-bold text-center align-middle bg-white border rounded-lg border-emerald-500">
+                        <h1>Palabras encontradas:</h1>
+                        <p class="text-green-500" v-for="word in foundWords" :key="word">{{ word }}</p>
+
+                    </div>
+                    <img class="flex items-center justify-center w-16 mx-auto my-auto text-center cursor-pointer hover:scale-110"
+                        @click="del" src="../../storage/app/public/images/juego6/del.png" alt="Salir">
                 </div>
+
             </div>
+
+        </div>
+
     </div>
-        <!--    <div style="position: absolute;
+
+    <!--    <div style="position: absolute;
                 top: 41vh;
                 left: 68%;
                 width: 6%;
@@ -110,8 +131,6 @@
                 background-color:#fff;
                 opacity: 0.5;">
         </div> -->
-
-
 </template>
 
 <script>
@@ -119,6 +138,7 @@ import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { watchEffect } from 'vue';
+import debounce from 'lodash/debounce';
 
 export default {
     name: 'my-tour',
@@ -137,6 +157,7 @@ export default {
     data() {
         return {
             selectedLetter: '',
+            foundWords: [],
 
             hint_header: 'PISTA 1/2',
             hint_title: 'Linterna erabili',
@@ -187,23 +208,28 @@ export default {
     },
 
     methods: {
+        del() {
+            this.selectedLetter = this.selectedLetter.slice(0, -1);
+        },
         updateLetter(letter) {
-      this.selectedLetter += letter; // Append the clicked letter to the existing string
-    },
+            this.selectedLetter += letter; // Append the clicked letter to the existing string
+        },
         navigateToMenu() {
             window.location.href = route('menu.index', { id: route().params });
         },
         updateTime({ days, hours, minutes, seconds }) {
             this.pendingMin = minutes;
             this.pendingSec = seconds;
-            this.updateTiempo_db();
+            this.debouncedUpdate();
         },
+        debouncedUpdate: debounce(function () {
+            this.updateTiempo_db();
+        }, 1000),
         updateTiempo_db() {
             let formData = new FormData(this.$refs.tiempoForm);
 
             axios.post(this.$refs.tiempoForm.action, formData)
                 .then(response => {
-                    // Update min and sec only when the request completes
                     this.min = this.pendingMin;
                     this.sec = this.pendingSec;
                     console.log(response);
@@ -257,8 +283,8 @@ export default {
         change_hint() {
             if (this.hint_header === "PISTA 1/2") {
                 this.hint_header = 'PISTA 2/2';
-                this.hint_title = 'Linterna erabili';
-                this.hint_content = 'Ezin badut ikusi ez zait ezertarako balio hemen egotea';
+                this.hint_title = '5 hitzak bildu';
+                this.hint_content = 'Letra hauking bost hitz egin behar ditut...';
             } else {
                 this.hint_header = 'PISTA 1/2';
                 this.hint_title = 'Linterna erabili';
@@ -330,6 +356,12 @@ export default {
                 this.lint = 1;
                 this.hive = true;
 
+            }
+        },
+        selectedLetter(newVal) {
+            console.log(newVal);
+            if (newVal === 'MINA' && !this.foundWords.includes(newVal) || newVal === 'MANGO' && !this.foundWords.includes(newVal) || newVal === 'MOLIN' && !this.foundWords.includes(newVal)) {
+                this.foundWords.push(newVal);
             }
         },
     },

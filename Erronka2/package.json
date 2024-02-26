@@ -26,6 +26,7 @@
         "draggable-vue-directive": "^2.1.0",
         "fluid-canvas": "github:malik-tillman/fluid-js",
         "i": "^0.3.7",
+        "lodash": "^4.17.21",
         "pinia": "^2.1.7",
         "sweetalert2": "^11.10.4",
         "tailwind-typewriter": "^1.0.1",
