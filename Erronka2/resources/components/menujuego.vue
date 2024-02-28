@@ -312,7 +312,7 @@ export default {
     },
     watch: {
         inputText(newVal) {
-            if (newVal.toUpperCase() === 'DTZ') {
+            if (newVal.toUpperCase() === 'DTHZ') {
                 window.location.href = route('juego5.index', { id: this.yourId });  // Reemplaza 'juego1' con la ruta correcta
 
             }

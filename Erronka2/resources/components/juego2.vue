@@ -1,13 +1,13 @@
 <template>
-    <!-- <div id="fondoJuego" class="relative min-h-screen flex items-center justify-center bg-cover bg-no-repeat bg-center" style="background-image: url('../../storage/app/public/images/juego2/fondo.png');">
-    <button class="botoi fixed  transform  bg-transparent border-none p-0 focus:outline-none" @click.prevent="aparecerPizarra">
-        <img id="pizarra" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="Botón con imagen" class="w-96 opacity-50 h-32 ">
+    <!-- <div id="fondoJuego" class="relative flex items-center justify-center min-h-screen bg-center bg-no-repeat bg-cover" style="background-image: url('../../storage/app/public/images/juego2/fondo.png');">
+    <button class="fixed p-0 transform bg-transparent border-none botoi focus:outline-none" @click.prevent="aparecerPizarra">
+        <img id="pizarra" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="Botón con imagen" class="h-32 opacity-50 w-96 ">
     </button> -->
     <!-- </div> -->
     <img id="fondo" @click.prevent="clickFondo" src="../../storage/app/public/images/juego2/fondo.png" alt=""
         class="fondo" />
         <vue-countdown
-        class="fixed contador_letra  mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl"
+        class="fixed top-0 left-0 right-0 flex items-start justify-center mt-12 text-4xl text-white contador_letra"
         :time="(1 * min * 60 + sec) * 1000" @progress="updateTime" v-slot="{ days, hours, minutes, seconds }">
         {{ minutes }}:{{ seconds }}
     </vue-countdown>
@@ -20,23 +20,23 @@
     </form>
     <img id="pizarra-rota" src="../../storage/app/public/images/juego2/pizarra-rota.png" alt="" class="pizarra-rota" />
     <img id="botella" src="../../storage/app/public/images/juego2/botellas.png" alt="" class="botella" />
-    <img id="close" class="absolute top-10 right-10 bg-transparent border-none p-0 w-10 hidden" @click="close"
+    <img id="close" class="absolute hidden w-10 p-0 bg-transparent border-none top-10 right-10" @click="close"
         src="../../storage/app/public/images/juego2/close.png" alt="" />
 
 
     <!-- PARA COMPONENTE -->
-    <img class="carta absolute w-2/3  none" @click="activarAnimacion"
+    <img class="absolute w-2/3 carta none" @click="activarAnimacion"
         src="../../storage/app/public/images/juego2/fondo_papel-.png" alt="">
     <div class="letra">
-        <p class="letra-carta" id="letra-carta">T</p>
+        <p class="text-red-800 letra-carta font-italic" id="letra-carta">T</p>
     </div>
 
     <div>
         <a href="rutaDestino"></a>
-        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+        <img class="absolute p-0 bg-transparent border-none cursor-pointer top-10 left-10 w-14 hover:scale-110 v-step-3"
             @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir">
     </div>
-    <div id="botones" class="container-botones text-center flex items-center justify-center flex-row ">
+    <div id="botones" class="flex flex-row items-center justify-center text-center container-botones ">
         <div class="control-container pt-28" :class="{ 'vibrando': isVibrando1 }">
        
             <div class="number-input">
@@ -160,7 +160,7 @@
     </div>
 
 
-    <div id="texto-pizarra" class="texto-pizarra absolute flex flex-wrap text-white gap-5 text-xl">
+    <div id="texto-pizarra" class="absolute flex flex-wrap gap-5 text-xl text-white texto-pizarra">
         <p class="">
             1-Diferenciación de enterobacterias en base a la fermentación de
             hidratos de carbono y a la producción de ácido sulfhídrico

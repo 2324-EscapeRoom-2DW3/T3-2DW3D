@@ -116,7 +116,10 @@
                     <img class="flex items-center justify-center w-16 mx-auto my-auto text-center cursor-pointer hover:scale-110"
                         @click="del" src="../../storage/app/public/images/juego6/del.png" alt="Salir">
                 </div>
-
+                <vue-draggable-resizable class="fixed bottom-0 pt-20 left-20" ref="draggable4" v-show="isHidden === true">
+                <img class="transform slide-animation" src="../../storage/app/public/images/juego6/fondo_papel_h.png"
+                    alt="">
+            </vue-draggable-resizable>
             </div>
 
         </div>
@@ -283,7 +286,7 @@ export default {
         change_hint() {
             if (this.hint_header === "PISTA 1/2") {
                 this.hint_header = 'PISTA 2/2';
-                this.hint_title = '5 hitzak bildu';
+                this.hint_title = '7 hitzak bildu';
                 this.hint_content = 'Letra hauking bost hitz egin behar ditut...';
             } else {
                 this.hint_header = 'PISTA 1/2';
@@ -360,10 +363,22 @@ export default {
         },
         selectedLetter(newVal) {
             console.log(newVal);
-            if (newVal === 'MINA' && !this.foundWords.includes(newVal) || newVal === 'MANGO' && !this.foundWords.includes(newVal) || newVal === 'MOLIN' && !this.foundWords.includes(newVal)) {
-                this.foundWords.push(newVal);
+            if (this.foundWords.length === 7) {
+                setTimeout(() => {
+                    this.isHidden = true;
+                    this.mostrar("Otra de las letras para el código...");
+                }, 500);
             }
+            if (newVal === 'MINA'  && !this.foundWords.includes(newVal) || newVal === 'GOMINOLA'  && !this.foundWords.includes(newVal)  || newVal === 'MOLIN' && !this.foundWords.includes(newVal) || newVal === 'IMAN' && !this.foundWords.includes(newVal)  || newVal === 'AMINO'  && !this.foundWords.includes(newVal) || newVal === 'LIMON'  && !this.foundWords.includes(newVal) ||newVal === 'LIMA'  && !this.foundWords.includes(newVal) ||newVal === 'MILANO'  && !this.foundWords.includes(newVal)  ||newVal === 'MOLINO' && !this.foundWords.includes(newVal)  || newVal === 'LIGA'  && !this.foundWords.includes(newVal)  || newVal === 'LIO'  && !this.foundWords.includes(newVal) || newVal === 'MIGA'  && !this.foundWords.includes(newVal)  || newVal === 'MIL'  && !this.foundWords.includes(newVal) || newVal === 'MOL'  && !this.foundWords.includes(newVal)  || newVal === 'MOLA'  && !this.foundWords.includes(newVal) || newVal === 'MOLINILLO' && !this.foundWords.includes(newVal)  || newVal === 'MOLINO' && !this.foundWords.includes(newVal) || newVal=== 'ILLO'  && !this.foundWords.includes(newVal) || newVal=== 'MILLA'  && !this.foundWords.includes(newVal) ) {
+            
+                this.foundWords.push(newVal);
+                this.selectedLetter = '';  
+            
+                        }
+
+            
         },
+      
     },
 
 };
