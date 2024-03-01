@@ -13,6 +13,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CreditosFinales;
 use App\Http\Controllers\MyAuthenticatedSessionController;
+use App\Http\Controllers\juego3Controller;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,10 +94,8 @@ Route::patch('/adminpage/administrazioa/{id}/edit-rol', [AdminController::class,
 
 
 
-Route::get('juegos/juego3', function () {
-    return view('juegos/juego3/index');
-})->name('juego3');
 
+Route::get('juegos/juego3/{id}', [juego3Controller::class, 'index'])->name('juego3.index')->middleware('checkgame');
 Route::get('juegos/juego4/{id}', [Juego4Controller::class, 'index'])->name('juego4.index')->middleware('checkgame');
 Route::get('juegos/juego4/show/{id}', [Juego4Controller::class, 'show'])->name('juego4.show')->middleware('checkgame');
 Route::put('juegos/juego4/update/{id}', [Juego4Controller::class, 'update'])->name('juego4.update')->middleware('checkgame');

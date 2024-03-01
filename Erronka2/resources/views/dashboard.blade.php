@@ -6,7 +6,8 @@
 
 <x-app-layout>
                     @php
-                    $imageUrl = url('storage/images' . Auth::user()->imagen); @endphp
+                    $imageUrl = url('storage/images'. Auth::user()->imagen);
+                    @endphp
                     <div class="flex flex-col items-center justify-center">
                         <img id="imagenCosas" src="{{ $imageUrl }}" alt="User Photo" class="mx-auto profile-image" onclick="location.href = location.href.replace('dashboard', 'profile');">
                         <h1 id="nombreCosas" class="font-figtree font-bold text-5xl text-center text-username">
