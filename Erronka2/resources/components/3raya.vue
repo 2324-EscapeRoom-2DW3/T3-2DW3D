@@ -1,7 +1,7 @@
 <template>
-    <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage})` }"
+    <div class="w-full h-screen bg-center bg-no-repeat bg-full" :style="{ backgroundImage: `url(${backgroundImage})` }"
         style="z-index: -1;" @click.prevent="clickImagen">
-        <vue-countdown class="fixed contador_letra mt-12 top-0 left-0 right-0 flex justify-center items-start text-white text-4xl" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
+        <vue-countdown class="right-0 z-50 flex items-start justify-center pt-12 text-4xl text-white contador_letra" :time="(1 * min * 60 + sec) * 1000" @progress="updateTime"
             v-slot="{ days, hours, minutes, seconds }">
             {{ minutes }}:{{ seconds }}
         </vue-countdown>
@@ -13,30 +13,30 @@
             <input name="tiempo_sec" type="hidden" :value="sec">
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
-        <img class="absolute top-10 left-10 bg-transparent border-none p-0  w-14 cursor-pointer hover:scale-110 v-step-3"
+        <img class="absolute p-0 bg-transparent border-none cursor-pointer top-10 left-10 w-14 hover:scale-110"
             @click="navigateToMenu" src="../../storage/app/public/images/exit.png" alt="Salir">
-        <div class="p-4 lg:w-1/3 middle p-10" style="z-index: 99;" v-show="toggle === 4">
+        <div class="p-4 p-10 lg:w-1/3 middle" style="z-index: 99;" v-show="toggle === 4">
             <div
-                class="h-full bg-slate-950 border-emerald-500 border px-8 pt-16 pb-24 rounded-lg overflow-hidden text-center relative">
-                <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-5 cursor-pointer hover:scale-110"
+                class="relative h-full px-8 pt-16 pb-24 overflow-hidden text-center border rounded-lg bg-slate-950 border-emerald-500">
+                <img class="absolute w-5 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110"
                     @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
-                <h2 class="tracking-widest text-md title-font font-medium text-white mb-1">{{ hint_header }}</h2>
-                <h1 class="title-font sm:text-2xl text-xl font-medium text-white mb-3">{{ hint_title }}
+                <h2 class="mb-1 font-medium tracking-widest text-white text-md title-font">{{ hint_header }}</h2>
+                <h1 class="mb-3 text-xl font-medium text-white title-font sm:text-2xl">{{ hint_title }}
                 </h1>
-                <p class="leading-relaxed mb-3 text-white">{{ hint_content }}</p><a
-                    class="text-white inline-flex items-center"><svg class="w-4 h-4 ml-2 cursor-pointer"
+                <p class="mb-3 leading-relaxed text-white">{{ hint_content }}</p><a
+                    class="inline-flex items-center text-white"><svg class="w-4 h-4 ml-2 cursor-pointer"
                         @click.prevent="change_hint" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" fill="none"
                         stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14"></path>
                         <path d="M12 5l7 7-7 7"></path>
                     </svg></a>
-                <div class="text-center mt-2 leading-none flex justify-center absolute bottom-0 left-0 w-full py-4"><span
-                        class="text-white mr-3 inline-flex items-center leading-none text-sm pr-3 py-1 border-r-2 border-gray-200"><svg
+                <div class="absolute bottom-0 left-0 flex justify-center w-full py-4 mt-2 leading-none text-center"><span
+                        class="inline-flex items-center py-1 pr-3 mr-3 text-sm leading-none text-white border-r-2 border-gray-200"><svg
                             class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" viewBox="0 0 24 24">
                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
                             <circle cx="12" cy="12" r="3"></circle>
-                        </svg>1.2K</span><span class="text-white inline-flex items-center leading-none text-sm"><svg
+                        </svg>1.2K</span><span class="inline-flex items-center text-sm leading-none text-white"><svg
                             class="w-4 h-4 mr-1" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"
                             stroke-linejoin="round" viewBox="0 0 24 24">
                             <path
@@ -47,12 +47,12 @@
             </div>
         </div>
         <v-tour name="myTour" :steps="steps"></v-tour>
-        <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110 v-step-3"
+        <img class="absolute w-10 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110 v-step-3"
             @click.prevent="pista" src="../../storage/app/public/images/hint.png" alt="" v-show="toggle === 0">
 
-        <div class="h-screen w-full bg-full bg-no-repeat bg-center" :style="{ backgroundImage: `url(${backgroundImage2})` }"
+        <div class="w-full h-screen bg-center bg-no-repeat bg-full" :style="{ backgroundImage: `url(${backgroundImage2})` }"
             style="z-index: 1;" v-show="toggle === 3">
-            <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
+            <img class="absolute w-10 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110"
                 @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/hint.png" alt="">
             <div @click.prevent="toggleDiv(0)" style="position: absolute;
                 top: 1.5vh;
@@ -70,7 +70,7 @@
             <input name="id_juego" type="hidden" :value="yourId">
         </form>
 
-        <div class="middle glow-green text-white border-2 border-green-600 bg-black p-5 rounded text-center z-50"
+        <div class="z-50 p-5 text-center text-white bg-black border-2 border-green-600 rounded middle glow-green"
             :class="dis">
             <p>{{ displayText }}</p>
         </div>
@@ -128,14 +128,14 @@
                 background-color:#fff;
                 opacity: 0.5;">
             </div>  -->
-        <div class="flex flex-col items-center justify-center min-h-screen z-50" v-show="toggle === 1"
+        <div class="z-50 flex flex-col items-center justify-center min-h-screen" v-show="toggle === 1"
             @mouseenter="isClickDisabled = true" @mouseleave="isClickDisabled = false">
-            <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer  hover:scale-110"
+            <img class="absolute w-10 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110"
                 @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
 
-            <h3 class="mb-4 text-4xl text-bold text-white">{{ playerName }}</h3>
+            <h3 class="mb-4 text-4xl text-white text-bold">{{ playerName }}</h3>
 
-            <div class="mb-8 flex flex-col items-center">
+            <div class="flex flex-col items-center mb-8">
                 <!--Row y cell son los simbolos y x e y los indices. Los elementos en esos indices -->
                 <div v-for="(row, x) in board" :key="x" class="flex">
                     <!-- Le pasa la celda exacta x e y-->
@@ -147,23 +147,23 @@
             </div>
 
             <div class="text-center">
-                <h2 v-if="winner" class="mb-8 text-4xl font-bold font-italic text-white" :class="winnerClass">
+                <h2 v-if="winner" class="mb-8 text-4xl font-bold text-white font-italic" :class="winnerClass">
                     {{ winnerName }}
                 </h2>
                 <button @click="ResetGame"
                     class="smky-btn3 relative hover:text-white py-2 px-6 after:absolute after:h-1 after:hover:h-[200%] transition-all duration-500 hover:transition-all hover:duration-500 after:transition-all after:duration-500 after:hover:transition-all after:hover:duration-500 overflow-hidden z-20 after:z-[-20] after:bg-[#32CD32] after:rounded-t-full after:w-full after:bottom-0 after:left-0 text-white scale-125">Reset</button>
             </div>
-            <vue-draggable-resizable class="fixed bottom-0 left-20 pt-20" ref="draggable4" v-show="isHidden === true">
+            <vue-draggable-resizable class="fixed bottom-0 pt-20 left-20" ref="draggable4" v-show="isHidden === true">
                 <img class="transform slide-animation" src="../../storage/app/public/images/juego4/fondo_papel_z.png"
                     alt="">
             </vue-draggable-resizable>
         </div>
-        <div class="h-screen w-full bg-full bg-no-repeat bg-center" v-show="toggle === 2"
+        <div class="w-full h-screen bg-center bg-no-repeat bg-full" v-show="toggle === 2"
             :style="{ backgroundImage: `url(${backgroundImage3})` }" style="z-index: 1;">
 
             <div class="flex flex-col items-center justify-center min-h-screen">
 
-                <img class="absolute top-10 right-10 bg-transparent border-none p-0  w-10 cursor-pointer hover:scale-110"
+                <img class="absolute w-10 p-0 bg-transparent border-none cursor-pointer top-10 right-10 hover:scale-110"
                     @click.prevent="toggleDiv(0)" src="../../storage/app/public/images/juego2/close.png" alt="">
                 <img src="../../storage/app/public/images/juego4/pizarra_juego4.png">
             </div>
@@ -177,7 +177,7 @@ import { computed } from "vue";
 import route from '../../vendor/tightenco/ziggy';
 import VueCountdown from '@chenfengyuan/vue-countdown';
 import { watchEffect } from 'vue';
-
+import debounce from 'lodash/debounce';
 export default {
     name: 'my-tour',
   /*   setup() {
@@ -252,7 +252,7 @@ export default {
                 },
                 {
                     target: '[data-v-step="2"]',
-                    content: 'Birritan konprobatu dena, gauza ezkutuak egon daikezke',
+                    content: 'Birritan konprobatu dana',
                     params: {
                         placement: 'top'
                     }
@@ -284,14 +284,16 @@ export default {
         updateTime({ days, hours, minutes, seconds }) {
             this.pendingMin = minutes;
             this.pendingSec = seconds;
-            this.updateTiempo_db();
+            this.debouncedUpdate();
         },
+        debouncedUpdate: debounce(function () {
+            this.updateTiempo_db();
+        }, 1000),
         updateTiempo_db() {
             let formData = new FormData(this.$refs.tiempoForm);
 
             axios.post(this.$refs.tiempoForm.action, formData)
                 .then(response => {
-                    // Update min and sec only when the request completes
                     this.min = this.pendingMin;
                     this.sec = this.pendingSec;
                     console.log(response);
@@ -438,7 +440,7 @@ export default {
                         let intervalId = setInterval(() => {
                             this.toggle = this.toggle === 3 ? 0 : 3;
                             count++;
-                            if (count === 6) {
+                            if (count === 3) {
                                 clearInterval(intervalId);
                                 this.toggle = 3;
                             }
